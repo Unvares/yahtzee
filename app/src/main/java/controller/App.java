@@ -1,20 +1,20 @@
 package controller;
 
+import view.MenuView;
+
 /**
- * Responsible for staring the application.
+ * Responsible for starting the application.
  */
 public class App {
   /**
    * Application starting point.
-
+   * 
    * @param args command line arguments.
    */
   public static void main(String[] args) {
-    // adapt to start the application in your way
-    model.Simple m = new model.Simple();
-    Simple c = new Simple();
-    view.Simple v = new view.Simple();
+    MenuView menuView = new MenuView();
+    MenuController menuController = new MenuController(menuView);
 
-    c.doSomethingSimple(m, v);
+    menuController.displayMenu();
   }
 }
