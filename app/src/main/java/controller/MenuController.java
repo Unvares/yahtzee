@@ -2,9 +2,10 @@ package controller;
 
 import model.State;
 import view.MenuView;
+import view.View;
 
 public class MenuController implements Controller {
-  private MenuView view = new MenuView();
+  private View view = new MenuView();
 
   public MenuController() {
 

@@ -2,7 +2,7 @@ package view;
 
 import model.MenuOptions;
 
-public class MenuView {
+public class MenuView implements View {
     public void display() {
         String[] options = MenuOptions.getOptions();
         for (int i = 0; i < options.length; i++) {
