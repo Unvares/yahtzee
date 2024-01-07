@@ -10,7 +10,7 @@ public class App {
    * @param args command line arguments.
    */
   public static void main(String[] args) {
-    Controller menuController = new MenuController();
-    menuController.run();
+    Router router = new Router();
+    router.run();
   }
 }
