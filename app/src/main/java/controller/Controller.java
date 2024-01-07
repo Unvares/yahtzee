@@ -1,6 +1,6 @@
 package controller;
 
-import model.State;
+import utils.State;
 
 /**
  * Each controller has a private method indicating its associated state.

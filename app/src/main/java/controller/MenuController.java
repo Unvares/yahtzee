@@ -1,6 +1,7 @@
 package controller;
 
-import model.State;
+import utils.InputHandlerImpl;
+import utils.State;
 import view.MenuView;
 import view.View;
 

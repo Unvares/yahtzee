@@ -1,4 +1,4 @@
-package controller;
+package utils;
 
 /**
  * This interface defines methods for handling user input.

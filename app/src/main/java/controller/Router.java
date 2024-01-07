@@ -1,6 +1,8 @@
 package controller;
 
-import model.State;
+import utils.ControllerRegistry;
+import utils.InputHandlerImpl;
+import utils.State;
 
 public class Router {
   private ControllerRegistry registry = new ControllerRegistry();

@@ -1,9 +1,9 @@
-package controller;
+package utils;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import model.State;
+import controller.Controller;
 
 public class ControllerRegistry {
   private Map<State, Controller> controllerMap = new HashMap<>();
