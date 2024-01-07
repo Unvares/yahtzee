@@ -5,6 +5,7 @@ import view.MenuView;
 import view.View;
 
 public class MenuController implements Controller {
+  private State state = State.MENU;
   private View view = new MenuView();
 
   public MenuController() {
@@ -23,6 +24,10 @@ public class MenuController implements Controller {
 
     return newState;
 
+  }
+
+  public State getControllerState() {
+    return this.state;
   }
 
   public State getMenuChoice() {
