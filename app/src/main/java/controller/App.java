@@ -1,7 +1,5 @@
 package controller;
 
-import view.MenuView;
-
 /**
  * Responsible for starting the application.
  */
@@ -12,9 +10,7 @@ public class App {
    * @param args command line arguments.
    */
   public static void main(String[] args) {
-    MenuView menuView = new MenuView();
-    MenuController menuController = new MenuController(menuView);
-
-    menuController.displayMenu();
+    Controller menuController = new MenuController();
+    menuController.run();
   }
 }

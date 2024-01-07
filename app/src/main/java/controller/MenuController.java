@@ -1,25 +1,43 @@
 package controller;
 
-import java.util.Arrays;
-import java.util.List;
-
-import model.MenuOption;
+import model.State;
 import view.MenuView;
 
-public class MenuController {
-  private List<MenuOption> options = Arrays.asList(
-      new MenuOption("Start New Game"),
-      new MenuOption("Load Game"),
-      new MenuOption("View Scores"),
-      new MenuOption("Exit"));
+public class MenuController implements Controller {
+  private MenuView view = new MenuView();
 
-  private MenuView view;
+  public MenuController() {
 
-  public MenuController(MenuView view) {
-    this.view = view;
   }
 
-  public void displayMenu() {
-    view.display(options);
+  public State run() {
+    this.view.display();
+
+    State newState = getMenuChoice();
+
+    while (newState == State.INVALID) {
+      System.out.println("Invalid choice. Please try again.");
+      newState = getMenuChoice();
+    }
+
+    return newState;
+
   }
+
+  public State getMenuChoice() {
+    int choice = InputHandlerImpl.getInstance().getIntInput();
+    switch (choice) {
+      case 1:
+        return State.START_GAME;
+      case 2:
+        return State.LOAD_GAME;
+      case 3:
+        return State.VIEW_SCORES;
+      case 4:
+        return State.EXIT;
+      default:
+        return State.INVALID;
+    }
+  }
+
 }

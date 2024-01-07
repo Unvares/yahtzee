@@ -1,13 +1,12 @@
 package view;
 
-import java.util.List;
-
-import model.MenuOption;
+import model.MenuOptions;
 
 public class MenuView {
-    public void display(List<MenuOption> options) {
-        for (int i = 0; i < options.size(); i++) {
-            System.out.println((i + 1) + ". " + options.get(i).getDescription());
+    public void display() {
+        String[] options = MenuOptions.getOptions();
+        for (int i = 0; i < options.length; i++) {
+            System.out.println((i + 1) + ". " + options[i]);
         }
     }
 }
