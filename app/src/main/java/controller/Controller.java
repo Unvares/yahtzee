@@ -9,5 +9,5 @@ import utils.State;
 public interface Controller {
   State getControllerState();
 
-  State run();
+  void run();
 }

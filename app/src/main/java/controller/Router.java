@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.Arrays;
+import java.util.List;
+
 import utils.ControllerRegistry;
 import utils.InputHandlerImpl;
 import utils.State;
@@ -7,25 +10,41 @@ import utils.State;
 public class Router {
   private ControllerRegistry registry = new ControllerRegistry();
 
-  private State currentState = State.MENU;
+  private static List<State> statesList = Arrays.asList(State.MENU);
 
   public Router() {
     registry.registerController(State.MENU, new MenuController());
+    registry.registerController(State.CREATE_GAME, new CreateGameController());
   }
 
   public void run() {
-    while (currentState != State.EXIT) {
-      Controller controller = registry.getController(currentState);
+    while (!statesList.isEmpty()) {
+      State state = Router.popState();
+
+      if (state == State.EXIT) {
+        break;
+      }
+
+      Controller controller = registry.getController(state);
       if (controller != null) {
-        currentState = controller.run();
+        controller.run();
       } else {
-        System.out.println("No controller found for state " + currentState);
+        System.out.println("No controller found");
         System.out.println("Exiting...");
-        currentState = State.EXIT;
+        break;
       }
     }
 
+    System.out.println("See you next time!");
     InputHandlerImpl.getInstance().closeScanner();
 
+  }
+
+  static protected void pushState(State state) {
+    statesList.add(state);
+  }
+
+  static private State popState() {
+    return statesList.remove(statesList.size() - 1);
   }
 }

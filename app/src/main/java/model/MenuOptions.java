@@ -2,7 +2,7 @@ package model;
 
 public class MenuOptions {
   static private String[] options = {
-      "Start New Game",
+      "Create New Game",
       "Load Game",
       "View Scores",
       "Exit"

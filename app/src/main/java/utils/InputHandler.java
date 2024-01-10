@@ -13,5 +13,9 @@ public interface InputHandler {
 
   void closeScanner();
 
-  int getIntInput();
+  int getIntInput(String prompt);
+
+  String getStringInput(String prompt);
+
+  boolean getBooleanInput(String prompt);
 }

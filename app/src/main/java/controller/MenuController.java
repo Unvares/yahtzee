@@ -1,5 +1,6 @@
 package controller;
 
+import utils.InputHandler;
 import utils.InputHandlerImpl;
 import utils.State;
 import view.MenuView;
@@ -13,26 +14,28 @@ public class MenuController implements Controller {
 
   }
 
-  public State run() {
-    this.view.display();
+  @Override
+  public void run() {
+    view.display();
 
-    State newState = getMenuChoice();
+    State newState = getChoice();
 
     while (newState == State.INVALID) {
       System.out.println("Invalid choice. Please try again.");
-      newState = getMenuChoice();
+      newState = getChoice();
     }
 
-    return newState;
-
+    Router.pushState(newState);
   }
 
+  @Override
   public State getControllerState() {
     return this.state;
   }
 
-  public State getMenuChoice() {
-    int choice = InputHandlerImpl.getInstance().getIntInput();
+  public State getChoice() {
+    InputHandler inputHandler = InputHandlerImpl.getInstance();
+    int choice = inputHandler.getIntInput("Your choice:");
     switch (choice) {
       case 1:
         return State.START_GAME;
