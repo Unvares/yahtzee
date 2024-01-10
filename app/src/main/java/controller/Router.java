@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import utils.State;
 public class Router {
   private ControllerRegistry registry = new ControllerRegistry();
 
-  private static List<State> statesList = Arrays.asList(State.MENU);
+  private static List<State> statesList = new ArrayList<>(Arrays.asList(State.MENU));
 
   public Router() {
     registry.registerController(State.MENU, new MenuController());
@@ -19,8 +20,9 @@ public class Router {
 
   public void run() {
     while (!statesList.isEmpty()) {
-      State state = Router.popState();
+      cleanScreen();
 
+      State state = Router.popState();
       if (state == State.EXIT) {
         break;
       }
@@ -46,5 +48,10 @@ public class Router {
 
   static private State popState() {
     return statesList.remove(statesList.size() - 1);
+  }
+
+  private void cleanScreen() {
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
   }
 }

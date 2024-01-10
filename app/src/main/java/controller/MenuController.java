@@ -38,7 +38,7 @@ public class MenuController implements Controller {
     int choice = inputHandler.getIntInput("Your choice:");
     switch (choice) {
       case 1:
-        return State.START_GAME;
+        return State.CREATE_GAME;
       case 2:
         return State.LOAD_GAME;
       case 3:
