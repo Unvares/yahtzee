@@ -1,5 +1,6 @@
 package controller;
 
+import model.Context;
 import utils.InputHandler;
 import utils.InputHandlerImpl;
 import utils.State;
@@ -10,8 +11,7 @@ public class MenuController implements Controller {
   private State state = State.MENU;
   private View view = new MenuView();
 
-  public MenuController() {
-
+  public MenuController(Context context) {
   }
 
   @Override

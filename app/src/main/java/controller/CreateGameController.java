@@ -2,6 +2,7 @@ package controller;
 
 import view.CreateGameView;
 import view.View;
+import model.Context;
 import model.Players;
 import utils.InputHandlerImpl;
 import utils.State;
@@ -9,9 +10,10 @@ import utils.State;
 public class CreateGameController implements Controller {
   private State state = State.CREATE_GAME;
   private View view;
-  Players players = new Players();
+  Players players;
 
-  public CreateGameController() {
+  public CreateGameController(Context context) {
+    players = context.getPlayers();
     view = new CreateGameView(players);
   }
 
@@ -68,7 +70,7 @@ public class CreateGameController implements Controller {
           return State.CREATE_GAME;
         }
 
-        return State.START_GAME;
+        return State.PLAY;
       case 4:
         return State.MENU;
       default:
