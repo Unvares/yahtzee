@@ -37,7 +37,7 @@ public class CreateGameController implements Controller {
   }
 
   public State getChoice() {
-    int choice = InputHandlerImpl.getInstance().getIntInput("Your choice:");
+    int choice = InputHandlerImpl.getInstance().getIntInput("Your choice: ");
     switch (choice) {
       case 1:
         if (players.getPlayers().size() > 9) {

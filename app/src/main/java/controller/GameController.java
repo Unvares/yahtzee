@@ -1,8 +1,10 @@
 package controller;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import model.Context;
-import model.Player;
-import model.Players;
+import model.GameData;
 import utils.InputHandlerImpl;
 import utils.State;
 import view.GameView;
@@ -10,20 +12,16 @@ import view.View;
 
 public class GameController implements Controller {
   private State state = State.PLAY;
-  private View view = new GameView();
-  private Players players;
+  private View view;
+  private GameData gameData;
 
   public GameController(Context context) {
-    players = context.getPlayers();
+    gameData = new GameData(context.getPlayers());
+    view = new GameView(gameData);
   }
 
   public void run() {
-
     view.display();
-
-    for (Player player : players.getPlayers()) {
-      System.out.println(player.getName());
-    }
 
     State newState = getChoice();
 
@@ -40,8 +38,63 @@ public class GameController implements Controller {
   }
 
   public State getChoice() {
-    int choice = InputHandlerImpl.getInstance().getIntInput("Your choice:");
-    return State.PLAY;
+    int MAX_ROLLS = gameData.getMaxRolls();
+    int rollCounter = gameData.getRollCounter();
+
+    int choice = InputHandlerImpl.getInstance()
+        .getIntInput("Your choice (rolls left " + (MAX_ROLLS - rollCounter) + "):");
+    switch (choice) {
+      case 1:
+        if (gameData.canRoll()) {
+          gameData.advanceRollCounter();
+
+          int diceCount = gameData.getDiceCount();
+
+          for (int i = 0; i < diceCount; i++) {
+            int diceValue = rollDice();
+            gameData.addDiceValue(diceValue);
+          }
+        }
+
+        return State.PLAY;
+      case 2:
+        if (gameData.canDeleteDices()) {
+          String prompt = "Enter which dices to discard (separated by comma): ";
+
+          Set<Integer> indicesToRemove = new HashSet<>();
+
+          String[] diceIndexArray = InputHandlerImpl.getInstance().getStringInput(prompt).split(",");
+          for (String indexString : diceIndexArray) {
+            try {
+              int index = Integer.parseInt(indexString.trim()) - 1;
+              if (index < gameData.getMaxDices() && index >= 0) {
+                indicesToRemove.add(index);
+              }
+            } catch (NumberFormatException e) {
+              System.out.println("Invalid input.");
+              continue;
+            }
+          }
+
+          gameData.removeDiceValues(indicesToRemove);
+        }
+
+        return State.PLAY;
+      case 3:
+        if (gameData.canEndTurn()) {
+          gameData.clearDiceValues();
+          gameData.resetRollCounter();
+          gameData.advanceCurrentPlayerIndex();
+        }
+
+        return State.PLAY;
+      default:
+        return State.INVALID;
+    }
+  }
+
+  private int rollDice() {
+    return (int) (Math.random() * 6) + 1;
   }
 
 }

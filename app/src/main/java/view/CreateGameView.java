@@ -43,8 +43,8 @@ public class CreateGameView implements View {
       System.out.println("3. Start game");
     }
     System.out.println("4. Return to main menu");
-    System.out.println();
 
+    System.out.println();
     System.out.println("====================================");
   }
 

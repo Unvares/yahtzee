@@ -35,7 +35,7 @@ public class MenuController implements Controller {
 
   public State getChoice() {
     InputHandler inputHandler = InputHandlerImpl.getInstance();
-    int choice = inputHandler.getIntInput("Your choice:");
+    int choice = inputHandler.getIntInput("Your choice: ");
     switch (choice) {
       case 1:
         return State.CREATE_GAME;
