@@ -3,7 +3,6 @@ package controller;
 import java.util.HashSet;
 import java.util.Set;
 
-import model.Context;
 import model.GameData;
 import utils.InputHandlerImpl;
 import utils.State;
@@ -15,8 +14,8 @@ public class GameController implements Controller {
   private View view;
   private GameData gameData;
 
-  public GameController(Context context) {
-    gameData = new GameData(context.getPlayers());
+  public GameController(GameData gameData) {
+    this.gameData = gameData;
     view = new GameView(gameData);
   }
 

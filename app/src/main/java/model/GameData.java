@@ -5,23 +5,39 @@ import java.util.List;
 import java.util.Set;
 
 public class GameData {
+  private final int MIN_PLAYERS = 2;
+  private final int MAX_PLAYERS = 10;
   private final int MAX_ROLLS = 3;
   private final int MAX_DICES = 5;
 
   private int currentPlayerIndex = 0;
   private int rollCounter = 0;
   private List<Integer> currentDiceValues = new ArrayList<>();
-  private Players players;
+  private List<Player> players = new ArrayList<>();
 
-  public GameData(Players players) {
-    this.players = players;
+  public GameData() {
   }
 
-  public Players getPlayers() {
+  public void reset() {
+    currentPlayerIndex = 0;
+    rollCounter = 0;
+    currentDiceValues = new ArrayList<>();
+    players = new ArrayList<>();
+  }
+
+  public List<Player> getPlayers() {
     return players;
   }
 
-  public void setPlayers(Players players) {
+  public void addPlayer(Player player) {
+    players.add(player);
+  }
+
+  public void removePlayer(int index) {
+    players.remove(index);
+  }
+
+  public void setPlayers(List<Player> players) {
     this.players = players;
   }
 
@@ -30,7 +46,7 @@ public class GameData {
   }
 
   public void advanceCurrentPlayerIndex() {
-    currentPlayerIndex = (currentPlayerIndex + 1) % players.getPlayers().size();
+    currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
   }
 
   public int getRollCounter() {
@@ -82,6 +98,14 @@ public class GameData {
 
   public boolean canEndTurn() {
     return rollCounter > 0 && currentDiceValues.size() == 5;
+  }
+
+  public int getMinPlayers() {
+    return MIN_PLAYERS;
+  }
+
+  public int getMaxPlayers() {
+    return MAX_PLAYERS;
   }
 
   public int getMaxDices() {

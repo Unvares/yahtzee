@@ -1,8 +1,9 @@
 package view;
 
+import java.util.List;
+
 import model.GameData;
 import model.Player;
-import model.Players;
 
 public class GameView implements View {
   private GameData gameData;
@@ -15,9 +16,9 @@ public class GameView implements View {
     System.out.println("====================================");
     System.out.println();
 
-    Players players = gameData.getPlayers();
-    for (int i = 0; i < players.getPlayers().size(); i++) {
-      Player player = players.getPlayers().get(i);
+    List<Player> players = gameData.getPlayers();
+    for (int i = 0; i < players.size(); i++) {
+      Player player = players.get(i);
       if (i == gameData.getCurrentPlayerIndex()) {
         System.out.println(player.getName() + " (current player)");
       } else {

@@ -2,18 +2,14 @@ package view;
 
 import java.util.List;
 
+import model.GameData;
 import model.Player;
-import model.Players;
 
 public class CreateGameView implements View {
-  private Players players;
+  private GameData gameData;
 
-  public CreateGameView(Players players) {
-    this.players = players;
-  }
-
-  public void setPlayers(Players players) {
-    this.players = players;
+  public CreateGameView(GameData gameData) {
+    this.gameData = gameData;
   }
 
   public void display() {
@@ -22,7 +18,7 @@ public class CreateGameView implements View {
 
     System.out.println("List of players:");
 
-    List<Player> players = this.players.getPlayers();
+    List<Player> players = gameData.getPlayers();
     for (int i = 0; i < players.size(); i++) {
       Player player = players.get(i);
       String playerType = player.isHuman() ? "Player" : "Computer";

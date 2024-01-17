@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import model.Context;
+import model.GameData;
 import utils.ControllerRegistry;
 import utils.InputHandlerImpl;
 import utils.State;
@@ -14,12 +14,12 @@ public class Router {
 
   private static List<State> statesList = new ArrayList<>(Arrays.asList(State.MENU));
 
-  Context context = new Context();
+  private GameData gameData = new GameData();
 
   public Router() {
-    registry.registerController(State.MENU, new MenuController(context));
-    registry.registerController(State.CREATE_GAME, new CreateGameController(context));
-    registry.registerController(State.PLAY, new GameController(context));
+    registry.registerController(State.MENU, new MenuController());
+    registry.registerController(State.CREATE_GAME, new CreateGameController(gameData));
+    registry.registerController(State.PLAY, new GameController(gameData));
   }
 
   public void run() {
@@ -27,8 +27,11 @@ public class Router {
       cleanScreen();
 
       State state = Router.popState();
+
       if (state == State.EXIT) {
         break;
+      } else if (state == State.MENU) {
+        gameData.reset();
       }
 
       Controller controller = registry.getController(state);
