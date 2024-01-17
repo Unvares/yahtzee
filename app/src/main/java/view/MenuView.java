@@ -1,16 +1,14 @@
 package view;
 
-import model.MenuOptions;
-
 public class MenuView implements View {
     public void display() {
         System.out.println("====================================");
         System.out.println();
 
-        String[] options = MenuOptions.getOptions();
-        for (int i = 0; i < options.length; i++) {
-            System.out.println((i + 1) + ". " + options[i]);
-        }
+        System.out.println("1. Create New Game");
+        System.out.println("2. Load Game");
+        System.out.println("3. View Scores");
+        System.out.println("4. Exit");
 
         System.out.println();
         System.out.println("====================================");
