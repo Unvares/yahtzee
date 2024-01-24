@@ -9,5 +9,5 @@ public enum State {
   GAME_SCORE,
   INVALID,
   MENU,
-  VIEW_SCORES,
+  SCORE_BOARD,
 }

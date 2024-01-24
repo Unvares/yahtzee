@@ -1,16 +1,18 @@
 package controller;
 
+import model.GameData;
 import utils.InputHandler;
 import utils.InputHandlerImpl;
 import utils.State;
-import view.MenuView;
+import view.ScoreBoardView;
 import view.View;
 
-public class MenuController implements Controller {
-  private State state = State.MENU;
-  private View view = new MenuView();
+public class ScoreBoardController implements Controller {
+  private State state = State.SCORE_BOARD;
+  private View view;
 
-  public MenuController() {
+  public ScoreBoardController(GameData gameData) {
+    this.view = new ScoreBoardView(gameData);
   }
 
   @Override
@@ -34,19 +36,7 @@ public class MenuController implements Controller {
 
   public State getChoice() {
     InputHandler inputHandler = InputHandlerImpl.getInstance();
-    int choice = inputHandler.getIntInput("Your choice: ");
-    switch (choice) {
-      case 1:
-        return State.GAME_CREATE;
-      case 2:
-        return State.GAME_LOAD;
-      case 3:
-        return State.SCORE_BOARD;
-      case 4:
-        return State.EXIT;
-      default:
-        return State.INVALID;
-    }
+    inputHandler.getIntInput("Press any button to return to the main menu: ");
+    return State.MENU;
   }
-
 }

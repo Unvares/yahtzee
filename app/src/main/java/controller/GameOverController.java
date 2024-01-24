@@ -1,6 +1,7 @@
 package controller;
 
 import model.GameData;
+import model.ScoreBoardEntry;
 import utils.InputHandler;
 import utils.InputHandlerImpl;
 import utils.State;
@@ -9,9 +10,11 @@ import view.View;
 
 public class GameOverController implements Controller {
   private State state = State.GAME_OVER;
+  private GameData gameData;
   private View view;
 
   public GameOverController(GameData gameData) {
+    this.gameData = gameData;
     view = new GameOverView(gameData);
   }
 
@@ -37,6 +40,7 @@ public class GameOverController implements Controller {
   public State getChoice() {
     InputHandler inputHandler = InputHandlerImpl.getInstance();
     inputHandler.getIntInput("Press any button to return to the main menu: ");
+    gameData.addScoreBoardEntry(new ScoreBoardEntry(gameData.getPlayers()));
     return State.MENU;
   }
 }

@@ -15,6 +15,8 @@ public class GameData {
   private List<Integer> currentDiceValues = new ArrayList<>();
   private List<Player> players = new ArrayList<>();
 
+  private List<ScoreBoardEntry> scoreBoard = new ArrayList<>();
+
   public GameData() {
   }
 
@@ -132,6 +134,14 @@ public class GameData {
 
   public int getMaxRolls() {
     return MAX_ROLLS;
+  }
+
+  public List<ScoreBoardEntry> getScoreBoard() {
+    return scoreBoard;
+  }
+
+  public void addScoreBoardEntry(ScoreBoardEntry entry) {
+    scoreBoard.add(entry);
   }
 
 }
