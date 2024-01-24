@@ -39,7 +39,7 @@ public class GameView implements View {
       System.out.println("2. Choose dices to discard");
     }
     if (gameData.canEndTurn()) {
-      System.out.println("3. End turn");
+      System.out.println("3. Score!");
     }
 
     System.out.println();

@@ -3,6 +3,7 @@ package model;
 public class Player {
   private String name;
   private boolean isHuman;
+  private ScoreCard scoreCard = new ScoreCard();
 
   public Player(String name, boolean isHuman) {
     this.name = name;
@@ -15,5 +16,9 @@ public class Player {
 
   public boolean isHuman() {
     return isHuman;
+  }
+
+  public ScoreCard getScoreCard() {
+    return scoreCard;
   }
 }
