@@ -34,6 +34,18 @@ public class ScoreCard {
     return entryMap.get(name);
   }
 
+  public int getTotalScore() {
+    int totalScore = 0;
+    for (Map.Entry<String, ScoreCardEntry> entry : entryMap.entrySet()) {
+      ScoreCardEntry scoreCardEntry = entry.getValue();
+      if (scoreCardEntry.isCompleted()) {
+        totalScore += scoreCardEntry.getScore();
+      }
+    }
+
+    return totalScore;
+  }
+
   public boolean isCompleted() {
     for (Map.Entry<String, ScoreCardEntry> entry : entryMap.entrySet()) {
       ScoreCardEntry scoreCardEntry = entry.getValue();

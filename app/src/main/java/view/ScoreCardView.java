@@ -1,6 +1,8 @@
 package view;
 
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import model.GameData;
 import model.ScoreCard;
@@ -23,20 +25,17 @@ public class ScoreCardView implements View {
     System.out.println();
 
     ScoreCard scoreCard = gameData.getCurrentPlayer().getScoreCard();
-    Map<String, ScoreCardEntry> entries = scoreCard.getEntries();
-    int currentScore = 0;
 
-    for (Map.Entry<String, ScoreCardEntry> entry : entries.entrySet()) {
+    Set<Entry<String, ScoreCardEntry>> entrySet = scoreCard.getEntries().entrySet();
+    for (Map.Entry<String, ScoreCardEntry> entry : entrySet) {
       ScoreCardEntry scoreCardEntry = entry.getValue();
       if (!scoreCardEntry.isCompleted()) {
         System.out.println("- " + scoreCardEntry.getName());
-      } else {
-        currentScore += scoreCardEntry.getScore();
       }
     }
 
     System.out.println();
-    System.out.println("Current Score: " + currentScore);
+    System.out.println("Current Score: " + scoreCard.getTotalScore());
 
     System.out.println("====================================");
   }
