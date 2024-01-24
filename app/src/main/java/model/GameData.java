@@ -25,10 +25,18 @@ public class GameData {
     players = new ArrayList<>();
   }
 
-  public void nextTurn() {
-    clearDiceValues();
+  public boolean nextTurn() {
+    if (players.stream().allMatch(Player::isFinished)) {
+      return true;
+    }
+
+    currentDiceValues.clear();
     resetRollCounter();
-    advanceCurrentPlayerIndex();
+
+    do {
+      advanceCurrentPlayerIndex();
+    } while (getCurrentPlayer().isFinished());
+    return false;
   }
 
   public List<Player> getPlayers() {

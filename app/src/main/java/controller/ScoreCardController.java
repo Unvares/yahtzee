@@ -9,7 +9,7 @@ import view.ScoreCardView;
 import view.View;
 
 public class ScoreCardController implements Controller {
-  private State state = State.SCORE;
+  private State state = State.GAME_SCORE;
   private View view;
   private GameData gameData;
 
@@ -46,11 +46,14 @@ public class ScoreCardController implements Controller {
         return State.INVALID;
       }
       entry.setScore(choice, gameData.getCurrentDiceValues());
-      gameData.nextTurn();
+      boolean gameHasEnded = gameData.nextTurn();
+      if (gameHasEnded) {
+        return State.GAME_OVER;
+      }
     } catch (Exception e) {
       return State.INVALID;
     }
-    return State.PLAY;
+    return State.GAME_PLAY;
   }
 
 }

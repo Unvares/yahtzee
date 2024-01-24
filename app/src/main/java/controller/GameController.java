@@ -10,7 +10,7 @@ import view.GameView;
 import view.View;
 
 public class GameController implements Controller {
-  private State state = State.PLAY;
+  private State state = State.GAME_PLAY;
   private View view;
   private GameData gameData;
 
@@ -55,7 +55,7 @@ public class GameController implements Controller {
           }
         }
 
-        return State.PLAY;
+        return State.GAME_PLAY;
       case 2:
         if (gameData.canDeleteDices()) {
           String prompt = "Enter which dices to discard (separated by comma): ";
@@ -78,13 +78,13 @@ public class GameController implements Controller {
           gameData.removeDiceValues(indicesToRemove);
         }
 
-        return State.PLAY;
+        return State.GAME_PLAY;
       case 3:
         if (gameData.canEndTurn()) {
-          return State.SCORE;
+          return State.GAME_SCORE;
         }
 
-        return State.PLAY;
+        return State.GAME_PLAY;
       default:
         return State.INVALID;
     }

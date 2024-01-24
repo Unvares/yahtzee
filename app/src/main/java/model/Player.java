@@ -21,4 +21,8 @@ public class Player {
   public ScoreCard getScoreCard() {
     return scoreCard;
   }
+
+  public boolean isFinished() {
+    return scoreCard.isCompleted();
+  }
 }

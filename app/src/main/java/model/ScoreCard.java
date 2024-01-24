@@ -34,4 +34,15 @@ public class ScoreCard {
     return entryMap.get(name);
   }
 
+  public boolean isCompleted() {
+    for (Map.Entry<String, ScoreCardEntry> entry : entryMap.entrySet()) {
+      ScoreCardEntry scoreCardEntry = entry.getValue();
+      if (!scoreCardEntry.isCompleted()) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
 }

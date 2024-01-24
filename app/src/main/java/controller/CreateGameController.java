@@ -11,7 +11,7 @@ import utils.InputHandlerImpl;
 import utils.State;
 
 public class CreateGameController implements Controller {
-  private State state = State.CREATE_GAME;
+  private State state = State.GAME_CREATE;
   private View view;
   GameData gameData;
 
@@ -54,7 +54,7 @@ public class CreateGameController implements Controller {
           gameData.addPlayer(new Player(name, isHuman));
         }
 
-        return State.CREATE_GAME;
+        return State.GAME_CREATE;
       case 2:
         if (players.size() > 0) {
           int index = InputHandlerImpl.getInstance().getIntInput("Enter player number: ");
@@ -67,13 +67,13 @@ public class CreateGameController implements Controller {
           gameData.removePlayer(index - 1);
         }
 
-        return State.CREATE_GAME;
+        return State.GAME_CREATE;
       case 3:
         if (players.size() < MIN_PLAYERS) {
-          return State.CREATE_GAME;
+          return State.GAME_CREATE;
         }
 
-        return State.PLAY;
+        return State.GAME_PLAY;
       case 4:
         return State.MENU;
       default:

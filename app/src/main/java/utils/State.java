@@ -1,12 +1,13 @@
 package utils;
 
 public enum State {
-  CREATE_GAME,
   EXIT,
+  GAME_CREATE,
+  GAME_LOAD,
+  GAME_OVER,
+  GAME_PLAY,
+  GAME_SCORE,
   INVALID,
-  LOAD_GAME,
   MENU,
-  PLAY,
-  SCORE,
   VIEW_SCORES,
 }
