@@ -6,6 +6,7 @@ public class ScoreCardEntry {
   private String name;
   private boolean isCompleted = false;
   private int score = 0;
+  private int yahtzeeCounter = 0;
 
   public ScoreCardEntry(String name) {
     this.name = name;
@@ -144,7 +145,12 @@ public class ScoreCardEntry {
     }
     for (int i = 0; i < counts.length; i++) {
       if (counts[i] == 5) {
-        return 50;
+        yahtzeeCounter++;
+
+        if (yahtzeeCounter == 1) {
+          return 50;
+        }
+        return 100;
       }
     }
     return 0;
