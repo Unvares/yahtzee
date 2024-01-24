@@ -81,9 +81,7 @@ public class GameController implements Controller {
         return State.PLAY;
       case 3:
         if (gameData.canEndTurn()) {
-          gameData.clearDiceValues();
-          gameData.resetRollCounter();
-          gameData.advanceCurrentPlayerIndex();
+          return State.SCORE;
         }
 
         return State.PLAY;

@@ -25,6 +25,12 @@ public class GameData {
     players = new ArrayList<>();
   }
 
+  public void nextTurn() {
+    clearDiceValues();
+    resetRollCounter();
+    advanceCurrentPlayerIndex();
+  }
+
   public List<Player> getPlayers() {
     return players;
   }
@@ -47,6 +53,10 @@ public class GameData {
 
   public void advanceCurrentPlayerIndex() {
     currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
+  }
+
+  public Player getCurrentPlayer() {
+    return players.get(currentPlayerIndex);
   }
 
   public int getRollCounter() {

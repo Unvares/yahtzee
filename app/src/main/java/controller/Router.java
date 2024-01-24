@@ -20,6 +20,7 @@ public class Router {
     registry.registerController(State.MENU, new MenuController());
     registry.registerController(State.CREATE_GAME, new CreateGameController(gameData));
     registry.registerController(State.PLAY, new GameController(gameData));
+    registry.registerController(State.SCORE, new ScoreCardController(gameData));
   }
 
   public void run() {
