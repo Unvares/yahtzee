@@ -6,7 +6,7 @@ import java.util.List;
 
 import model.GameData;
 import model.Player;
-import utils.InputHandlerImpl;
+import utils.InputHandler;
 import utils.State;
 
 public class CreateGameController extends Controller {
@@ -18,17 +18,17 @@ public class CreateGameController extends Controller {
   }
 
   @Override
-  protected State getNewState() {
+  protected State getNewState(InputHandler inputHandler) {
     List<Player> players = gameData.getPlayers();
     int MIN_PLAYERS = gameData.getMinPlayers();
     int MAX_PLAYERS = gameData.getMaxPlayers();
 
-    int choice = InputHandlerImpl.getInstance().getIntInput("Your choice: ");
+    int choice = inputHandler.getIntInput("Your choice: ");
     switch (choice) {
       case 1:
         if (players.size() < MAX_PLAYERS) {
-          String name = InputHandlerImpl.getInstance().getStringInput("Enter name: ");
-          boolean isHuman = InputHandlerImpl.getInstance().getBooleanInput("Is human? (y/n): ");
+          String name = inputHandler.getStringInput("Enter name: ");
+          boolean isHuman = inputHandler.getBooleanInput("Is human? (y/n): ");
 
           gameData.addPlayer(new Player(name, isHuman));
         }
@@ -36,11 +36,11 @@ public class CreateGameController extends Controller {
         return State.GAME_CREATE;
       case 2:
         if (players.size() > 0) {
-          int index = InputHandlerImpl.getInstance().getIntInput("Enter player number: ");
+          int index = inputHandler.getIntInput("Enter player number: ");
 
           while (index < 1 || index > players.size()) {
             System.out.println("Invalid player number. Please try again.");
-            index = InputHandlerImpl.getInstance().getIntInput("Enter player number: ");
+            index = inputHandler.getIntInput("Enter player number: ");
           }
 
           gameData.removePlayer(index - 1);
@@ -51,7 +51,6 @@ public class CreateGameController extends Controller {
         if (players.size() < MIN_PLAYERS) {
           return State.GAME_CREATE;
         }
-
         return State.GAME_PLAY;
       case 4:
         return State.MENU;

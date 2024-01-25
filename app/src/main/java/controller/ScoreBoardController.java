@@ -2,7 +2,6 @@ package controller;
 
 import model.GameData;
 import utils.InputHandler;
-import utils.InputHandlerImpl;
 import utils.State;
 import view.ScoreBoardView;
 
@@ -12,8 +11,7 @@ public class ScoreBoardController extends Controller {
   }
 
   @Override
-  protected State getNewState() {
-    InputHandler inputHandler = InputHandlerImpl.getInstance();
+  protected State getNewState(InputHandler inputHandler) {
     inputHandler.getAnyInput("Press any button to return to the main menu: ");
     return State.MENU;
   }

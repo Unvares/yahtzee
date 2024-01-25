@@ -2,7 +2,6 @@ package controller;
 
 import model.GameData;
 import utils.InputHandler;
-import utils.InputHandlerImpl;
 import utils.State;
 import view.MenuView;
 
@@ -15,8 +14,7 @@ public class MenuController extends Controller {
   }
 
   @Override
-  protected State getNewState() {
-    InputHandler inputHandler = InputHandlerImpl.getInstance();
+  protected State getNewState(InputHandler inputHandler) {
     int choice = inputHandler.getIntInput("Your choice: ");
     switch (choice) {
       case 1:

@@ -6,7 +6,7 @@ import java.util.List;
 
 import model.GameData;
 import utils.ControllerRegistry;
-import utils.InputHandlerImpl;
+import utils.InputHandler;
 import utils.State;
 
 public class Router {
@@ -46,7 +46,7 @@ public class Router {
     }
 
     System.out.println("See you next time!");
-    InputHandlerImpl.getInstance().closeScanner();
+    InputHandler.getInstance().closeScanner();
 
   }
 

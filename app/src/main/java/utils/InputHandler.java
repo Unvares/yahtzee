@@ -1,23 +1,76 @@
 package utils;
 
-/**
- * This interface defines methods for handling user input.
- * Classes implementing this interface should follow the Singleton pattern,
- * providing a public static getInstance() method and a private constructor.
- */
-public interface InputHandler {
+import java.util.Scanner;
 
-  static InputHandler getInstance() {
-    throw new UnsupportedOperationException("This method should be overridden in the implementing singleton class");
+public class InputHandler {
+  private static InputHandler instance = null;
+  private Scanner scanner;
+
+  private InputHandler() {
+    this.scanner = new Scanner(System.in);
   }
 
-  void closeScanner();
+  public static InputHandler getInstance() {
+    if (instance == null) {
+      instance = new InputHandler();
+    }
+    return instance;
+  }
 
-  int getIntInput(String prompt);
+  public void closeScanner() {
+    this.scanner.close();
+  }
 
-  String getStringInput(String prompt);
+  public int getIntInput(String prompt) {
+    int input = 0;
+    boolean valid = false;
+    while (!valid) {
+      System.out.print(prompt);
+      try {
+        input = Integer.parseInt(this.scanner.nextLine());
+        valid = true;
+      } catch (NumberFormatException e) {
+        System.out.println("Invalid input. Please try again.");
+      }
+    }
+    return input;
+  }
 
-  boolean getBooleanInput(String prompt);
+  public String getStringInput(String prompt) {
+    String input = "";
+    boolean valid = false;
+    while (!valid) {
+      System.out.print(prompt);
+      input = this.scanner.nextLine();
+      if (input.length() > 0) {
+        valid = true;
+      } else {
+        System.out.println("Invalid input. Please try again.");
+      }
+    }
+    return input;
+  }
 
-  String getAnyInput(String prompt);
+  public boolean getBooleanInput(String prompt) {
+    boolean input = false;
+    boolean valid = false;
+    while (!valid) {
+      System.out.print(prompt);
+      String choice = this.scanner.nextLine();
+      if (choice.equals("y")) {
+        input = true;
+        valid = true;
+      } else if (choice.equals("n")) {
+        input = false;
+        valid = true;
+      } else {
+        System.out.println("Invalid input. Please try again.");
+      }
+    }
+    return input;
+  }
+
+  public String getAnyInput(String prompt) {
+    return this.scanner.nextLine();
+  }
 }

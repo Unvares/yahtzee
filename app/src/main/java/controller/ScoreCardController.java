@@ -3,7 +3,6 @@ package controller;
 import model.GameData;
 import model.ScoreCardEntry;
 import utils.InputHandler;
-import utils.InputHandlerImpl;
 import utils.State;
 import view.ScoreCardView;
 
@@ -16,8 +15,7 @@ public class ScoreCardController extends Controller {
   }
 
   @Override
-  protected State getNewState() {
-    InputHandler inputHandler = InputHandlerImpl.getInstance();
+  protected State getNewState(InputHandler inputHandler) {
     String choice = inputHandler.getStringInput("Enter name: ").toLowerCase();
     try {
       ScoreCardEntry entry = gameData.getCurrentPlayer().getScoreCard().getScoreCardEntry(choice);

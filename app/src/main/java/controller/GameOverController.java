@@ -6,7 +6,6 @@ import model.GameData;
 import model.Player;
 import model.ScoreBoardEntry;
 import utils.InputHandler;
-import utils.InputHandlerImpl;
 import utils.State;
 import view.GameOverView;
 
@@ -19,8 +18,7 @@ public class GameOverController extends Controller {
   }
 
   @Override
-  protected State getNewState() {
-    InputHandler inputHandler = InputHandlerImpl.getInstance();
+  protected State getNewState(InputHandler inputHandler) {
     inputHandler.getAnyInput("Press any button to return to the main menu: ");
     List<Player> players = gameData.getPlayers();
     for (Player player : players) {

@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import model.GameData;
-import utils.InputHandlerImpl;
+import utils.InputHandler;
 import utils.State;
 import view.GameView;
 
@@ -17,12 +17,11 @@ public class GameController extends Controller {
   }
 
   @Override
-  protected State getNewState() {
+  protected State getNewState(InputHandler inputHandler) {
     int MAX_ROLLS = gameData.getMaxRolls();
     int rollCounter = gameData.getRollCounter();
 
-    int choice = InputHandlerImpl.getInstance()
-        .getIntInput("Your choice (rolls left " + (MAX_ROLLS - rollCounter) + "):");
+    int choice = inputHandler.getIntInput("Your choice (rolls left " + (MAX_ROLLS - rollCounter) + "):");
     switch (choice) {
       case 1:
         if (gameData.canRoll()) {
@@ -43,7 +42,7 @@ public class GameController extends Controller {
 
           Set<Integer> indicesToRemove = new HashSet<>();
 
-          String[] diceIndexArray = InputHandlerImpl.getInstance().getStringInput(prompt).split(",");
+          String[] diceIndexArray = inputHandler.getStringInput(prompt).split(",");
           for (String indexString : diceIndexArray) {
             try {
               int index = Integer.parseInt(indexString.trim()) - 1;
