@@ -1,6 +1,9 @@
 package controller;
 
+import java.util.List;
+
 import model.GameData;
+import model.Player;
 import model.ScoreBoardEntry;
 import utils.InputHandler;
 import utils.InputHandlerImpl;
@@ -39,8 +42,13 @@ public class GameOverController implements Controller {
 
   public State getChoice() {
     InputHandler inputHandler = InputHandlerImpl.getInstance();
-    inputHandler.getIntInput("Press any button to return to the main menu: ");
-    gameData.addScoreBoardEntry(new ScoreBoardEntry(gameData.getPlayers()));
+    inputHandler.getAnyInput("Press any button to return to the main menu: ");
+    List<Player> players = gameData.getPlayers();
+    for (Player player : players) {
+      int score = player.getScoreCard().getTotalScore();
+      player.setTotalScore(score);
+    }
+    gameData.addScoreBoardEntry(new ScoreBoardEntry(players));
     return State.MENU;
   }
 }

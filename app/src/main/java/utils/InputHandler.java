@@ -18,4 +18,6 @@ public interface InputHandler {
   String getStringInput(String prompt);
 
   boolean getBooleanInput(String prompt);
+
+  String getAnyInput(String prompt);
 }

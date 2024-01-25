@@ -36,7 +36,7 @@ public class ScoreBoardController implements Controller {
 
   public State getChoice() {
     InputHandler inputHandler = InputHandlerImpl.getInstance();
-    inputHandler.getIntInput("Press any button to return to the main menu: ");
+    inputHandler.getAnyInput("Press any button to return to the main menu: ");
     return State.MENU;
   }
 }

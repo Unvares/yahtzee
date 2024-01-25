@@ -72,4 +72,9 @@ public class InputHandlerImpl implements InputHandler {
     }
     return input;
   }
+
+  @Override
+  public String getAnyInput(String prompt) {
+    return this.scanner.nextLine();
+  }
 }

@@ -1,7 +1,11 @@
 package model;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.Set;
 
 public class GameData {
@@ -16,8 +20,47 @@ public class GameData {
   private List<Player> players = new ArrayList<>();
 
   private List<ScoreBoardEntry> scoreBoard = new ArrayList<>();
+  private File scoreFile;
 
   public GameData() {
+    scoreFile = new File("scores.txt");
+    if (scoreFile.exists()) {
+      try (Scanner scanner = new Scanner(scoreFile)) {
+        while (scanner.hasNextLine()) {
+          String line = scanner.nextLine();
+          ScoreBoardEntry scoreBoardEntry = parseScoreBoardEntry(line);
+          scoreBoard.add(scoreBoardEntry);
+        }
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+  }
+
+  private ScoreBoardEntry parseScoreBoardEntry(String line) {
+    ScoreBoardEntry scoreBoardEntry = new ScoreBoardEntry();
+    String[] parts = line.split(";");
+
+    if (parts.length < 2 || parts.length > 10) {
+      return null;
+    }
+
+    for (String part : parts) {
+      String[] playerData = part.split(",");
+
+      if (playerData.length != 3) {
+        continue;
+      }
+
+      String name = playerData[0].trim();
+      boolean isHuman = Boolean.parseBoolean(playerData[1].trim());
+      int score = Integer.parseInt(playerData[2].trim());
+
+      Player player = new Player(name, isHuman, score);
+      scoreBoardEntry.addPlayer(player);
+    }
+    return scoreBoardEntry;
+
   }
 
   public void reset() {
@@ -142,6 +185,11 @@ public class GameData {
 
   public void addScoreBoardEntry(ScoreBoardEntry entry) {
     scoreBoard.add(entry);
+    try (FileWriter writer = new FileWriter(scoreFile, true)) {
+      writer.write(entry.toString() + "\n");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
 }
