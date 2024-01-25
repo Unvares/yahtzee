@@ -5,38 +5,17 @@ import utils.InputHandler;
 import utils.InputHandlerImpl;
 import utils.State;
 import view.MenuView;
-import view.View;
 
-public class MenuController implements Controller {
-  private State state = State.MENU;
-  private View view;
+public class MenuController extends Controller {
   private GameData gameData;
 
   public MenuController(GameData gameData) {
+    super(new MenuView(gameData), State.MENU);
     this.gameData = gameData;
-    view = new MenuView(gameData);
   }
 
   @Override
-  public void run() {
-    view.display();
-
-    State newState = getChoice();
-
-    while (newState == State.INVALID) {
-      System.out.println("Invalid choice. Please try again.");
-      newState = getChoice();
-    }
-
-    Router.pushState(newState);
-  }
-
-  @Override
-  public State getControllerState() {
-    return this.state;
-  }
-
-  public State getChoice() {
+  protected State getNewState() {
     InputHandler inputHandler = InputHandlerImpl.getInstance();
     int choice = inputHandler.getIntInput("Your choice: ");
     switch (choice) {

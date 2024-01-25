@@ -3,19 +3,19 @@ package utils;
 import java.util.HashMap;
 import java.util.Map;
 
-import controller.Controller;
+import controller.ControllerInterface;
 
 public class ControllerRegistry {
-  private Map<State, Controller> controllerMap = new HashMap<>();
+  private Map<State, ControllerInterface> controllerMap = new HashMap<>();
 
   public ControllerRegistry() {
   }
 
-  public void registerController(State state, Controller controller) {
+  public void registerController(State state, ControllerInterface controller) {
     controllerMap.put(state, controller);
   }
 
-  public Controller getController(State state) {
+  public ControllerInterface getController(State state) {
     return controllerMap.get(state);
   }
 }

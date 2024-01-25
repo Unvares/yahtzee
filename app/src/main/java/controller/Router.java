@@ -35,7 +35,7 @@ public class Router {
         break;
       }
 
-      Controller controller = registry.getController(state);
+      ControllerInterface controller = registry.getController(state);
       if (controller != null) {
         controller.run();
       } else {

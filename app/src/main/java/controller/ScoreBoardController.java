@@ -5,36 +5,14 @@ import utils.InputHandler;
 import utils.InputHandlerImpl;
 import utils.State;
 import view.ScoreBoardView;
-import view.View;
 
-public class ScoreBoardController implements Controller {
-  private State state = State.SCORE_BOARD;
-  private View view;
-
+public class ScoreBoardController extends Controller {
   public ScoreBoardController(GameData gameData) {
-    this.view = new ScoreBoardView(gameData);
+    super(new ScoreBoardView(gameData), State.SCORE_BOARD);
   }
 
   @Override
-  public void run() {
-    view.display();
-
-    State newState = getChoice();
-
-    while (newState == State.INVALID) {
-      System.out.println("Invalid choice. Please try again.");
-      newState = getChoice();
-    }
-
-    Router.pushState(newState);
-  }
-
-  @Override
-  public State getControllerState() {
-    return this.state;
-  }
-
-  public State getChoice() {
+  protected State getNewState() {
     InputHandler inputHandler = InputHandlerImpl.getInstance();
     inputHandler.getAnyInput("Press any button to return to the main menu: ");
     return State.MENU;

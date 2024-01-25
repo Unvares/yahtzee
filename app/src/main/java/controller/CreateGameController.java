@@ -1,7 +1,6 @@
 package controller;
 
 import view.CreateGameView;
-import view.View;
 
 import java.util.List;
 
@@ -10,36 +9,16 @@ import model.Player;
 import utils.InputHandlerImpl;
 import utils.State;
 
-public class CreateGameController implements Controller {
-  private State state = State.GAME_CREATE;
-  private View view;
+public class CreateGameController extends Controller {
   GameData gameData;
 
   public CreateGameController(GameData gameData) {
+    super(new CreateGameView(gameData), State.GAME_CREATE);
     this.gameData = gameData;
-    view = new CreateGameView(gameData);
   }
 
   @Override
-  public State getControllerState() {
-    return state;
-  }
-
-  @Override
-  public void run() {
-    view.display();
-
-    State newState = getChoice();
-
-    while (newState == State.INVALID) {
-      System.out.println("Invalid choice. Please try again.");
-      newState = getChoice();
-    }
-
-    Router.pushState(newState);
-  }
-
-  public State getChoice() {
+  protected State getNewState() {
     List<Player> players = gameData.getPlayers();
     int MIN_PLAYERS = gameData.getMinPlayers();
     int MAX_PLAYERS = gameData.getMaxPlayers();

@@ -7,36 +7,17 @@ import model.GameData;
 import utils.InputHandlerImpl;
 import utils.State;
 import view.GameView;
-import view.View;
 
-public class GameController implements Controller {
-  private State state = State.GAME_PLAY;
-  private View view;
+public class GameController extends Controller {
   private GameData gameData;
 
   public GameController(GameData gameData) {
+    super(new GameView(gameData), State.GAME_PLAY);
     this.gameData = gameData;
-    view = new GameView(gameData);
   }
 
-  public void run() {
-    view.display();
-
-    State newState = getChoice();
-
-    while (newState == State.INVALID) {
-      System.out.println("Invalid choice. Please try again.");
-      newState = getChoice();
-    }
-
-    Router.pushState(newState);
-  }
-
-  public State getControllerState() {
-    return this.state;
-  }
-
-  public State getChoice() {
+  @Override
+  protected State getNewState() {
     int MAX_ROLLS = gameData.getMaxRolls();
     int rollCounter = gameData.getRollCounter();
 
