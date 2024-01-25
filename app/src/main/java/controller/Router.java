@@ -17,7 +17,7 @@ public class Router {
   private GameData gameData = new GameData();
 
   public Router() {
-    registry.registerController(State.MENU, new MenuController());
+    registry.registerController(State.MENU, new MenuController(gameData));
     registry.registerController(State.GAME_CREATE, new CreateGameController(gameData));
     registry.registerController(State.GAME_PLAY, new GameController(gameData));
     registry.registerController(State.GAME_SCORE, new ScoreCardController(gameData));
@@ -33,8 +33,6 @@ public class Router {
 
       if (state == State.EXIT) {
         break;
-      } else if (state == State.MENU) {
-        gameData.reset();
       }
 
       Controller controller = registry.getController(state);

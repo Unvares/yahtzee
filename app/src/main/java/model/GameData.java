@@ -183,6 +183,10 @@ public class GameData {
     return scoreBoard;
   }
 
+  public boolean hasSavedGame() {
+    return players.size() >= MIN_PLAYERS;
+  }
+
   public void addScoreBoardEntry(ScoreBoardEntry entry) {
     scoreBoard.add(entry);
     try (FileWriter writer = new FileWriter(scoreFile, true)) {

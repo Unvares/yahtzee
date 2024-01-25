@@ -41,6 +41,7 @@ public class GameView implements View {
     if (gameData.canEndTurn()) {
       System.out.println("3. Score!");
     }
+    System.out.println("4. Save & Quit");
 
     System.out.println();
     System.out.println("====================================");

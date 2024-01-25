@@ -85,6 +85,8 @@ public class GameController implements Controller {
         }
 
         return State.GAME_PLAY;
+      case 4:
+        return State.MENU;
       default:
         return State.INVALID;
     }
