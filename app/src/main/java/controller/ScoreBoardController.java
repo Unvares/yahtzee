@@ -12,7 +12,7 @@ public class ScoreBoardController extends Controller {
 
   @Override
   protected State getNewState(InputHandler inputHandler) {
-    inputHandler.getAnyInput("Press any button to return to the main menu: ");
+    inputHandler.getAnyInput("Press enter to return to the main menu: ");
     return State.MENU;
   }
 }

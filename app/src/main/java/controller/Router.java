@@ -20,7 +20,8 @@ public class Router {
     registry.registerController(State.MENU, new MenuController(gameData));
     registry.registerController(State.GAME_CREATE, new CreateGameController(gameData));
     registry.registerController(State.GAME_PLAY, new GameController(gameData));
-    registry.registerController(State.GAME_SCORE, new ScoreCardController(gameData));
+    registry.registerController(State.GAME_SCORE_REGISTER, new ScoreCardRegisterController(gameData));
+    registry.registerController(State.GAME_SCORE_VIEW, new ScoreCardViewController(gameData));
     registry.registerController(State.GAME_OVER, new GameOverController(gameData));
     registry.registerController(State.SCORE_BOARD, new ScoreBoardController(gameData));
   }

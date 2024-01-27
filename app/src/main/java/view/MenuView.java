@@ -17,7 +17,7 @@ public class MenuView implements View {
         if (gameData.hasSavedGame()) {
             System.out.println("2. Load Game");
         }
-        System.out.println("3. View Scores");
+        System.out.println("3. View Score Board");
         System.out.println("4. Exit");
 
         System.out.println();

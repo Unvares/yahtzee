@@ -36,10 +36,11 @@ public class GameView implements View {
     if (gameData.canDeleteDices()) {
       System.out.println("2. Choose dices to discard");
     }
+    System.out.println("3. View score card");
     if (gameData.canEndTurn()) {
-      System.out.println("3. Score!");
+      System.out.println("4. Score!");
     }
-    System.out.println("4. Save & Quit");
+    System.out.println("5. Save & Quit");
 
     System.out.println();
     System.out.println("====================================");

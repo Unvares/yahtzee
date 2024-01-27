@@ -6,17 +6,17 @@ import utils.InputHandler;
 import utils.State;
 import view.ScoreCardView;
 
-public class ScoreCardController extends Controller {
+public class ScoreCardRegisterController extends Controller {
   private GameData gameData;
 
-  public ScoreCardController(GameData gameData) {
-    super(new ScoreCardView(gameData), State.GAME_SCORE);
+  public ScoreCardRegisterController(GameData gameData) {
+    super(new ScoreCardView(gameData), State.GAME_SCORE_REGISTER);
     this.gameData = gameData;
   }
 
   @Override
   protected State getNewState(InputHandler inputHandler) {
-    String choice = inputHandler.getStringInput("Enter name: ").toLowerCase();
+    String choice = inputHandler.getStringInput("Enter name of the entry to fill: ").toLowerCase();
     try {
       ScoreCardEntry entry = gameData.getCurrentPlayer().getScoreCard().getScoreCardEntry(choice);
       if (entry.isCompleted()) {

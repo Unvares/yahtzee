@@ -60,12 +60,14 @@ public class GameController extends Controller {
 
         return State.GAME_PLAY;
       case 3:
+        return State.GAME_SCORE_VIEW;
+      case 4:
         if (gameData.canEndTurn()) {
-          return State.GAME_SCORE;
+          return State.GAME_SCORE_REGISTER;
         }
 
         return State.GAME_PLAY;
-      case 4:
+      case 5:
         return State.MENU;
       default:
         return State.INVALID;
