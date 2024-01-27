@@ -152,7 +152,7 @@ public class GameData {
   }
 
   public boolean canRoll() {
-    return rollCounter < MAX_ROLLS;
+    return rollCounter < MAX_ROLLS && getDiceCount() > 0;
   }
 
   public boolean canDeleteDices() {

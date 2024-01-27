@@ -22,7 +22,7 @@ public class ScoreCardController extends Controller {
       if (entry.isCompleted()) {
         return State.INVALID;
       }
-      entry.setScore(choice, gameData.getCurrentDiceValues());
+      entry.setScoreFromDices(gameData.getCurrentDiceValues());
       boolean gameHasEnded = gameData.nextTurn();
       if (gameHasEnded) {
         return State.GAME_OVER;

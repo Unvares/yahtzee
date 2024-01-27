@@ -71,6 +71,7 @@ public class InputHandler {
   }
 
   public String getAnyInput(String prompt) {
+    System.out.print(prompt);
     return this.scanner.nextLine();
   }
 }

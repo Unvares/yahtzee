@@ -18,7 +18,7 @@ public class GameController extends Controller {
 
   @Override
   protected State getNewState(InputHandler inputHandler) {
-    int MAX_ROLLS = gameData.getMaxRolls();
+    final int MAX_ROLLS = gameData.getMaxRolls();
     int rollCounter = gameData.getRollCounter();
 
     int choice = inputHandler.getIntInput("Your choice (rolls left " + (MAX_ROLLS - rollCounter) + "):");
@@ -38,7 +38,7 @@ public class GameController extends Controller {
         return State.GAME_PLAY;
       case 2:
         if (gameData.canDeleteDices()) {
-          String prompt = "Enter which dices to discard (separated by comma): ";
+          String prompt = "Enter indices of dices to discard (separated by comma): ";
 
           Set<Integer> indicesToRemove = new HashSet<>();
 

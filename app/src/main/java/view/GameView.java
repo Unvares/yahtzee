@@ -27,9 +27,7 @@ public class GameView implements View {
     }
 
     System.out.println();
-
     System.out.println("Current dice values: " + gameData.getCurrentDiceValues().toString());
-
     System.out.println();
 
     if (gameData.canRoll()) {
