@@ -13,6 +13,7 @@ public class ScoreCardView implements View {
     this.gameData = gameData;
   }
 
+  @Override
   public void display() {
     System.out.println("====================================");
     System.out.println();

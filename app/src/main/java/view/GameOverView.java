@@ -12,6 +12,7 @@ public class GameOverView implements View {
     players = gameData.getPlayers();
   }
 
+  @Override
   public void display() {
     System.out.println("====================================");
     System.out.println();

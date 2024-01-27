@@ -12,6 +12,7 @@ public class ScoreBoardView implements View {
     scoreBoard = gameData.getScoreBoard();
   }
 
+  @Override
   public void display() {
     System.out.println("====================================");
     System.out.println();
