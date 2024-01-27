@@ -19,7 +19,7 @@ public class ScoreCardRegisterController extends Controller {
     String choice = inputHandler.getStringInput("Enter name of the entry to fill: ").toLowerCase();
     try {
       ScoreCardEntry entry = gameData.getCurrentPlayer().getScoreCard().getScoreCardEntry(choice);
-      if (entry.isCompleted()) {
+      if (entry.isCompleted() && !choice.equals("yahtzee")) {
         return State.INVALID;
       }
       entry.setScoreFromDices(gameData.getCurrentDiceValues());
