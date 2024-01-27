@@ -22,12 +22,11 @@ public class ScoreBoardView implements View {
     for (ScoreBoardEntry entry : scoreBoard) {
       System.out.println("Game #" + counter++);
       for (model.Player player : entry.getPlayers()) {
-        System.out.println(player.getName() + ": " + player.getTotalScore() + " points");
+        System.out.println(player.getName() + ": " + player.getScoreCard().getTotalScore() + " points");
       }
       System.out.println();
     }
 
-    System.out.println();
     System.out.println("====================================");
   }
 }

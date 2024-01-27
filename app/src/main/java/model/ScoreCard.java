@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -76,6 +77,31 @@ public class ScoreCard {
     mergedMap.putAll(upperSectionMap);
     mergedMap.putAll(lowerSectionMap);
     return mergedMap;
+  }
+
+  public String toCSV() {
+    StringBuilder csvBuilder = new StringBuilder();
+    LinkedHashMap<String, ScoreCardEntry> mergedMap = getMergedMap();
+    for (Map.Entry<String, ScoreCardEntry> entry : mergedMap.entrySet()) {
+      csvBuilder.append(entry.getValue().getScore()).append(",");
+    }
+    csvBuilder.setLength(csvBuilder.length() - 1);
+    return csvBuilder.toString();
+  }
+
+  public static ScoreCard fromCSV(String csv) {
+    String[] parts = csv.split(",");
+    ScoreCard scoreCard = new ScoreCard();
+
+    Iterator<Map.Entry<String, ScoreCardEntry>> iterator = scoreCard.getMergedMap().entrySet().iterator();
+    for (int i = 0; i < parts.length; i++) {
+      int score = Integer.parseInt(parts[i]);
+      Map.Entry<String, ScoreCardEntry> entry = iterator.next();
+      ScoreCardEntry scoreCardEntry = entry.getValue();
+      scoreCardEntry.setScore(score);
+    }
+
+    return scoreCard;
   }
 
 }

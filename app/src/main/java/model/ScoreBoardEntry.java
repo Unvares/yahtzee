@@ -22,4 +22,21 @@ public class ScoreBoardEntry {
     players.add(player);
   }
 
+  public String toCSV() {
+    StringBuilder csvBuilder = new StringBuilder();
+    for (Player player : players) {
+      csvBuilder.append(player.toCSV() + ";");
+    }
+    return csvBuilder.toString();
+  }
+
+  public static ScoreBoardEntry fromCSV(String csv) {
+    String[] parts = csv.split(";");
+    List<Player> players = new ArrayList<>();
+    for (int i = 0; i < parts.length; i++) {
+      players.add(Player.fromCSV(parts[i]));
+    }
+    return new ScoreBoardEntry(players);
+  }
+
 }

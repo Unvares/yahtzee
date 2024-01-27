@@ -4,7 +4,6 @@ public class Player {
   private String name;
   private boolean isHuman;
   private ScoreCard scoreCard;
-  private int totalScore;
 
   public Player(String name, boolean isHuman) {
     this.name = name;
@@ -12,22 +11,8 @@ public class Player {
     scoreCard = new ScoreCard();
   }
 
-  public Player(String name, boolean isHuman, int score) {
-    this.name = name;
-    this.isHuman = isHuman;
-    totalScore = score;
-  }
-
   public String getName() {
     return name;
-  }
-
-  public int getTotalScore() {
-    return totalScore;
-  }
-
-  public void setTotalScore(int totalScore) {
-    this.totalScore = totalScore;
   }
 
   public boolean isHuman() {
@@ -38,7 +23,33 @@ public class Player {
     return scoreCard;
   }
 
-  public boolean isFinished() {
+  private void setScoreCard(ScoreCard scoreCard) {
+    this.scoreCard = scoreCard;
+  }
+
+  public boolean hasFilledScoreCard() {
     return scoreCard.isCompleted();
+  }
+
+  public String toCSV() {
+    StringBuilder csvBuilder = new StringBuilder();
+    csvBuilder.append(name + ",");
+    csvBuilder.append(isHuman ? "Human" : "Computer").append(":");
+    csvBuilder.append(scoreCard.toCSV());
+    return csvBuilder.toString();
+  }
+
+  public static Player fromCSV(String csv) {
+    String[] parts = csv.split(":");
+
+    String scoreCardCSV = parts[1];
+    ScoreCard scoreCard = ScoreCard.fromCSV(scoreCardCSV);
+
+    String[] playerCSV = parts[0].split(",");
+    String name = playerCSV[0];
+    boolean isHuman = playerCSV[1].toLowerCase().equals("human");
+    Player player = new Player(name, isHuman);
+    player.setScoreCard(scoreCard);
+    return player;
   }
 }
