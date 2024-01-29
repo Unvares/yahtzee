@@ -21,7 +21,7 @@ public class GameOverController extends Controller {
   protected ControllerName getNewController(InputHandler inputHandler) {
     inputHandler.getAnyInput("Press enter to return to the main menu: ");
     List<Player> players = gameData.getPlayers();
-    gameData.addScoreBoardEntry(new ScoreBoardEntry(players));
+    gameData.getScoreBoard().addEntry(new ScoreBoardEntry(players));
     gameData.reset();
     return ControllerName.MENU;
   }

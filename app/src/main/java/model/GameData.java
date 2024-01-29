@@ -1,10 +1,5 @@
 package model;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -20,32 +15,9 @@ public class GameData {
   private List<Integer> currentDiceValues = new ArrayList<>();
   private List<Player> players = new ArrayList<>();
 
-  private List<ScoreBoardEntry> scoreBoard = new ArrayList<>();
-  private File scoreFile;
+  private ScoreBoard scoreBoard = new ScoreBoard();
 
   public GameData() {
-    scoreFile = new File("scores.txt");
-    if (!scoreFile.exists()) {
-      try {
-        scoreFile.createNewFile();
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
-    } else {
-      loadScoreBoard();
-    }
-  }
-
-  public void loadScoreBoard() {
-    try (BufferedReader reader = new BufferedReader(new FileReader(scoreFile))) {
-      String line;
-      while ((line = reader.readLine()) != null) {
-        ScoreBoardEntry entry = ScoreBoardEntry.fromCSV(line);
-        scoreBoard.add(entry);
-      }
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
   }
 
   public void reset() {
@@ -166,21 +138,11 @@ public class GameData {
     return MAX_ROLLS;
   }
 
-  public List<ScoreBoardEntry> getScoreBoard() {
+  public ScoreBoard getScoreBoard() {
     return scoreBoard;
   }
 
   public boolean hasSavedGame() {
     return players.size() >= MIN_PLAYERS;
   }
-
-  public void addScoreBoardEntry(ScoreBoardEntry entry) {
-    scoreBoard.add(entry);
-    try (FileWriter writer = new FileWriter(scoreFile, true)) {
-      writer.write(entry.toCSV() + "\n");
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
-
 }

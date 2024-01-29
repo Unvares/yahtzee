@@ -6,10 +6,10 @@ import model.GameData;
 import model.ScoreBoardEntry;
 
 public class ScoreBoardView extends View {
-  private List<ScoreBoardEntry> scoreBoard;
+  private List<ScoreBoardEntry> scoreBoardEntries;
 
   public ScoreBoardView(GameData gameData) {
-    scoreBoard = gameData.getScoreBoard();
+    scoreBoardEntries = gameData.getScoreBoard().getEntries();
   }
 
   @Override
@@ -19,7 +19,7 @@ public class ScoreBoardView extends View {
     System.out.println();
 
     int counter = 1;
-    for (ScoreBoardEntry entry : scoreBoard) {
+    for (ScoreBoardEntry entry : scoreBoardEntries) {
       System.out.println("Game #" + counter++);
       for (model.Player player : entry.getPlayers()) {
         System.out.println(player.getName() + ": " + player.getScoreCard().getTotalScore() + " points");
