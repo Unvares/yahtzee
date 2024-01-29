@@ -132,12 +132,12 @@ public class GameData {
     currentDiceValues = new ArrayList<>();
   }
 
-  public int getDiceCount() {
+  public int getNumberOfDicesToRoll() {
     return MAX_DICES - currentDiceValues.size();
   }
 
   public boolean canRoll() {
-    return rollCounter < MAX_ROLLS && getDiceCount() > 0;
+    return rollCounter < MAX_ROLLS && getNumberOfDicesToRoll() > 0;
   }
 
   public boolean canDeleteDices() {

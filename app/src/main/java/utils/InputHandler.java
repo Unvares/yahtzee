@@ -1,5 +1,6 @@
 package utils;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class InputHandler {
@@ -21,6 +22,11 @@ public class InputHandler {
     this.scanner.close();
   }
 
+  public int getIntInput(List<String> optionsList, String prompt) {
+    printOptions(optionsList);
+    return getIntInput(prompt);
+  }
+
   public int getIntInput(String prompt) {
     int input = 0;
     boolean valid = false;
@@ -36,6 +42,11 @@ public class InputHandler {
     return input;
   }
 
+  public String getStringInput(List<String> optionsList, String prompt) {
+    printOptions(optionsList);
+    return getStringInput(prompt);
+  }
+
   public String getStringInput(String prompt) {
     String input = "";
     boolean valid = false;
@@ -49,6 +60,11 @@ public class InputHandler {
       }
     }
     return input;
+  }
+
+  public boolean getBooleanInput(List<String> optionsList, String prompt) {
+    printOptions(optionsList);
+    return getBooleanInput(prompt);
   }
 
   public boolean getBooleanInput(String prompt) {
@@ -73,5 +89,13 @@ public class InputHandler {
   public String getAnyInput(String prompt) {
     System.out.print(prompt);
     return this.scanner.nextLine();
+  }
+
+  private void printOptions(List<String> optionsList) {
+    System.out.println("====================================");
+    for (String option : optionsList) {
+      System.out.println(option);
+    }
+    System.out.println();
   }
 }

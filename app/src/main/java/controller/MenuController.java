@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import model.GameData;
 import utils.InputHandler;
 import utils.State;
@@ -15,7 +18,10 @@ public class MenuController extends Controller {
 
   @Override
   protected State getNewState(InputHandler inputHandler) {
-    int choice = inputHandler.getIntInput("Your choice: ");
+    List<String> optionsList = getOptionsList();
+    String prompt = "Your choice: ";
+    int choice = inputHandler.getIntInput(optionsList, prompt);
+
     switch (choice) {
       case 1:
         gameData.reset();
@@ -32,6 +38,19 @@ public class MenuController extends Controller {
       default:
         return State.INVALID;
     }
+  }
+
+  private List<String> getOptionsList() {
+    List<String> optionsList = new ArrayList<>();
+
+    optionsList.add("1. Create New Game");
+    if (gameData.hasSavedGame()) {
+      optionsList.add("2. Load Game");
+    }
+    optionsList.add("3. View Score Board");
+    optionsList.add("4. Exit");
+
+    return optionsList;
   }
 
 }

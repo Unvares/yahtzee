@@ -1,6 +1,8 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import model.GameData;
@@ -18,43 +20,22 @@ public class GameController extends Controller {
 
   @Override
   protected State getNewState(InputHandler inputHandler) {
-    final int MAX_ROLLS = gameData.getMaxRolls();
-    int rollCounter = gameData.getRollCounter();
+    List<String> optionsList = getOptionsList();
+    String prompt = getPrompt();
+    int choice = inputHandler.getIntInput(optionsList, prompt);
 
-    int choice = inputHandler.getIntInput("Your choice (rolls left " + (MAX_ROLLS - rollCounter) + "):");
     switch (choice) {
       case 1:
         if (gameData.canRoll()) {
           gameData.advanceRollCounter();
 
-          int diceCount = gameData.getDiceCount();
-
-          for (int i = 0; i < diceCount; i++) {
-            int diceValue = rollDice();
-            gameData.addDiceValue(diceValue);
-          }
+          updateDiceValues();
         }
 
         return State.GAME_PLAY;
       case 2:
         if (gameData.canDeleteDices()) {
-          String prompt = "Enter indices of dices to discard (separated by comma): ";
-
-          Set<Integer> indicesToRemove = new HashSet<>();
-
-          String[] diceIndexArray = inputHandler.getStringInput(prompt).split(",");
-          for (String indexString : diceIndexArray) {
-            try {
-              int index = Integer.parseInt(indexString.trim()) - 1;
-              if (index < gameData.getMaxDices() && index >= 0) {
-                indicesToRemove.add(index);
-              }
-            } catch (NumberFormatException e) {
-              System.out.println("Invalid input.");
-              continue;
-            }
-          }
-
+          Set<Integer> indicesToRemove = getIndicesToRemove(inputHandler);
           gameData.removeDiceValues(indicesToRemove);
         }
 
@@ -74,8 +55,61 @@ public class GameController extends Controller {
     }
   }
 
+  private List<String> getOptionsList() {
+    List<String> optionsList = new ArrayList<>();
+
+    if (gameData.canRoll()) {
+      optionsList.add("1. Roll dice");
+    }
+    if (gameData.canDeleteDices()) {
+      optionsList.add("2. Choose dices to discard");
+    }
+    optionsList.add("3. View score card");
+    if (gameData.canEndTurn()) {
+      optionsList.add("4. Score!");
+    }
+    optionsList.add("5. Save & Quit");
+
+    return optionsList;
+  }
+
+  private String getPrompt() {
+    final int MAX_ROLLS = gameData.getMaxRolls();
+    int rollCounter = gameData.getRollCounter();
+    return "Your choice (rolls left " + (MAX_ROLLS - rollCounter) + "):";
+  }
+
   private int rollDice() {
     return (int) (Math.random() * 6) + 1;
+  }
+
+  private void updateDiceValues() {
+    int diceCount = gameData.getNumberOfDicesToRoll();
+
+    for (int i = 0; i < diceCount; i++) {
+      int diceValue = rollDice();
+      gameData.addDiceValue(diceValue);
+    }
+  }
+
+  private Set<Integer> getIndicesToRemove(InputHandler inputHandler) {
+    String prompt = "Enter indices of dices to discard (separated by comma): ";
+    String[] diceIndexArray = inputHandler.getStringInput(prompt).split(",");
+
+    Set<Integer> indicesToRemove = new HashSet<>();
+    for (String indexString : diceIndexArray) {
+      try {
+        int index = Integer.parseInt(indexString.trim()) - 1;
+        if (index < gameData.getMaxDices() && index >= 0) {
+          indicesToRemove.add(index);
+        }
+      } catch (NumberFormatException e) {
+        System.out.println("Invalid input.");
+        continue;
+      }
+    }
+
+    return indicesToRemove;
   }
 
 }

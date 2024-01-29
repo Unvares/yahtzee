@@ -14,9 +14,6 @@ public class GameView implements View {
 
   @Override
   public void display() {
-    System.out.println("====================================");
-    System.out.println();
-
     List<Player> players = gameData.getPlayers();
     for (int i = 0; i < players.size(); i++) {
       Player player = players.get(i);
@@ -30,21 +27,6 @@ public class GameView implements View {
     System.out.println();
     System.out.println("Current dice values: " + gameData.getCurrentDiceValues().toString());
     System.out.println();
-
-    if (gameData.canRoll()) {
-      System.out.println("1. Roll dice");
-    }
-    if (gameData.canDeleteDices()) {
-      System.out.println("2. Choose dices to discard");
-    }
-    System.out.println("3. View score card");
-    if (gameData.canEndTurn()) {
-      System.out.println("4. Score!");
-    }
-    System.out.println("5. Save & Quit");
-
-    System.out.println();
-    System.out.println("====================================");
   }
 
 }

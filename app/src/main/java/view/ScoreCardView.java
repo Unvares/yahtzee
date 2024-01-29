@@ -15,9 +15,6 @@ public class ScoreCardView implements View {
 
   @Override
   public void display() {
-    System.out.println("====================================");
-    System.out.println();
-
     System.out.println("Score Card");
     System.out.println();
     System.out.println("Current Player: " + gameData.getCurrentPlayer().getName());
@@ -46,8 +43,7 @@ public class ScoreCardView implements View {
     System.out.println("Upper Section Total: " + upperSectionTotalWithBonus);
     System.out.println("Lower Section Total: " + lowerSectionTotal);
     System.out.println("Grand Total: " + grandTotal);
-
-    System.out.println("====================================");
+    System.out.println();
   }
 
   private void printSection(LinkedHashMap<String, ScoreCardEntry> entryMap) {

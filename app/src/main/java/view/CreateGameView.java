@@ -14,9 +14,6 @@ public class CreateGameView implements View {
 
   @Override
   public void display() {
-    System.out.println("====================================");
-    System.out.println();
-
     System.out.println("List of players:");
 
     List<Player> players = gameData.getPlayers();
@@ -26,23 +23,7 @@ public class CreateGameView implements View {
 
       System.out.println((i + 1) + ". " + player.getName() + ", " + playerType);
     }
-
     System.out.println();
-    if (players.size() < 10) {
-      System.out.println("1. Create new character");
-    }
-
-    if (players.size() > 0) {
-      System.out.println("2. Delete existing character");
-    }
-
-    if (players.size() >= 2) {
-      System.out.println("3. Start game");
-    }
-    System.out.println("4. Return to main menu");
-
-    System.out.println();
-    System.out.println("====================================");
   }
 
 }

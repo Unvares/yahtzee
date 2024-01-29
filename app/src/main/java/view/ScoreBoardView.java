@@ -14,8 +14,6 @@ public class ScoreBoardView implements View {
 
   @Override
   public void display() {
-    System.out.println("====================================");
-    System.out.println();
     System.out.println("Score Board");
     System.out.println();
 
@@ -27,7 +25,5 @@ public class ScoreBoardView implements View {
       }
       System.out.println();
     }
-
-    System.out.println("====================================");
   }
 }

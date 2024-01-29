@@ -2,6 +2,7 @@ package controller;
 
 import view.CreateGameView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.GameData;
@@ -19,14 +20,13 @@ public class CreateGameController extends Controller {
 
   @Override
   protected State getNewState(InputHandler inputHandler) {
-    List<Player> players = gameData.getPlayers();
-    int MIN_PLAYERS = gameData.getMinPlayers();
-    int MAX_PLAYERS = gameData.getMaxPlayers();
+    List<String> optionsList = getOptionsList();
+    String prompt = "Your choice: ";
+    int choice = inputHandler.getIntInput(optionsList, prompt);
 
-    int choice = inputHandler.getIntInput("Your choice: ");
     switch (choice) {
       case 1:
-        if (players.size() < MAX_PLAYERS) {
+        if (!hasTooManyPlayers()) {
           String name = inputHandler.getStringInput("Enter name: ");
           boolean isHuman = inputHandler.getBooleanInput("Is human? (y/n): ");
 
@@ -35,10 +35,10 @@ public class CreateGameController extends Controller {
 
         return State.GAME_CREATE;
       case 2:
-        if (players.size() > 0) {
+        if (hasPlayers()) {
           int index = inputHandler.getIntInput("Enter player number: ");
 
-          while (index < 1 || index > players.size()) {
+          while (index < 1 || index > gameData.getPlayers().size()) {
             System.out.println("Invalid player number. Please try again.");
             index = inputHandler.getIntInput("Enter player number: ");
           }
@@ -48,15 +48,44 @@ public class CreateGameController extends Controller {
 
         return State.GAME_CREATE;
       case 3:
-        if (players.size() < MIN_PLAYERS) {
-          return State.GAME_CREATE;
+        if (hasEnoughPlayers()) {
+          return State.GAME_PLAY;
         }
-        return State.GAME_PLAY;
+        return State.GAME_CREATE;
       case 4:
         return State.MENU;
       default:
         return State.INVALID;
     }
+  }
+
+  private List<String> getOptionsList() {
+    List<String> optionsList = new ArrayList<>();
+
+    if (!hasTooManyPlayers()) {
+      optionsList.add("1. Create new character");
+    }
+    if (hasPlayers()) {
+      optionsList.add("2. Delete existing character");
+    }
+    if (hasEnoughPlayers()) {
+      optionsList.add("3. Start game");
+    }
+    optionsList.add("4. Return to main menu");
+
+    return optionsList;
+  }
+
+  private boolean hasPlayers() {
+    return gameData.getPlayers().size() > 0;
+  }
+
+  private boolean hasEnoughPlayers() {
+    return gameData.getPlayers().size() >= gameData.getMinPlayers();
+  }
+
+  private boolean hasTooManyPlayers() {
+    return gameData.getPlayers().size() > gameData.getMaxPlayers();
   }
 
 }
