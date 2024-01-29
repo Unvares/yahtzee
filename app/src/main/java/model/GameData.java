@@ -55,17 +55,19 @@ public class GameData {
     players = new ArrayList<>();
   }
 
-  public boolean nextTurn() {
-    if (players.stream().allMatch(Player::hasFilledScoreCard)) {
-      return true;
-    }
-
+  public void nextTurn() {
     currentDiceValues.clear();
     resetRollCounter();
 
     do {
       advanceCurrentPlayerIndex();
-    } while (getCurrentPlayer().hasFilledScoreCard());
+    } while (getCurrentPlayer().hasFilledScoreCard() && !hasGameEnded());
+  }
+
+  public boolean hasGameEnded() {
+    if (players.stream().allMatch(Player::hasFilledScoreCard)) {
+      return true;
+    }
     return false;
   }
 

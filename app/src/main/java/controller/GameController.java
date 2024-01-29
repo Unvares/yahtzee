@@ -21,6 +21,13 @@ public class GameController extends Controller {
 
   @Override
   protected ControllerName getNewController(InputHandler inputHandler) {
+    if (gameData.hasGameEnded()) {
+      return ControllerName.GAME_OVER;
+    }
+    return play(inputHandler);
+  }
+
+  private ControllerName play(InputHandler inputHandler) {
     List<String> optionsList = getOptionsList();
     String prompt = getPrompt();
     int choice = inputHandler.getIntInput(optionsList, prompt);
@@ -29,7 +36,6 @@ public class GameController extends Controller {
       case 1:
         if (gameData.canRoll()) {
           gameData.advanceRollCounter();
-
           updateDiceValues();
         }
 
@@ -46,6 +52,7 @@ public class GameController extends Controller {
         return ControllerName.GAME_SCORECARD;
       case 4:
         if (gameData.canEndTurn()) {
+          gameData.nextTurn();
           ControllerRegistry.getController(ControllerName.GAME_SCORECARD).setState("register");
           return ControllerName.GAME_SCORECARD;
         }

@@ -36,10 +36,6 @@ public class ScoreCardController extends Controller {
         return ControllerName.INVALID;
       }
       entry.setScoreFromDices(gameData.getCurrentDiceValues());
-      boolean gameHasEnded = gameData.nextTurn();
-      if (gameHasEnded) {
-        return ControllerName.GAME_OVER;
-      }
     } catch (Exception e) {
       return ControllerName.INVALID;
     }
