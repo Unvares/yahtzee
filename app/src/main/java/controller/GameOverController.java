@@ -18,7 +18,7 @@ public class GameOverController extends Controller {
   }
 
   @Override
-  protected ControllerName getNewState(InputHandler inputHandler) {
+  protected ControllerName getNewController(InputHandler inputHandler) {
     inputHandler.getAnyInput("Press enter to return to the main menu: ");
     List<Player> players = gameData.getPlayers();
     gameData.addScoreBoardEntry(new ScoreBoardEntry(players));

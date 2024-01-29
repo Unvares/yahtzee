@@ -15,7 +15,7 @@ public class ScoreCardRegisterController extends Controller {
   }
 
   @Override
-  protected ControllerName getNewState(InputHandler inputHandler) {
+  protected ControllerName getNewController(InputHandler inputHandler) {
     String choice = inputHandler.getStringInput("Enter name of the entry to fill: ").toLowerCase();
     try {
       ScoreCardEntry entry = gameData.getCurrentPlayer().getScoreCard().getScoreCardEntry(choice);

@@ -16,16 +16,16 @@ public abstract class Controller implements ControllerInterface {
   public void run() {
     view.display();
 
-    ControllerName newState = getNewState(inputHandler);
+    ControllerName newController = getNewController(inputHandler);
 
-    while (newState == ControllerName.INVALID) {
+    while (newController == ControllerName.INVALID) {
       System.out.println("Invalid choice. Please try again.");
-      newState = getNewState(inputHandler);
+      newController = getNewController(inputHandler);
     }
 
-    Router.pushState(newState);
+    Router.pushController(newController);
   }
 
-  protected abstract ControllerName getNewState(InputHandler inputHandler);
+  protected abstract ControllerName getNewController(InputHandler inputHandler);
 
 }

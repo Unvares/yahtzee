@@ -11,11 +11,11 @@ public class ControllerRegistry {
   public ControllerRegistry() {
   }
 
-  public void registerController(ControllerName state, ControllerInterface controller) {
-    controllerMap.put(state, controller);
+  public void registerController(ControllerName controllerName, ControllerInterface controller) {
+    controllerMap.put(controllerName, controller);
   }
 
-  public ControllerInterface getController(ControllerName state) {
-    return controllerMap.get(state);
+  public ControllerInterface getController(ControllerName controllerName) {
+    return controllerMap.get(controllerName);
   }
 }

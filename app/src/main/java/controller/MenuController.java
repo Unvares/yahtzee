@@ -17,7 +17,7 @@ public class MenuController extends Controller {
   }
 
   @Override
-  protected ControllerName getNewState(InputHandler inputHandler) {
+  protected ControllerName getNewController(InputHandler inputHandler) {
     List<String> optionsList = getOptionsList();
     String prompt = "Your choice: ";
     int choice = inputHandler.getIntInput(optionsList, prompt);

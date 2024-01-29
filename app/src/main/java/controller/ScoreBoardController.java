@@ -11,7 +11,7 @@ public class ScoreBoardController extends Controller {
   }
 
   @Override
-  protected ControllerName getNewState(InputHandler inputHandler) {
+  protected ControllerName getNewController(InputHandler inputHandler) {
     inputHandler.getAnyInput("Press enter to return to the main menu: ");
     return ControllerName.MENU;
   }

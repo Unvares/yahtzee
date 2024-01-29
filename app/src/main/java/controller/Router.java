@@ -12,12 +12,12 @@ import utils.ControllerName;
 public class Router {
   private ControllerRegistry registry = new ControllerRegistry();
 
-  private static List<ControllerName> statesList = new ArrayList<>(Arrays.asList(ControllerName.MENU));
+  private static List<ControllerName> controllersQueue = new ArrayList<>(Arrays.asList(ControllerName.MENU));
 
   private GameData gameData = new GameData();
 
   public Router() {
-    registry.registerController(ControllerName.MENU, new MenuController(gameData));
+    registry.registerController(ControllerName.MENU, new MainMenuController(gameData));
     registry.registerController(ControllerName.GAME_CREATE, new CreateGameController(gameData));
     registry.registerController(ControllerName.GAME_PLAY, new GameController(gameData));
     registry.registerController(ControllerName.GAME_SCORE_REGISTER, new ScoreCardRegisterController(gameData));
@@ -27,16 +27,16 @@ public class Router {
   }
 
   public void run() {
-    while (!statesList.isEmpty()) {
+    while (!controllersQueue.isEmpty()) {
       cleanScreen();
 
-      ControllerName state = Router.popState();
+      ControllerName controllerName = Router.popController();
 
-      if (state == ControllerName.EXIT) {
+      if (controllerName == ControllerName.EXIT) {
         break;
       }
 
-      ControllerInterface controller = registry.getController(state);
+      ControllerInterface controller = registry.getController(controllerName);
       if (controller != null) {
         controller.run();
       } else {
@@ -51,12 +51,12 @@ public class Router {
 
   }
 
-  static protected void pushState(ControllerName state) {
-    statesList.add(state);
+  static protected void pushController(ControllerName controller) {
+    controllersQueue.add(controller);
   }
 
-  static private ControllerName popState() {
-    return statesList.remove(statesList.size() - 1);
+  static private ControllerName popController() {
+    return controllersQueue.remove(controllersQueue.size() - 1);
   }
 
   private void cleanScreen() {

@@ -19,7 +19,7 @@ public class GameController extends Controller {
   }
 
   @Override
-  protected ControllerName getNewState(InputHandler inputHandler) {
+  protected ControllerName getNewController(InputHandler inputHandler) {
     List<String> optionsList = getOptionsList();
     String prompt = getPrompt();
     int choice = inputHandler.getIntInput(optionsList, prompt);
