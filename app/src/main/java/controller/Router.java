@@ -10,20 +10,17 @@ import utils.InputHandler;
 import utils.ControllerName;
 
 public class Router {
-  private ControllerRegistry registry = new ControllerRegistry();
-
   private static List<ControllerName> controllersQueue = new ArrayList<>(Arrays.asList(ControllerName.MENU));
 
   private GameData gameData = new GameData();
 
   public Router() {
-    registry.registerController(ControllerName.MENU, new MainMenuController(gameData));
-    registry.registerController(ControllerName.GAME_CREATE, new CreateGameController(gameData));
-    registry.registerController(ControllerName.GAME_PLAY, new GameController(gameData));
-    registry.registerController(ControllerName.GAME_SCORE_REGISTER, new ScoreCardRegisterController(gameData));
-    registry.registerController(ControllerName.GAME_SCORE_VIEW, new ScoreCardViewController(gameData));
-    registry.registerController(ControllerName.GAME_OVER, new GameOverController(gameData));
-    registry.registerController(ControllerName.SCORE_BOARD, new ScoreBoardController(gameData));
+    ControllerRegistry.registerController(ControllerName.MENU, new MainMenuController(gameData));
+    ControllerRegistry.registerController(ControllerName.GAME_CREATE, new CreateGameController(gameData));
+    ControllerRegistry.registerController(ControllerName.GAME_PLAY, new GameController(gameData));
+    ControllerRegistry.registerController(ControllerName.GAME_SCORECARD, new ScoreCardController(gameData));
+    ControllerRegistry.registerController(ControllerName.GAME_OVER, new GameOverController(gameData));
+    ControllerRegistry.registerController(ControllerName.SCORE_BOARD, new ScoreBoardController(gameData));
   }
 
   public void run() {
@@ -36,7 +33,7 @@ public class Router {
         break;
       }
 
-      ControllerInterface controller = registry.getController(controllerName);
+      ControllerInterface controller = ControllerRegistry.getController(controllerName);
       if (controller != null) {
         controller.run();
       } else {

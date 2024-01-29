@@ -7,6 +7,7 @@ import view.View;
 public abstract class Controller implements ControllerInterface {
   private View view;
   private InputHandler inputHandler = InputHandler.getInstance();
+  private String state;
 
   public Controller(View view) {
     this.view = view;
@@ -24,6 +25,16 @@ public abstract class Controller implements ControllerInterface {
     }
 
     Router.pushController(newController);
+  }
+
+  @Override
+  public void setState(String state) {
+    this.state = state;
+  }
+
+  @Override
+  public String getState() {
+    return state;
   }
 
   protected abstract ControllerName getNewController(InputHandler inputHandler);

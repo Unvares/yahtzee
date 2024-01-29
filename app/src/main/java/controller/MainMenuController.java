@@ -8,10 +8,10 @@ import utils.InputHandler;
 import utils.ControllerName;
 import view.MenuView;
 
-public class MenuController extends Controller {
+public class MainMenuController extends Controller {
   private GameData gameData;
 
-  public MenuController(GameData gameData) {
+  public MainMenuController(GameData gameData) {
     super(new MenuView(gameData));
     this.gameData = gameData;
   }

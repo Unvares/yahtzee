@@ -6,16 +6,29 @@ import utils.InputHandler;
 import utils.ControllerName;
 import view.ScoreCardView;
 
-public class ScoreCardRegisterController extends Controller {
+public class ScoreCardController extends Controller {
   private GameData gameData;
 
-  public ScoreCardRegisterController(GameData gameData) {
+  public ScoreCardController(GameData gameData) {
     super(new ScoreCardView(gameData));
     this.gameData = gameData;
   }
 
   @Override
   protected ControllerName getNewController(InputHandler inputHandler) {
+    String state = getState();
+
+    if (state == "register") {
+      return registerScore(inputHandler);
+    } else if (state == "view") {
+      inputHandler.getAnyInput("Press enter to return to the game");
+      return ControllerName.GAME_PLAY;
+    } else {
+      return ControllerName.INVALID;
+    }
+  }
+
+  private ControllerName registerScore(InputHandler inputHandler) {
     String choice = inputHandler.getStringInput("Enter name of the entry to fill: ").toLowerCase();
     try {
       ScoreCardEntry entry = gameData.getCurrentPlayer().getScoreCard().getScoreCardEntry(choice);

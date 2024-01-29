@@ -8,6 +8,7 @@ import java.util.Set;
 import model.GameData;
 import utils.InputHandler;
 import utils.ControllerName;
+import utils.ControllerRegistry;
 import view.GameView;
 
 public class GameController extends Controller {
@@ -41,12 +42,13 @@ public class GameController extends Controller {
 
         return ControllerName.GAME_PLAY;
       case 3:
-        return ControllerName.GAME_SCORE_VIEW;
+        ControllerRegistry.getController(ControllerName.GAME_SCORECARD).setState("view");
+        return ControllerName.GAME_SCORECARD;
       case 4:
         if (gameData.canEndTurn()) {
-          return ControllerName.GAME_SCORE_REGISTER;
+          ControllerRegistry.getController(ControllerName.GAME_SCORECARD).setState("register");
+          return ControllerName.GAME_SCORECARD;
         }
-
         return ControllerName.GAME_PLAY;
       case 5:
         return ControllerName.MENU;
