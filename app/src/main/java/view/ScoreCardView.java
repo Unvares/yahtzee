@@ -6,7 +6,7 @@ import model.GameData;
 import model.ScoreCard;
 import model.ScoreCardEntry;
 
-public class ScoreCardView implements View {
+public class ScoreCardView extends View {
   private GameData gameData;
 
   public ScoreCardView(GameData gameData) {
@@ -15,6 +15,7 @@ public class ScoreCardView implements View {
 
   @Override
   public void display() {
+    clearScreen();
     System.out.println("Score Card");
     System.out.println();
     System.out.println("Current Player: " + gameData.getCurrentPlayer().getName());
@@ -52,5 +53,4 @@ public class ScoreCardView implements View {
       System.out.println("- " + scoreCardEntry.getName() + score);
     });
   }
-
 }

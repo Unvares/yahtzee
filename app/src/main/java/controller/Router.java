@@ -25,8 +25,6 @@ public class Router {
 
   public void run() {
     while (!controllersQueue.isEmpty()) {
-      cleanScreen();
-
       ControllerName controllerName = Router.popController();
 
       if (controllerName == ControllerName.EXIT) {
@@ -54,10 +52,5 @@ public class Router {
 
   static private ControllerName popController() {
     return controllersQueue.remove(controllersQueue.size() - 1);
-  }
-
-  private void cleanScreen() {
-    System.out.print("\033[H\033[2J");
-    System.out.flush();
   }
 }

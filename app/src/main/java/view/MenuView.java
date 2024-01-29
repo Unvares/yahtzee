@@ -2,7 +2,7 @@ package view;
 
 import model.GameData;
 
-public class MenuView implements View {
+public class MenuView extends View {
     GameData gameData;
 
     public MenuView(GameData gameData) {
@@ -11,5 +11,6 @@ public class MenuView implements View {
 
     @Override
     public void display() {
+        clearScreen();
     }
 }

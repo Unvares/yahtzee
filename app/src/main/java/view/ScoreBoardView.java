@@ -5,7 +5,7 @@ import java.util.List;
 import model.GameData;
 import model.ScoreBoardEntry;
 
-public class ScoreBoardView implements View {
+public class ScoreBoardView extends View {
   private List<ScoreBoardEntry> scoreBoard;
 
   public ScoreBoardView(GameData gameData) {
@@ -14,6 +14,7 @@ public class ScoreBoardView implements View {
 
   @Override
   public void display() {
+    clearScreen();
     System.out.println("Score Board");
     System.out.println();
 

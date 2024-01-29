@@ -2,14 +2,14 @@ package controller;
 
 import utils.InputHandler;
 import utils.ControllerName;
-import view.View;
+import view.ViewInterface;
 
 public abstract class Controller implements ControllerInterface {
-  private View view;
+  private ViewInterface view;
   private InputHandler inputHandler = InputHandler.getInstance();
   private String state;
 
-  public Controller(View view) {
+  public Controller(ViewInterface view) {
     this.view = view;
   }
 

@@ -5,7 +5,7 @@ import java.util.List;
 import model.GameData;
 import model.Player;
 
-public class GameOverView implements View {
+public class GameOverView extends View {
   private List<Player> players;
 
   public GameOverView(GameData gameData) {
@@ -14,6 +14,7 @@ public class GameOverView implements View {
 
   @Override
   public void display() {
+    clearScreen();
     System.out.println("Game Over");
     System.out.println();
 

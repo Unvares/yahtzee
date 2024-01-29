@@ -5,7 +5,7 @@ import java.util.List;
 import model.GameData;
 import model.Player;
 
-public class GameView implements View {
+public class GameView extends View {
   private GameData gameData;
 
   public GameView(GameData gameData) {
@@ -14,6 +14,7 @@ public class GameView implements View {
 
   @Override
   public void display() {
+    clearScreen();
     List<Player> players = gameData.getPlayers();
     for (int i = 0; i < players.size(); i++) {
       Player player = players.get(i);
