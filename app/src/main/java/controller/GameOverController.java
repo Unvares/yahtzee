@@ -6,22 +6,22 @@ import model.GameData;
 import model.Player;
 import model.ScoreBoardEntry;
 import utils.InputHandler;
-import utils.State;
+import utils.ControllerName;
 import view.GameOverView;
 
 public class GameOverController extends Controller {
   private GameData gameData;
 
   public GameOverController(GameData gameData) {
-    super(new GameOverView(gameData), State.GAME_OVER);
+    super(new GameOverView(gameData));
     this.gameData = gameData;
   }
 
   @Override
-  protected State getNewState(InputHandler inputHandler) {
+  protected ControllerName getNewState(InputHandler inputHandler) {
     inputHandler.getAnyInput("Press enter to return to the main menu: ");
     List<Player> players = gameData.getPlayers();
     gameData.addScoreBoardEntry(new ScoreBoardEntry(players));
-    return State.MENU;
+    return ControllerName.MENU;
   }
 }

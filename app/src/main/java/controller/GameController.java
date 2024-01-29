@@ -7,19 +7,19 @@ import java.util.Set;
 
 import model.GameData;
 import utils.InputHandler;
-import utils.State;
+import utils.ControllerName;
 import view.GameView;
 
 public class GameController extends Controller {
   private GameData gameData;
 
   public GameController(GameData gameData) {
-    super(new GameView(gameData), State.GAME_PLAY);
+    super(new GameView(gameData));
     this.gameData = gameData;
   }
 
   @Override
-  protected State getNewState(InputHandler inputHandler) {
+  protected ControllerName getNewState(InputHandler inputHandler) {
     List<String> optionsList = getOptionsList();
     String prompt = getPrompt();
     int choice = inputHandler.getIntInput(optionsList, prompt);
@@ -32,26 +32,26 @@ public class GameController extends Controller {
           updateDiceValues();
         }
 
-        return State.GAME_PLAY;
+        return ControllerName.GAME_PLAY;
       case 2:
         if (gameData.canDeleteDices()) {
           Set<Integer> indicesToRemove = getIndicesToRemove(inputHandler);
           gameData.removeDiceValues(indicesToRemove);
         }
 
-        return State.GAME_PLAY;
+        return ControllerName.GAME_PLAY;
       case 3:
-        return State.GAME_SCORE_VIEW;
+        return ControllerName.GAME_SCORE_VIEW;
       case 4:
         if (gameData.canEndTurn()) {
-          return State.GAME_SCORE_REGISTER;
+          return ControllerName.GAME_SCORE_REGISTER;
         }
 
-        return State.GAME_PLAY;
+        return ControllerName.GAME_PLAY;
       case 5:
-        return State.MENU;
+        return ControllerName.MENU;
       default:
-        return State.INVALID;
+        return ControllerName.INVALID;
     }
   }
 

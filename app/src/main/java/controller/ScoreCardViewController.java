@@ -2,17 +2,17 @@ package controller;
 
 import model.GameData;
 import utils.InputHandler;
-import utils.State;
+import utils.ControllerName;
 import view.ScoreCardView;
 
 public class ScoreCardViewController extends Controller {
   public ScoreCardViewController(GameData gameData) {
-    super(new ScoreCardView(gameData), State.GAME_SCORE_VIEW);
+    super(new ScoreCardView(gameData));
   }
 
   @Override
-  protected State getNewState(InputHandler inputHandler) {
+  protected ControllerName getNewState(InputHandler inputHandler) {
     inputHandler.getAnyInput("Press enter to return to the game");
-    return State.GAME_PLAY;
+    return ControllerName.GAME_PLAY;
   }
 }

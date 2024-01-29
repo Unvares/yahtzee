@@ -5,19 +5,19 @@ import java.util.List;
 
 import model.GameData;
 import utils.InputHandler;
-import utils.State;
+import utils.ControllerName;
 import view.MenuView;
 
 public class MenuController extends Controller {
   private GameData gameData;
 
   public MenuController(GameData gameData) {
-    super(new MenuView(gameData), State.MENU);
+    super(new MenuView(gameData));
     this.gameData = gameData;
   }
 
   @Override
-  protected State getNewState(InputHandler inputHandler) {
+  protected ControllerName getNewState(InputHandler inputHandler) {
     List<String> optionsList = getOptionsList();
     String prompt = "Your choice: ";
     int choice = inputHandler.getIntInput(optionsList, prompt);
@@ -25,18 +25,18 @@ public class MenuController extends Controller {
     switch (choice) {
       case 1:
         gameData.reset();
-        return State.GAME_CREATE;
+        return ControllerName.GAME_CREATE;
       case 2:
         if (gameData.hasSavedGame()) {
-          return State.GAME_PLAY;
+          return ControllerName.GAME_PLAY;
         }
-        return State.MENU;
+        return ControllerName.MENU;
       case 3:
-        return State.SCORE_BOARD;
+        return ControllerName.SCORE_BOARD;
       case 4:
-        return State.EXIT;
+        return ControllerName.EXIT;
       default:
-        return State.INVALID;
+        return ControllerName.INVALID;
     }
   }
 

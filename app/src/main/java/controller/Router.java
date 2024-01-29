@@ -7,32 +7,32 @@ import java.util.List;
 import model.GameData;
 import utils.ControllerRegistry;
 import utils.InputHandler;
-import utils.State;
+import utils.ControllerName;
 
 public class Router {
   private ControllerRegistry registry = new ControllerRegistry();
 
-  private static List<State> statesList = new ArrayList<>(Arrays.asList(State.MENU));
+  private static List<ControllerName> statesList = new ArrayList<>(Arrays.asList(ControllerName.MENU));
 
   private GameData gameData = new GameData();
 
   public Router() {
-    registry.registerController(State.MENU, new MenuController(gameData));
-    registry.registerController(State.GAME_CREATE, new CreateGameController(gameData));
-    registry.registerController(State.GAME_PLAY, new GameController(gameData));
-    registry.registerController(State.GAME_SCORE_REGISTER, new ScoreCardRegisterController(gameData));
-    registry.registerController(State.GAME_SCORE_VIEW, new ScoreCardViewController(gameData));
-    registry.registerController(State.GAME_OVER, new GameOverController(gameData));
-    registry.registerController(State.SCORE_BOARD, new ScoreBoardController(gameData));
+    registry.registerController(ControllerName.MENU, new MenuController(gameData));
+    registry.registerController(ControllerName.GAME_CREATE, new CreateGameController(gameData));
+    registry.registerController(ControllerName.GAME_PLAY, new GameController(gameData));
+    registry.registerController(ControllerName.GAME_SCORE_REGISTER, new ScoreCardRegisterController(gameData));
+    registry.registerController(ControllerName.GAME_SCORE_VIEW, new ScoreCardViewController(gameData));
+    registry.registerController(ControllerName.GAME_OVER, new GameOverController(gameData));
+    registry.registerController(ControllerName.SCORE_BOARD, new ScoreBoardController(gameData));
   }
 
   public void run() {
     while (!statesList.isEmpty()) {
       cleanScreen();
 
-      State state = Router.popState();
+      ControllerName state = Router.popState();
 
-      if (state == State.EXIT) {
+      if (state == ControllerName.EXIT) {
         break;
       }
 
@@ -51,11 +51,11 @@ public class Router {
 
   }
 
-  static protected void pushState(State state) {
+  static protected void pushState(ControllerName state) {
     statesList.add(state);
   }
 
-  static private State popState() {
+  static private ControllerName popState() {
     return statesList.remove(statesList.size() - 1);
   }
 

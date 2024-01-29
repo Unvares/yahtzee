@@ -8,18 +8,18 @@ import java.util.List;
 import model.GameData;
 import model.Player;
 import utils.InputHandler;
-import utils.State;
+import utils.ControllerName;
 
 public class CreateGameController extends Controller {
   GameData gameData;
 
   public CreateGameController(GameData gameData) {
-    super(new CreateGameView(gameData), State.GAME_CREATE);
+    super(new CreateGameView(gameData));
     this.gameData = gameData;
   }
 
   @Override
-  protected State getNewState(InputHandler inputHandler) {
+  protected ControllerName getNewState(InputHandler inputHandler) {
     List<String> optionsList = getOptionsList();
     String prompt = "Your choice: ";
     int choice = inputHandler.getIntInput(optionsList, prompt);
@@ -33,7 +33,7 @@ public class CreateGameController extends Controller {
           gameData.addPlayer(new Player(name, isHuman));
         }
 
-        return State.GAME_CREATE;
+        return ControllerName.GAME_CREATE;
       case 2:
         if (hasPlayers()) {
           int index = inputHandler.getIntInput("Enter player number: ");
@@ -46,16 +46,16 @@ public class CreateGameController extends Controller {
           gameData.removePlayer(index - 1);
         }
 
-        return State.GAME_CREATE;
+        return ControllerName.GAME_CREATE;
       case 3:
         if (hasEnoughPlayers()) {
-          return State.GAME_PLAY;
+          return ControllerName.GAME_PLAY;
         }
-        return State.GAME_CREATE;
+        return ControllerName.GAME_CREATE;
       case 4:
-        return State.MENU;
+        return ControllerName.MENU;
       default:
-        return State.INVALID;
+        return ControllerName.INVALID;
     }
   }
 

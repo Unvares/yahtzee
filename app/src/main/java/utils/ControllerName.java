@@ -1,6 +1,6 @@
 package utils;
 
-public enum State {
+public enum ControllerName {
   EXIT,
   GAME_CREATE,
   GAME_LOAD,

@@ -2,17 +2,17 @@ package controller;
 
 import model.GameData;
 import utils.InputHandler;
-import utils.State;
+import utils.ControllerName;
 import view.ScoreBoardView;
 
 public class ScoreBoardController extends Controller {
   public ScoreBoardController(GameData gameData) {
-    super(new ScoreBoardView(gameData), State.SCORE_BOARD);
+    super(new ScoreBoardView(gameData));
   }
 
   @Override
-  protected State getNewState(InputHandler inputHandler) {
+  protected ControllerName getNewState(InputHandler inputHandler) {
     inputHandler.getAnyInput("Press enter to return to the main menu: ");
-    return State.MENU;
+    return ControllerName.MENU;
   }
 }

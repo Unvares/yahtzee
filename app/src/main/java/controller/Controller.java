@@ -1,26 +1,24 @@
 package controller;
 
 import utils.InputHandler;
-import utils.State;
+import utils.ControllerName;
 import view.View;
 
 public abstract class Controller implements ControllerInterface {
   private View view;
-  private State state;
   private InputHandler inputHandler = InputHandler.getInstance();
 
-  public Controller(View view, State state) {
+  public Controller(View view) {
     this.view = view;
-    this.state = state;
   }
 
   @Override
   public void run() {
     view.display();
 
-    State newState = getNewState(inputHandler);
+    ControllerName newState = getNewState(inputHandler);
 
-    while (newState == State.INVALID) {
+    while (newState == ControllerName.INVALID) {
       System.out.println("Invalid choice. Please try again.");
       newState = getNewState(inputHandler);
     }
@@ -28,11 +26,6 @@ public abstract class Controller implements ControllerInterface {
     Router.pushState(newState);
   }
 
-  @Override
-  public State getControllerState() {
-    return state;
-  }
-
-  protected abstract State getNewState(InputHandler inputHandler);
+  protected abstract ControllerName getNewState(InputHandler inputHandler);
 
 }
