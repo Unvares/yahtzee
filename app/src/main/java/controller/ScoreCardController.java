@@ -33,7 +33,9 @@ public class ScoreCardController extends Controller {
     String choice = inputHandler.getStringInput("Enter name of the entry to fill: ").toLowerCase();
     try {
       ScoreCardEntry entry = gameData.getCurrentPlayer().getScoreCard().getScoreCardEntry(choice);
-      if (entry.isCompleted() && !choice.equals("yahtzee")) {
+      boolean isYahtzee = choice.equals("yahtzee");
+      boolean canScoreYahtzee = isYahtzee && (!entry.isCompleted() || entry.getScore() > 0);
+      if ((entry.isCompleted() && !isYahtzee) || canScoreYahtzee) {
         return ControllerName.INVALID;
       }
       entry.setScoreFromDices(gameData.getCurrentDiceValues());
