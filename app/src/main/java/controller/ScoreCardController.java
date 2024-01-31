@@ -1,5 +1,6 @@
 package controller;
 
+import model.AppData;
 import model.GameData;
 import model.ScoreCardEntry;
 import utils.InputHandler;
@@ -9,9 +10,9 @@ import view.ScoreCardView;
 public class ScoreCardController extends Controller {
   private GameData gameData;
 
-  public ScoreCardController(GameData gameData) {
-    super(new ScoreCardView(gameData));
-    this.gameData = gameData;
+  public ScoreCardController(AppData appData) {
+    super(new ScoreCardView(appData.getGameData()));
+    this.gameData = appData.getGameData();
   }
 
   @Override

@@ -3,6 +3,7 @@ package controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.AppData;
 import model.GameData;
 import utils.InputHandler;
 import utils.ControllerName;
@@ -11,9 +12,9 @@ import view.MenuView;
 public class MainMenuController extends Controller {
   private GameData gameData;
 
-  public MainMenuController(GameData gameData) {
-    super(new MenuView(gameData));
-    this.gameData = gameData;
+  public MainMenuController(AppData appData) {
+    super(new MenuView(appData));
+    this.gameData = appData.getGameData();
   }
 
   @Override

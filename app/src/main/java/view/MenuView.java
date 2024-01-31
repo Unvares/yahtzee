@@ -1,12 +1,9 @@
 package view;
 
-import model.GameData;
+import model.AppData;
 
 public class MenuView extends View {
-    GameData gameData;
-
-    public MenuView(GameData gameData) {
-        this.gameData = gameData;
+    public MenuView(AppData appData) {
     }
 
     @Override

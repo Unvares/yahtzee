@@ -2,14 +2,14 @@ package view;
 
 import java.util.List;
 
-import model.GameData;
+import model.AppData;
 import model.ScoreBoardEntry;
 
 public class ScoreBoardView extends View {
   private List<ScoreBoardEntry> scoreBoardEntries;
 
-  public ScoreBoardView(GameData gameData) {
-    scoreBoardEntries = gameData.getScoreBoard().getEntries();
+  public ScoreBoardView(AppData appData) {
+    scoreBoardEntries = appData.getScoreBoard().getEntries();
   }
 
   @Override

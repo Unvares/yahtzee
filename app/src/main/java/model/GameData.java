@@ -10,15 +10,26 @@ public class GameData {
   private final int MAX_ROLLS = 3;
   private final int MAX_DICES = 5;
 
+  public int getMinPlayers() {
+    return MIN_PLAYERS;
+  }
+
+  public int getMaxPlayers() {
+    return MAX_PLAYERS;
+  }
+
+  public int getMaxDices() {
+    return MAX_DICES;
+  }
+
+  public int getMaxRolls() {
+    return MAX_ROLLS;
+  }
+
+  private List<Player> players = new ArrayList<>();
   private int currentPlayerIndex = 0;
   private int rollCounter = 0;
   private List<Integer> currentDiceValues = new ArrayList<>();
-  private List<Player> players = new ArrayList<>();
-
-  private ScoreBoard scoreBoard = new ScoreBoard();
-
-  public GameData() {
-  }
 
   public void reset() {
     currentPlayerIndex = 0;
@@ -91,7 +102,7 @@ public class GameData {
     currentDiceValues.add(diceValue);
   }
 
-  public void removeDiceValues(Set<Integer> indicesToRemove) {
+  public void removeDiceValuesByIndices(Set<Integer> indicesToRemove) {
     List<Integer> newDiceValues = new ArrayList<>();
     for (int i = 0; i < currentDiceValues.size(); i++) {
       if (!indicesToRemove.contains(i)) {
@@ -122,27 +133,8 @@ public class GameData {
     return rollCounter > 0 && currentDiceValues.size() == 5;
   }
 
-  public int getMinPlayers() {
-    return MIN_PLAYERS;
-  }
-
-  public int getMaxPlayers() {
-    return MAX_PLAYERS;
-  }
-
-  public int getMaxDices() {
-    return MAX_DICES;
-  }
-
-  public int getMaxRolls() {
-    return MAX_ROLLS;
-  }
-
-  public ScoreBoard getScoreBoard() {
-    return scoreBoard;
-  }
-
   public boolean hasSavedGame() {
     return players.size() >= MIN_PLAYERS;
   }
+
 }

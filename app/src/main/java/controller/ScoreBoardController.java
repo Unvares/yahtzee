@@ -1,13 +1,13 @@
 package controller;
 
-import model.GameData;
 import utils.InputHandler;
+import model.AppData;
 import utils.ControllerName;
 import view.ScoreBoardView;
 
 public class ScoreBoardController extends Controller {
-  public ScoreBoardController(GameData gameData) {
-    super(new ScoreBoardView(gameData));
+  public ScoreBoardController(AppData appData) {
+    super(new ScoreBoardView(appData));
   }
 
   @Override

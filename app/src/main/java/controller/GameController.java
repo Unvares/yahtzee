@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import model.AppData;
 import model.GameData;
 import utils.InputHandler;
 import utils.ControllerName;
@@ -14,9 +15,9 @@ import view.GameView;
 public class GameController extends Controller {
   private GameData gameData;
 
-  public GameController(GameData gameData) {
-    super(new GameView(gameData));
-    this.gameData = gameData;
+  public GameController(AppData appData) {
+    super(new GameView(appData.getGameData()));
+    this.gameData = appData.getGameData();
   }
 
   @Override
@@ -43,7 +44,7 @@ public class GameController extends Controller {
       case 2:
         if (gameData.canDeleteDices()) {
           Set<Integer> indicesToRemove = getIndicesToRemove(inputHandler);
-          gameData.removeDiceValues(indicesToRemove);
+          gameData.removeDiceValuesByIndices(indicesToRemove);
         }
 
         return ControllerName.GAME_PLAY;

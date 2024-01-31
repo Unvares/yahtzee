@@ -5,6 +5,7 @@ import view.CreateGameView;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.AppData;
 import model.GameData;
 import model.Player;
 import utils.InputHandler;
@@ -13,9 +14,9 @@ import utils.ControllerName;
 public class CreateGameController extends Controller {
   GameData gameData;
 
-  public CreateGameController(GameData gameData) {
-    super(new CreateGameView(gameData));
-    this.gameData = gameData;
+  public CreateGameController(AppData appData) {
+    super(new CreateGameView(appData.getGameData()));
+    this.gameData = appData.getGameData();
   }
 
   @Override

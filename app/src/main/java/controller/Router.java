@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import model.GameData;
+import model.AppData;
 import utils.ControllerRegistry;
 import utils.InputHandler;
 import utils.ControllerName;
@@ -12,15 +12,15 @@ import utils.ControllerName;
 public class Router {
   private static List<ControllerName> controllersQueue = new ArrayList<>(Arrays.asList(ControllerName.MENU));
 
-  private GameData gameData = new GameData();
+  private AppData appData = new AppData();
 
   public Router() {
-    ControllerRegistry.registerController(ControllerName.MENU, new MainMenuController(gameData));
-    ControllerRegistry.registerController(ControllerName.GAME_CREATE, new CreateGameController(gameData));
-    ControllerRegistry.registerController(ControllerName.GAME_PLAY, new GameController(gameData));
-    ControllerRegistry.registerController(ControllerName.GAME_SCORECARD, new ScoreCardController(gameData));
-    ControllerRegistry.registerController(ControllerName.GAME_OVER, new GameOverController(gameData));
-    ControllerRegistry.registerController(ControllerName.SCORE_BOARD, new ScoreBoardController(gameData));
+    ControllerRegistry.registerController(ControllerName.MENU, new MainMenuController(appData));
+    ControllerRegistry.registerController(ControllerName.GAME_CREATE, new CreateGameController(appData));
+    ControllerRegistry.registerController(ControllerName.GAME_PLAY, new GameController(appData));
+    ControllerRegistry.registerController(ControllerName.GAME_SCORECARD, new ScoreCardController(appData));
+    ControllerRegistry.registerController(ControllerName.GAME_OVER, new GameOverController(appData));
+    ControllerRegistry.registerController(ControllerName.SCORE_BOARD, new ScoreBoardController(appData));
   }
 
   public void run() {
