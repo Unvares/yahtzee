@@ -20,6 +20,8 @@ public class GameView extends View {
       Player player = players.get(i);
       if (i == gameData.getCurrentPlayerIndex()) {
         System.out.println(player.getName() + " (current player)");
+      } else if (player.hasFilledScoreCard()) {
+        System.out.println(player.getName() + " (completed game)");
       } else {
         System.out.println(player.getName());
       }
