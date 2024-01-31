@@ -30,16 +30,16 @@ public class ScoreBoardController extends Controller {
           getView().setState(getState());
           break;
         case 3:
-          return ControllerName.MENU;
+          return ControllerName.MAIN_MENU;
         default:
           return ControllerName.INVALID;
       }
-      return ControllerName.SCORE_BOARD;
+      return ControllerName.SCOREBOARD;
     } else {
       inputHandler.getAnyInput("Press enter to return to the main menu: ");
       setState("menu");
       getView().setState(getState());
-      return ControllerName.MENU;
+      return ControllerName.MAIN_MENU;
     }
   }
 

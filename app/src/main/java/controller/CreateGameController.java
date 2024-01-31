@@ -33,8 +33,7 @@ public class CreateGameController extends Controller {
 
           gameData.addPlayer(new Player(name, isHuman));
         }
-
-        return ControllerName.GAME_CREATE;
+        break;
       case 2:
         if (hasPlayers()) {
           int index = inputHandler.getIntInput("Enter player number: ");
@@ -46,18 +45,18 @@ public class CreateGameController extends Controller {
 
           gameData.removePlayer(index - 1);
         }
-
-        return ControllerName.GAME_CREATE;
+        break;
       case 3:
         if (hasEnoughPlayers()) {
-          return ControllerName.GAME_PLAY;
+          return ControllerName.GAME;
         }
-        return ControllerName.GAME_CREATE;
+        break;
       case 4:
-        return ControllerName.MENU;
+        return ControllerName.MAIN_MENU;
       default:
         return ControllerName.INVALID;
     }
+    return ControllerName.CREATE_GAME;
   }
 
   private List<String> getOptionsList() {

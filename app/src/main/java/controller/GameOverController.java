@@ -27,6 +27,6 @@ public class GameOverController extends Controller {
     List<Player> players = gameData.getPlayers();
     appData.getScoreBoard().addEntry(new ScoreBoardEntry(players));
     gameData.reset();
-    return ControllerName.MENU;
+    return ControllerName.MAIN_MENU;
   }
 }

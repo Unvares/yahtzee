@@ -39,30 +39,29 @@ public class GameController extends Controller {
           gameData.advanceRollCounter();
           updateDiceValues();
         }
-
-        return ControllerName.GAME_PLAY;
+        break;
       case 2:
         if (gameData.canDeleteDices()) {
           Set<Integer> indicesToRemove = getIndicesToRemove(inputHandler);
           gameData.removeDiceValuesByIndices(indicesToRemove);
         }
-
-        return ControllerName.GAME_PLAY;
+        break;
       case 3:
-        ControllerRegistry.getController(ControllerName.GAME_SCORECARD).setState("view");
-        return ControllerName.GAME_SCORECARD;
+        ControllerRegistry.getController(ControllerName.SCORECARD).setState("view");
+        return ControllerName.SCORECARD;
       case 4:
         if (gameData.canEndTurn()) {
           gameData.nextTurn();
-          ControllerRegistry.getController(ControllerName.GAME_SCORECARD).setState("register");
-          return ControllerName.GAME_SCORECARD;
+          ControllerRegistry.getController(ControllerName.SCORECARD).setState("register");
+          return ControllerName.SCORECARD;
         }
-        return ControllerName.GAME_PLAY;
+        break;
       case 5:
-        return ControllerName.MENU;
+        return ControllerName.MAIN_MENU;
       default:
         return ControllerName.INVALID;
     }
+    return ControllerName.GAME;
   }
 
   private List<String> getOptionsList() {

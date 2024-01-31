@@ -26,14 +26,14 @@ public class MainMenuController extends Controller {
     switch (choice) {
       case 1:
         gameData.reset();
-        return ControllerName.GAME_CREATE;
+        return ControllerName.CREATE_GAME;
       case 2:
         if (gameData.hasSavedGame()) {
-          return ControllerName.GAME_PLAY;
+          return ControllerName.GAME;
         }
-        return ControllerName.MENU;
+        return ControllerName.MAIN_MENU;
       case 3:
-        return ControllerName.SCORE_BOARD;
+        return ControllerName.SCOREBOARD;
       case 4:
         return ControllerName.EXIT;
       default:
@@ -53,5 +53,4 @@ public class MainMenuController extends Controller {
 
     return optionsList;
   }
-
 }

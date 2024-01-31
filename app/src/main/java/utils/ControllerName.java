@@ -2,12 +2,11 @@ package utils;
 
 public enum ControllerName {
   EXIT,
-  GAME_CREATE,
-  GAME_LOAD,
+  CREATE_GAME,
   GAME_OVER,
-  GAME_PLAY,
-  GAME_SCORECARD,
+  GAME,
   INVALID,
-  MENU,
-  SCORE_BOARD,
+  MAIN_MENU,
+  SCOREBOARD,
+  SCORECARD,
 }

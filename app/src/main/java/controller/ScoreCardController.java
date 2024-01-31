@@ -23,7 +23,7 @@ public class ScoreCardController extends Controller {
       return registerScore(inputHandler);
     } else if (state == "view") {
       inputHandler.getAnyInput("Press enter to return to the game");
-      return ControllerName.GAME_PLAY;
+      return ControllerName.GAME;
     } else {
       return ControllerName.INVALID;
     }
@@ -42,7 +42,7 @@ public class ScoreCardController extends Controller {
     } catch (Exception e) {
       return ControllerName.INVALID;
     }
-    return ControllerName.GAME_PLAY;
+    return ControllerName.GAME;
   }
 
 }
