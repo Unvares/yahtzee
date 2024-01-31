@@ -38,18 +38,20 @@ public class ScoreBoardView extends View {
   private void displayScores() {
     int counter = 1;
     for (ScoreBoardEntry entry : scoreBoardEntries) {
+      System.out.println();
       System.out.println("Game #" + counter++);
       for (Player player : entry.getPlayers()) {
+        String name = player.getName() + " (" + (player.isHuman() ? "Human" : "Computer") + ")";
         if (getState().equals("simplified")) {
-          System.out.println(player.getName() + ": " + player.getScoreCard().getTotalScore() + " points");
+          System.out.println(name + ": " + player.getScoreCard().getTotalScore() + " points");
         } else if (getState().equals("detailed")) {
-          System.out.println(player.getName());
-          System.out.println("Score Card");
-          System.out.println(player.getScoreCard().toString());
+          System.out.println(name);
           System.out.println();
+          System.out.println(player.getScoreCard().toString());
         }
       }
       System.out.println();
+      System.out.println("==================================");
     }
   }
 }

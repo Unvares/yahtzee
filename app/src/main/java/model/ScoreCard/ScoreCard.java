@@ -162,7 +162,6 @@ public class ScoreCard {
     stringBuilder.append("Upper Section Total: " + upperSectionTotalWithBonus + "\n");
     stringBuilder.append("Lower Section Total: " + lowerSectionTotal + "\n");
     stringBuilder.append("Grand Total: " + grandTotal + "\n");
-    stringBuilder.append("\n");
   }
 
 }
