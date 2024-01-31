@@ -9,4 +9,5 @@ public enum ControllerName {
   MAIN_MENU,
   SCOREBOARD,
   SCORECARD,
+  VARIATION_MENU,
 }

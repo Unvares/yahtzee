@@ -13,7 +13,7 @@ public class MainMenuController extends Controller {
   private GameData gameData;
 
   public MainMenuController(AppData appData) {
-    super(new MenuView(appData));
+    super(new MenuView());
     this.gameData = appData.getGameData();
   }
 

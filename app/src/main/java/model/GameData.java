@@ -5,12 +5,28 @@ import java.util.List;
 import java.util.Set;
 
 import model.ScoreCard.strategies.Player;
+import utils.Variation;
 
 public class GameData {
+  private Variation variation = Variation.DEFAULT;
   private final int MIN_PLAYERS = 2;
-  private final int MAX_PLAYERS = 10;
+  private final int MAX_PLAYERS = 5;
   private final int MAX_ROLLS = 3;
-  private final int MAX_DICES = 5;
+  private int MAX_DICES = 5;
+
+  public void setVariation(Variation variation) {
+    switch (variation) {
+      case DEFAULT:
+        MAX_DICES = 5;
+        break;
+      case MAXI:
+        MAX_DICES = 6;
+        break;
+      default:
+        throw new IllegalArgumentException("Invalid variation");
+    }
+    this.variation = variation;
+  }
 
   public int getMinPlayers() {
     return MIN_PLAYERS;

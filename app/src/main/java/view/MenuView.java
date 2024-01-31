@@ -1,13 +1,12 @@
 package view;
 
-import model.AppData;
-
 public class MenuView extends View {
-    public MenuView(AppData appData) {
-    }
+  public MenuView() {
+    super();
+  }
 
-    @Override
-    public void display() {
-        clearScreen();
-    }
+  @Override
+  public void display() {
+    clearScreen();
+  }
 }
