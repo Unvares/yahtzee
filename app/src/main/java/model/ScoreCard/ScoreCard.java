@@ -111,4 +111,58 @@ public class ScoreCard {
     return scoreCard;
   }
 
+  @Override
+  public String toString() {
+    StringBuilder stringBuilder = new StringBuilder();
+
+    appendUpperSection(stringBuilder);
+    appendLowerSection(stringBuilder);
+    appendGrandTotal(stringBuilder);
+
+    return stringBuilder.toString();
+  }
+
+  private void appendUpperSection(StringBuilder stringBuilder) {
+    int upperSectionTotal = getTotalScoreFromSection(true);
+    int bonus = getBonus();
+    int upperSectionTotalWithBonus = upperSectionTotal + bonus;
+
+    stringBuilder.append("Score Card\n");
+    stringBuilder.append("Upper Section\n");
+    stringBuilder.append(appendSection(getUpperSection()));
+    stringBuilder.append("Total Score: " + upperSectionTotal + "\n");
+    stringBuilder.append("Bonus: " + bonus + "\n");
+    stringBuilder.append("Total: " + upperSectionTotalWithBonus + "\n");
+    stringBuilder.append("\n");
+  }
+
+  private void appendLowerSection(StringBuilder stringBuilder) {
+    int lowerSectionTotal = getTotalScoreFromSection(false);
+
+    stringBuilder.append("Lower Section\n");
+    stringBuilder.append(appendSection(getLowerSection()));
+    stringBuilder.append("Total Score: " + lowerSectionTotal + "\n");
+    stringBuilder.append("\n");
+  }
+
+  private String appendSection(LinkedHashMap<String, ScoreCardEntry> entryMap) {
+    StringBuilder sectionStringBuilder = new StringBuilder();
+    entryMap.forEach((key, scoreCardEntry) -> {
+      String score = scoreCardEntry.isCompleted() ? ": " + scoreCardEntry.getScore() : "";
+      sectionStringBuilder.append("- " + scoreCardEntry.getName() + score + "\n");
+    });
+    return sectionStringBuilder.toString();
+  }
+
+  private void appendGrandTotal(StringBuilder stringBuilder) {
+    int upperSectionTotalWithBonus = getTotalScoreFromSection(true) + getBonus();
+    int lowerSectionTotal = getTotalScoreFromSection(false);
+    int grandTotal = upperSectionTotalWithBonus + lowerSectionTotal;
+
+    stringBuilder.append("Upper Section Total: " + upperSectionTotalWithBonus + "\n");
+    stringBuilder.append("Lower Section Total: " + lowerSectionTotal + "\n");
+    stringBuilder.append("Grand Total: " + grandTotal + "\n");
+    stringBuilder.append("\n");
+  }
+
 }

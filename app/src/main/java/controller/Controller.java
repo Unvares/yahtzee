@@ -13,6 +13,11 @@ public abstract class Controller implements ControllerInterface {
     this.view = view;
   }
 
+  public Controller(ViewInterface view, String state) {
+    this.view = view;
+    view.setState(state);
+  }
+
   @Override
   public void run() {
     view.display();
@@ -35,6 +40,11 @@ public abstract class Controller implements ControllerInterface {
   @Override
   public String getState() {
     return state;
+  }
+
+  @Override
+  public ViewInterface getView() {
+    return view;
   }
 
   protected abstract ControllerName getNewController(InputHandler inputHandler);
