@@ -1,8 +1,15 @@
-package model;
+package model.ScoreCard;
 
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import model.ScoreCard.strategies.ChanceEntry;
+import model.ScoreCard.strategies.FullHouseEntry;
+import model.ScoreCard.strategies.NOfAKindEntry;
+import model.ScoreCard.strategies.StraightEntry;
+import model.ScoreCard.strategies.SumOfValuesEntry;
+import model.ScoreCard.strategies.YahtzeeEntry;
 
 public class ScoreCard {
   private LinkedHashMap<String, ScoreCardEntry> upperSectionMap = new LinkedHashMap<>();

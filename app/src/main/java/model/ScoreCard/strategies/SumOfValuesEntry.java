@@ -1,6 +1,8 @@
-package model;
+package model.ScoreCard.strategies;
 
 import java.util.List;
+
+import model.ScoreCard.ScoreCardEntry;
 
 public class SumOfValuesEntry extends ScoreCardEntry {
   private int value;

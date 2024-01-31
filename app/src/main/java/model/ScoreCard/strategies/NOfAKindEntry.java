@@ -1,6 +1,8 @@
-package model;
+package model.ScoreCard.strategies;
 
 import java.util.List;
+
+import model.ScoreCard.ScoreCardEntry;
 
 public class NOfAKindEntry extends ScoreCardEntry {
   private int n;

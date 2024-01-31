@@ -4,6 +4,7 @@ import java.util.List;
 
 import model.AppData;
 import model.ScoreBoardEntry;
+import model.ScoreCard.strategies.Player;
 
 public class ScoreBoardView extends View {
   private List<ScoreBoardEntry> scoreBoardEntries;
@@ -21,7 +22,7 @@ public class ScoreBoardView extends View {
     int counter = 1;
     for (ScoreBoardEntry entry : scoreBoardEntries) {
       System.out.println("Game #" + counter++);
-      for (model.Player player : entry.getPlayers()) {
+      for (Player player : entry.getPlayers()) {
         System.out.println(player.getName() + ": " + player.getScoreCard().getTotalScore() + " points");
       }
       System.out.println();

@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.ScoreCard.strategies.Player;
+
 public class ScoreBoardEntry {
   private List<Player> players;
 

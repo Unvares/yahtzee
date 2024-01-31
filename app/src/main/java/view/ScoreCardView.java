@@ -3,8 +3,8 @@ package view;
 import java.util.LinkedHashMap;
 
 import model.GameData;
-import model.ScoreCard;
-import model.ScoreCardEntry;
+import model.ScoreCard.ScoreCard;
+import model.ScoreCard.ScoreCardEntry;
 
 public class ScoreCardView extends View {
   private GameData gameData;

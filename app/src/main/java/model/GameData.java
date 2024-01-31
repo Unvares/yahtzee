@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import model.ScoreCard.strategies.Player;
+
 public class GameData {
   private final int MIN_PLAYERS = 2;
   private final int MAX_PLAYERS = 10;

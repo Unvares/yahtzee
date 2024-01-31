@@ -4,8 +4,8 @@ import java.util.List;
 
 import model.AppData;
 import model.GameData;
-import model.Player;
 import model.ScoreBoardEntry;
+import model.ScoreCard.strategies.Player;
 import utils.InputHandler;
 import utils.ControllerName;
 import view.GameOverView;

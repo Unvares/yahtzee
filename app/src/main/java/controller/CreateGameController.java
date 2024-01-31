@@ -7,7 +7,7 @@ import java.util.List;
 
 import model.AppData;
 import model.GameData;
-import model.Player;
+import model.ScoreCard.strategies.Player;
 import utils.InputHandler;
 import utils.ControllerName;
 

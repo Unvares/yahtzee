@@ -1,4 +1,6 @@
-package model;
+package model.ScoreCard.strategies;
+
+import model.ScoreCard.ScoreCard;
 
 public class Player {
   private String name;
