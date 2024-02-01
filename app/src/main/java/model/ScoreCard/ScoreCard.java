@@ -7,15 +7,25 @@ import java.util.Map;
 import model.ScoreCard.strategies.ChanceEntry;
 import model.ScoreCard.strategies.FullHouseEntry;
 import model.ScoreCard.strategies.NOfAKindEntry;
+import model.ScoreCard.strategies.ScoreCardEntry;
 import model.ScoreCard.strategies.StraightEntry;
 import model.ScoreCard.strategies.SumOfValuesEntry;
+import model.ScoreCard.strategies.VillaEntry;
 import model.ScoreCard.strategies.YahtzeeEntry;
+import utils.Variation;
 
 public class ScoreCard {
+  private int bonusThreshold = 63;
+  private int bonusPoints = 35;
   private LinkedHashMap<String, ScoreCardEntry> upperSectionMap = new LinkedHashMap<>();
   private LinkedHashMap<String, ScoreCardEntry> lowerSectionMap = new LinkedHashMap<>();
 
-  public ScoreCard() {
+  public ScoreCard(Variation variation) {
+    if (variation == Variation.MAXI) {
+      bonusThreshold = 75;
+      bonusPoints = 50;
+    }
+
     upperSectionMap.put("ones", new SumOfValuesEntry("ones", 1));
     upperSectionMap.put("twos", new SumOfValuesEntry("twos", 2));
     upperSectionMap.put("threes", new SumOfValuesEntry("threes", 3));
@@ -25,9 +35,19 @@ public class ScoreCard {
 
     lowerSectionMap.put("three of a kind", new NOfAKindEntry("three of a kind", 3));
     lowerSectionMap.put("four of a kind", new NOfAKindEntry("four of a kind", 4));
+    if (variation == Variation.MAXI) {
+      lowerSectionMap.put("five of a kind", new NOfAKindEntry("five of a kind", 5));
+    }
     lowerSectionMap.put("full house", new FullHouseEntry("full house"));
-    lowerSectionMap.put("small straight", new StraightEntry("small straight", true));
-    lowerSectionMap.put("large straight", new StraightEntry("large straight", false));
+    if (variation == Variation.MAXI) {
+      lowerSectionMap.put("villa", new VillaEntry("villa"));
+      lowerSectionMap.put("tower", new VillaEntry("tower"));
+    }
+    lowerSectionMap.put("small straight", new StraightEntry("small straight"));
+    lowerSectionMap.put("large straight", new StraightEntry("large straight"));
+    if (variation == Variation.MAXI) {
+      lowerSectionMap.put("full straight", new StraightEntry("full straight"));
+    }
     lowerSectionMap.put("yahtzee", new YahtzeeEntry("yahtzee"));
     lowerSectionMap.put("chance", new ChanceEntry());
   }
@@ -60,7 +80,7 @@ public class ScoreCard {
 
   public int getBonus() {
     int upperSectionTotalScore = getTotalScoreFromSection(true);
-    return upperSectionTotalScore >= 63 ? 35 : 0;
+    return upperSectionTotalScore >= bonusThreshold ? bonusPoints : 0;
   }
 
   public int getTotalScore() {
@@ -98,7 +118,7 @@ public class ScoreCard {
 
   public static ScoreCard fromCSV(String csv) {
     String[] parts = csv.split(",");
-    ScoreCard scoreCard = new ScoreCard();
+    ScoreCard scoreCard = new ScoreCard(Variation.DEFAULT);
 
     Iterator<Map.Entry<String, ScoreCardEntry>> iterator = scoreCard.getMergedMap().entrySet().iterator();
     for (int i = 0; i < parts.length; i++) {

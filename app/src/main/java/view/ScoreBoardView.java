@@ -3,8 +3,8 @@ package view;
 import java.util.List;
 
 import model.AppData;
+import model.Player;
 import model.ScoreBoardEntry;
-import model.ScoreCard.strategies.Player;
 
 public class ScoreBoardView extends View {
   private List<ScoreBoardEntry> scoreBoardEntries;

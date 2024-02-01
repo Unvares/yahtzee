@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import model.ScoreCard.strategies.Player;
 import utils.Variation;
 
 public class GameData {
@@ -13,6 +12,10 @@ public class GameData {
   private final int MAX_PLAYERS = 5;
   private final int MAX_ROLLS = 3;
   private int MAX_DICES = 5;
+
+  public Variation getVariation() {
+    return variation;
+  }
 
   public void setVariation(Variation variation) {
     switch (variation) {

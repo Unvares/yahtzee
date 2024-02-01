@@ -2,7 +2,7 @@ package controller;
 
 import model.AppData;
 import model.GameData;
-import model.ScoreCard.ScoreCardEntry;
+import model.ScoreCard.strategies.ScoreCardEntry;
 import utils.InputHandler;
 import utils.ControllerName;
 import view.ScoreCardView;

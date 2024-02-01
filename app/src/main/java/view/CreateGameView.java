@@ -3,7 +3,7 @@ package view;
 import java.util.List;
 
 import model.GameData;
-import model.ScoreCard.strategies.Player;
+import model.Player;
 
 public class CreateGameView extends View {
   private GameData gameData;

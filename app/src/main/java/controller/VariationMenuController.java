@@ -23,10 +23,10 @@ public class VariationMenuController extends Controller {
     int choice = inputHandler.getIntInput(optionsList, "Choose a variation: ");
     switch (choice) {
       case 1:
-        appData.getGameData().setVariation(Variation.DEFAULT);
+        appData.setVariation(Variation.DEFAULT);
         break;
       case 2:
-        appData.getGameData().setVariation(Variation.MAXI);
+        appData.setVariation(Variation.MAXI);
         break;
       default:
         return ControllerName.INVALID;

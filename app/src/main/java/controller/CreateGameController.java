@@ -7,7 +7,7 @@ import java.util.List;
 
 import model.AppData;
 import model.GameData;
-import model.ScoreCard.strategies.Player;
+import model.Player;
 import utils.InputHandler;
 import utils.ControllerName;
 
@@ -31,7 +31,7 @@ public class CreateGameController extends Controller {
           String name = inputHandler.getStringInput("Enter name: ");
           boolean isHuman = inputHandler.getBooleanInput("Is human? (y/n): ");
 
-          gameData.addPlayer(new Player(name, isHuman));
+          gameData.addPlayer(new Player(name, isHuman, gameData.getVariation()));
         }
         break;
       case 2:

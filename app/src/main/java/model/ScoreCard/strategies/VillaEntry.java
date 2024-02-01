@@ -2,8 +2,9 @@ package model.ScoreCard.strategies;
 
 import java.util.List;
 
-public class FullHouseEntry extends ScoreCardEntry {
-  public FullHouseEntry(String name) {
+public class VillaEntry extends ScoreCardEntry {
+
+  public VillaEntry(String name) {
     super(name);
   }
 
@@ -14,23 +15,24 @@ public class FullHouseEntry extends ScoreCardEntry {
       counts[diceValue - 1]++;
     }
 
-    boolean hasTwoOfAKind = hasNOfAKind(counts, 2);
-    boolean hasThreeOfAKind = hasNOfAKind(counts, 3);
+    boolean hasVilla = hasVilla(counts);
 
-    if (hasTwoOfAKind && hasThreeOfAKind) {
+    if (hasVilla) {
       setScore(25);
     } else {
       setScore(0);
     }
   }
 
-  private boolean hasNOfAKind(int[] counts, int n) {
+  private boolean hasVilla(int[] counts) {
+    int countThreeOfAKind = 0;
+
     for (int i = 0; i < counts.length; i++) {
-      if (counts[i] >= n) {
-        return true;
+      if (counts[i] >= 3) {
+        countThreeOfAKind++;
       }
     }
-    return false;
+    return countThreeOfAKind == 2;
   }
 
 }

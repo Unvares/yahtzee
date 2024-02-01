@@ -2,14 +2,9 @@ package model.ScoreCard.strategies;
 
 import java.util.List;
 
-import model.ScoreCard.ScoreCardEntry;
-
 public class StraightEntry extends ScoreCardEntry {
-  private boolean isSmall;
-
-  public StraightEntry(String name, boolean isSmall) {
+  public StraightEntry(String name) {
     super(name);
-    this.isSmall = isSmall;
   }
 
   @Override
@@ -24,10 +19,12 @@ public class StraightEntry extends ScoreCardEntry {
         count++;
       }
     }
-    if (isSmall && count == 4) {
+    if (getName() == "small straight" && count == 4) {
       setScore(30);
-    } else if (!isSmall && count == 5) {
+    } else if (getName() == "large straight" && count == 5) {
       setScore(40);
+    } else if (getName() == "full straight" && count == 6) {
+      setScore(50);
     } else {
       setScore(0);
     }
