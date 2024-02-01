@@ -50,12 +50,11 @@ public class Player {
     return csvBuilder.toString();
   }
 
-  // Rework it so that it retrieves the info about variation from the CSV file
-  public static Player fromCSV(String csv) {
+  public static Player fromCSV(String csv, Variation variation) {
     String[] parts = csv.split(":");
 
     String scoreCardCSV = parts[1];
-    ScoreCard scoreCard = ScoreCard.fromCSV(scoreCardCSV);
+    ScoreCard scoreCard = ScoreCard.fromCSV(scoreCardCSV, variation);
 
     String[] playerCSV = parts[0].split(",");
     String name = playerCSV[0];

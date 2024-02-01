@@ -8,28 +8,50 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import utils.Variation;
+
 public class ScoreBoard {
   private List<ScoreBoardEntry> entryList = new ArrayList<>();
   private File scoreFile;
+  private Variation variation = Variation.DEFAULT;
 
   public ScoreBoard() {
-    scoreFile = new File("scores.txt");
+    scoreFile = new File("scores_default.csv");
+
+    loadScoreFile();
+  }
+
+  public ScoreBoard(Variation variation) {
+    this.variation = variation;
+
+    switch (variation) {
+      case MAXI:
+        scoreFile = new File("scores_maxi.csv");
+        break;
+      default:
+        scoreFile = new File("scores_default.csv");
+        break;
+    }
+
+    loadScoreFile();
+  }
+
+  private void loadScoreFile() {
     if (!scoreFile.exists()) {
       try {
         scoreFile.createNewFile();
       } catch (IOException e) {
         e.printStackTrace();
       }
-    } else {
-      loadScoreBoard();
     }
+    loadScoreBoard();
   }
 
   private void loadScoreBoard() {
     try (BufferedReader reader = new BufferedReader(new FileReader(scoreFile))) {
       String line;
       while ((line = reader.readLine()) != null) {
-        ScoreBoardEntry entry = ScoreBoardEntry.fromCSV(line);
+        ScoreBoardEntry entry = ScoreBoardEntry.fromCSV(line, variation);
         entryList.add(entry);
       }
     } catch (IOException e) {

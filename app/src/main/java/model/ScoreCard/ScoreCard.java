@@ -116,21 +116,6 @@ public class ScoreCard {
     return csvBuilder.toString();
   }
 
-  public static ScoreCard fromCSV(String csv) {
-    String[] parts = csv.split(",");
-    ScoreCard scoreCard = new ScoreCard(Variation.DEFAULT);
-
-    Iterator<Map.Entry<String, ScoreCardEntry>> iterator = scoreCard.getMergedMap().entrySet().iterator();
-    for (int i = 0; i < parts.length; i++) {
-      int score = Integer.parseInt(parts[i]);
-      Map.Entry<String, ScoreCardEntry> entry = iterator.next();
-      ScoreCardEntry scoreCardEntry = entry.getValue();
-      scoreCardEntry.setScore(score);
-    }
-
-    return scoreCard;
-  }
-
   @Override
   public String toString() {
     StringBuilder stringBuilder = new StringBuilder();
@@ -182,6 +167,21 @@ public class ScoreCard {
     stringBuilder.append("Upper Section Total: " + upperSectionTotalWithBonus + "\n");
     stringBuilder.append("Lower Section Total: " + lowerSectionTotal + "\n");
     stringBuilder.append("Grand Total: " + grandTotal + "\n");
+  }
+
+  public static ScoreCard fromCSV(String csv, Variation variation) {
+    String[] parts = csv.split(",");
+    ScoreCard scoreCard = new ScoreCard(variation);
+
+    Iterator<Map.Entry<String, ScoreCardEntry>> iterator = scoreCard.getMergedMap().entrySet().iterator();
+    for (int i = 0; i < parts.length; i++) {
+      int score = Integer.parseInt(parts[i]);
+      Map.Entry<String, ScoreCardEntry> entry = iterator.next();
+      ScoreCardEntry scoreCardEntry = entry.getValue();
+      scoreCardEntry.setScore(score);
+    }
+
+    return scoreCard;
   }
 
 }

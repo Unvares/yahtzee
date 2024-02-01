@@ -24,9 +24,11 @@ public class VariationMenuController extends Controller {
     switch (choice) {
       case 1:
         appData.setVariation(Variation.DEFAULT);
+        appData.initScoreBoard(Variation.DEFAULT);
         break;
       case 2:
         appData.setVariation(Variation.MAXI);
+        appData.initScoreBoard(Variation.MAXI);
         break;
       default:
         return ControllerName.INVALID;

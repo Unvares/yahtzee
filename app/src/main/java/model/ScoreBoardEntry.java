@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import utils.Variation;
+
 public class ScoreBoardEntry {
   private List<Player> players;
 
@@ -30,11 +32,11 @@ public class ScoreBoardEntry {
     return csvBuilder.toString();
   }
 
-  public static ScoreBoardEntry fromCSV(String csv) {
+  public static ScoreBoardEntry fromCSV(String csv, Variation variation) {
     String[] parts = csv.split(";");
     List<Player> players = new ArrayList<>();
     for (int i = 0; i < parts.length; i++) {
-      players.add(Player.fromCSV(parts[i]));
+      players.add(Player.fromCSV(parts[i], variation));
     }
     return new ScoreBoardEntry(players);
   }

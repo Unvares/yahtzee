@@ -23,6 +23,10 @@ public class AppData {
     return gameData;
   }
 
+  public void initScoreBoard(Variation variation) {
+    scoreBoard = new ScoreBoard(variation);
+  }
+
   public ScoreBoard getScoreBoard() {
     return scoreBoard;
   }

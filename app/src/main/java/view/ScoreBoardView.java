@@ -7,10 +7,10 @@ import model.Player;
 import model.ScoreBoardEntry;
 
 public class ScoreBoardView extends View {
-  private List<ScoreBoardEntry> scoreBoardEntries;
+  private AppData appData;
 
   public ScoreBoardView(AppData appData) {
-    scoreBoardEntries = appData.getScoreBoard().getEntries();
+    this.appData = appData;
   }
 
   @Override
@@ -36,6 +36,8 @@ public class ScoreBoardView extends View {
   }
 
   private void displayScores() {
+    List<ScoreBoardEntry> scoreBoardEntries = appData.getScoreBoard().getEntries();
+
     int counter = 1;
     for (ScoreBoardEntry entry : scoreBoardEntries) {
       System.out.println();
