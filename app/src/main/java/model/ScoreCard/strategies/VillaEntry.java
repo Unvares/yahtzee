@@ -18,7 +18,11 @@ public class VillaEntry extends ScoreCardEntry {
     boolean hasVilla = hasVilla(counts);
 
     if (hasVilla) {
-      setScore(25);
+      int sum = 0;
+      for (int diceValue : diceValues) {
+        sum += diceValue;
+      }
+      setScore(sum);
     } else {
       setScore(0);
     }

@@ -18,7 +18,11 @@ public class TowerEntry extends ScoreCardEntry {
     boolean hasTower = hasTower(counts);
 
     if (hasTower) {
-      setScore(25);
+      int sum = 0;
+      for (int diceValue : diceValues) {
+        sum += diceValue;
+      }
+      setScore(sum);
     } else {
       setScore(0);
     }
