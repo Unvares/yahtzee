@@ -1,4 +1,4 @@
-package model.ScoreCard.strategies;
+package model.scorecard.strategies;
 
 import java.util.List;
 
@@ -52,14 +52,14 @@ public class VillaEntry extends ScoreCardEntry {
    * @return True if there is a villa, false otherwise.
    */
   private boolean hasVilla(int[] counts) {
-    int countThreeOfAKind = 0;
+    int countThreeOfaKind = 0;
 
     for (int i = 0; i < counts.length; i++) {
       if (counts[i] >= 3) {
-        countThreeOfAKind++;
+        countThreeOfaKind++;
       }
     }
-    return countThreeOfAKind == 2;
+    return countThreeOfaKind == 2;
   }
 
 }

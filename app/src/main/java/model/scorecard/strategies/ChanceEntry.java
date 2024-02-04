@@ -1,4 +1,4 @@
-package model.ScoreCard.strategies;
+package model.scorecard.strategies;
 
 import java.util.List;
 

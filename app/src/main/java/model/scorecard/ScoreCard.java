@@ -1,17 +1,16 @@
-package model.ScoreCard;
+package model.scorecard;
 
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import model.ScoreCard.strategies.ChanceEntry;
-import model.ScoreCard.strategies.FullHouseEntry;
-import model.ScoreCard.strategies.NOfAKindEntry;
-import model.ScoreCard.strategies.ScoreCardEntry;
-import model.ScoreCard.strategies.StraightEntry;
-import model.ScoreCard.strategies.SumOfValuesEntry;
-import model.ScoreCard.strategies.VillaEntry;
-import model.ScoreCard.strategies.YahtzeeEntry;
+import model.scorecard.strategies.ChanceEntry;
+import model.scorecard.strategies.FullHouseEntry;
+import model.scorecard.strategies.NofaKindEntry;
+import model.scorecard.strategies.ScoreCardEntry;
+import model.scorecard.strategies.StraightEntry;
+import model.scorecard.strategies.SumOfValuesEntry;
+import model.scorecard.strategies.VillaEntry;
+import model.scorecard.strategies.YahtzeeEntry;
 import utils.Variation;
 
 /**
@@ -42,10 +41,10 @@ public class ScoreCard {
     upperSectionMap.put("fives", new SumOfValuesEntry("fives", 5));
     upperSectionMap.put("sixes", new SumOfValuesEntry("sixes", 6));
 
-    lowerSectionMap.put("three of a kind", new NOfAKindEntry("three of a kind", 3));
-    lowerSectionMap.put("four of a kind", new NOfAKindEntry("four of a kind", 4));
+    lowerSectionMap.put("three of a kind", new NofaKindEntry("three of a kind", 3));
+    lowerSectionMap.put("four of a kind", new NofaKindEntry("four of a kind", 4));
     if (variation == Variation.MAXI) {
-      lowerSectionMap.put("five of a kind", new NOfAKindEntry("five of a kind", 5));
+      lowerSectionMap.put("five of a kind", new NofaKindEntry("five of a kind", 5));
     }
     lowerSectionMap.put("full house", new FullHouseEntry("full house"));
     if (variation == Variation.MAXI) {
@@ -162,7 +161,7 @@ public class ScoreCard {
    *
    * @return The CSV string representation of the score card.
    */
-  public String toCSV() {
+  public String toCsv() {
     StringBuilder csvBuilder = new StringBuilder();
     LinkedHashMap<String, ScoreCardEntry> mergedMap = getMergedMap();
     for (Map.Entry<String, ScoreCardEntry> entry : mergedMap.entrySet()) {
@@ -258,7 +257,7 @@ public class ScoreCard {
    * @param variation The variation of the game.
    * @return The ScoreCard created from the CSV string.
    */
-  public static ScoreCard fromCSV(String csv, Variation variation) {
+  public static ScoreCard fromCsv(String csv, Variation variation) {
     String[] parts = csv.split(",");
     ScoreCard scoreCard = new ScoreCard(variation);
 

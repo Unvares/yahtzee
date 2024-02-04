@@ -3,7 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
 import utils.Variation;
 
 /**
@@ -11,10 +10,10 @@ import utils.Variation;
  */
 public class GameData {
   private Variation variation = Variation.DEFAULT;
-  private final int MIN_PLAYERS = 2;
-  private final int MAX_PLAYERS = 5;
-  private final int MAX_ROLLS = 3;
-  private int MAX_DICES = 5;
+  private final int minPlayers = 2;
+  private final int maxPlayers = 5;
+  private final int maxRolls = 3;
+  private int maxDices = 5;
 
   /**
    * Returns the current game variation.
@@ -33,10 +32,10 @@ public class GameData {
   public void setVariation(Variation variation) {
     switch (variation) {
       case DEFAULT:
-        MAX_DICES = 5;
+        maxDices = 5;
         break;
       case MAXI:
-        MAX_DICES = 6;
+        maxDices = 6;
         break;
       default:
         throw new IllegalArgumentException("Invalid variation");
@@ -50,7 +49,7 @@ public class GameData {
    * @return The minimum number of players.
    */
   public int getMinPlayers() {
-    return MIN_PLAYERS;
+    return minPlayers;
   }
 
   /**
@@ -59,7 +58,7 @@ public class GameData {
    * @return The maximum number of players.
    */
   public int getMaxPlayers() {
-    return MAX_PLAYERS;
+    return maxPlayers;
   }
 
   /**
@@ -68,7 +67,7 @@ public class GameData {
    * @return The maximum number of dices.
    */
   public int getMaxDices() {
-    return MAX_DICES;
+    return maxDices;
   }
 
   /**
@@ -77,7 +76,7 @@ public class GameData {
    * @return The maximum number of rolls.
    */
   public int getMaxRolls() {
-    return MAX_ROLLS;
+    return maxRolls;
   }
 
   private List<Player> players = new ArrayList<>();
@@ -250,7 +249,7 @@ public class GameData {
    * @return The number of dices to roll.
    */
   public int getNumberOfDicesToRoll() {
-    return MAX_DICES - currentDiceValues.size();
+    return maxDices - currentDiceValues.size();
   }
 
   /**
@@ -259,7 +258,7 @@ public class GameData {
    * @return True if the player can roll, false otherwise.
    */
   public boolean canRoll() {
-    return rollCounter < MAX_ROLLS && getNumberOfDicesToRoll() > 0;
+    return rollCounter < maxRolls && getNumberOfDicesToRoll() > 0;
   }
 
   /**
@@ -286,7 +285,7 @@ public class GameData {
    * @return True if the game has been saved, false otherwise.
    */
   public boolean hasSavedGame() {
-    return players.size() >= MIN_PLAYERS;
+    return players.size() >= minPlayers;
   }
 
 }

@@ -7,7 +7,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import utils.Variation;
 
 /**
@@ -71,7 +70,7 @@ public class ScoreBoard {
     try (BufferedReader reader = new BufferedReader(new FileReader(scoreFile))) {
       String line;
       while ((line = reader.readLine()) != null) {
-        ScoreBoardEntry entry = ScoreBoardEntry.fromCSV(line, variation);
+        ScoreBoardEntry entry = ScoreBoardEntry.fromCsv(line, variation);
         entryList.add(entry);
       }
     } catch (IOException e) {
@@ -87,7 +86,7 @@ public class ScoreBoard {
   public void addEntry(ScoreBoardEntry entry) {
     entryList.add(entry);
     try (FileWriter writer = new FileWriter(scoreFile, true)) {
-      writer.write(entry.toCSV() + "\n");
+      writer.write(entry.toCsv() + "\n");
     } catch (IOException e) {
       e.printStackTrace();
     }

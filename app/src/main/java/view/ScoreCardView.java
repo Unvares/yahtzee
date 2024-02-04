@@ -2,7 +2,7 @@ package view;
 
 import model.AppData;
 import model.GameData;
-import model.ScoreCard.ScoreCard;
+import model.scorecard.ScoreCard;
 
 /**
  * This class represents the view for the Score Card.

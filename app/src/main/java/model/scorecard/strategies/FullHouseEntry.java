@@ -1,4 +1,4 @@
-package model.ScoreCard.strategies;
+package model.scorecard.strategies;
 
 import java.util.List;
 
@@ -31,10 +31,10 @@ public class FullHouseEntry extends ScoreCardEntry {
       counts[diceValue - 1]++;
     }
 
-    boolean hasTwoOfAKind = hasNOfAKind(counts, 2);
-    boolean hasThreeOfAKind = hasNOfAKind(counts, 3);
+    boolean hasTwoOfaKind = hasNofaKind(counts, 2);
+    boolean hasThreeOfaKind = hasNofaKind(counts, 3);
 
-    if (hasTwoOfAKind && hasThreeOfAKind) {
+    if (hasTwoOfaKind && hasThreeOfaKind) {
       setScore(25);
     } else {
       setScore(0);
@@ -48,7 +48,7 @@ public class FullHouseEntry extends ScoreCardEntry {
    * @param n      The number of a kind.
    * @return True if there is a n of a kind, false otherwise.
    */
-  private boolean hasNOfAKind(int[] counts, int n) {
+  private boolean hasNofaKind(int[] counts, int n) {
     for (int i = 0; i < counts.length; i++) {
       if (counts[i] >= n) {
         return true;

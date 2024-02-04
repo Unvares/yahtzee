@@ -1,6 +1,6 @@
 package model;
 
-import model.ScoreCard.ScoreCard;
+import model.scorecard.ScoreCard;
 import utils.Variation;
 
 /**
@@ -93,11 +93,11 @@ public class Player {
    *
    * @return The CSV string representation of the player.
    */
-  public String toCSV() {
+  public String toCsv() {
     StringBuilder csvBuilder = new StringBuilder();
     csvBuilder.append(name + ",");
     csvBuilder.append(isHuman ? "Human" : "Computer").append(":");
-    csvBuilder.append(scoreCard.toCSV());
+    csvBuilder.append(scoreCard.toCsv());
     return csvBuilder.toString();
   }
 
@@ -108,15 +108,15 @@ public class Player {
    * @param variation The variation of the game.
    * @return The Player created from the CSV string.
    */
-  public static Player fromCSV(String csv, Variation variation) {
+  public static Player fromCsv(String csv, Variation variation) {
     String[] parts = csv.split(":");
 
-    String scoreCardCSV = parts[1];
-    ScoreCard scoreCard = ScoreCard.fromCSV(scoreCardCSV, variation);
+    String scoreCardCsv = parts[1];
+    ScoreCard scoreCard = ScoreCard.fromCsv(scoreCardCsv, variation);
 
-    String[] playerCSV = parts[0].split(",");
-    String name = playerCSV[0];
-    boolean isHuman = playerCSV[1].toLowerCase().equals("human");
+    String[] playerCsv = parts[0].split(",");
+    String name = playerCsv[0];
+    boolean isHuman = playerCsv[1].toLowerCase().equals("human");
     Player player = new Player(name, isHuman);
     player.setScoreCard(scoreCard);
     return player;

@@ -1,4 +1,4 @@
-package model.ScoreCard.strategies;
+package model.scorecard.strategies;
 
 import java.util.List;
 
@@ -53,18 +53,18 @@ public class TowerEntry extends ScoreCardEntry {
    * @return True if there is a tower, false otherwise.
    */
   private boolean hasTower(int[] counts) {
-    boolean hasThreeOfAKind = false;
-    boolean hasAPair = false;
+    boolean hasThreeOfaKind = false;
+    boolean hasaPair = false;
 
     for (int i = 0; i < counts.length; i++) {
-      if (counts[i] >= 3 && !hasThreeOfAKind) {
-        hasThreeOfAKind = true;
+      if (counts[i] >= 3 && !hasThreeOfaKind) {
+        hasThreeOfaKind = true;
       } else if (counts[i] >= 2) {
-        hasAPair = true;
+        hasaPair = true;
         break;
       }
     }
-    return hasThreeOfAKind && hasAPair;
+    return hasThreeOfaKind && hasaPair;
   }
 
 }

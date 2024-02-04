@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import utils.Variation;
 
 /**
@@ -52,10 +51,10 @@ public class ScoreBoardEntry {
    *
    * @return The CSV string representation of this scoreboard entry.
    */
-  public String toCSV() {
+  public String toCsv() {
     StringBuilder csvBuilder = new StringBuilder();
     for (Player player : players) {
-      csvBuilder.append(player.toCSV() + ";");
+      csvBuilder.append(player.toCsv() + ";");
     }
     return csvBuilder.toString();
   }
@@ -67,11 +66,11 @@ public class ScoreBoardEntry {
    * @param variation The variation of the game.
    * @return The ScoreBoardEntry created from the CSV string.
    */
-  public static ScoreBoardEntry fromCSV(String csv, Variation variation) {
+  public static ScoreBoardEntry fromCsv(String csv, Variation variation) {
     String[] parts = csv.split(";");
     List<Player> players = new ArrayList<>();
     for (int i = 0; i < parts.length; i++) {
-      players.add(Player.fromCSV(parts[i], variation));
+      players.add(Player.fromCsv(parts[i], variation));
     }
     return new ScoreBoardEntry(players);
   }

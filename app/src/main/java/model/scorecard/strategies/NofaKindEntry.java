@@ -1,23 +1,23 @@
-package model.ScoreCard.strategies;
+package model.scorecard.strategies;
 
 import java.util.List;
 
 /**
  * This class represents the N of a kind entry in the score card.
  */
-public class NOfAKindEntry extends ScoreCardEntry {
-  private int n;
+public class NofaKindEntry extends ScoreCardEntry {
+  private int numberOfKind;
 
   /**
    * Constructor for NOfAKindEntry.
-   * Initializes the entry with the given name and n.
+   * Initializes the entry with the given name and numberOfKind.
    *
-   * @param name The name of the entry.
-   * @param n    The number of a kind.
+   * @param name         The name of the entry.
+   * @param numberOfKind The number of a kind.
    */
-  public NOfAKindEntry(String name, int n) {
+  public NofaKindEntry(String name, int numberOfKind) {
     super(name);
-    this.n = n;
+    this.numberOfKind = numberOfKind;
   }
 
   /**
@@ -34,8 +34,8 @@ public class NOfAKindEntry extends ScoreCardEntry {
     }
 
     for (int i = 0; i < counts.length; i++) {
-      if (counts[i] >= n) {
-        setScore((i + 1) * n);
+      if (counts[i] >= numberOfKind) {
+        setScore((i + 1) * numberOfKind);
         return;
       }
     }
