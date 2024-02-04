@@ -1,7 +1,5 @@
 package controller;
 
-import view.ViewInterface;
-
 /**
  * Interface for controllers in the application.
  */
@@ -25,11 +23,4 @@ public interface ControllerInterface {
    * @return The state of the controller.
    */
   public String getState();
-
-  /**
-   * Gets the view associated with the controller.
-   *
-   * @return The view associated with the controller.
-   */
-  public ViewInterface getView();
 }

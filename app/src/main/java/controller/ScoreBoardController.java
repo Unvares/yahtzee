@@ -33,11 +33,9 @@ public class ScoreBoardController extends Controller {
       switch (choice) {
         case 1:
           setState("simplified");
-          getView().setState(getState());
           break;
         case 2:
           setState("detailed");
-          getView().setState(getState());
           break;
         case 3:
           return ControllerName.MAIN_MENU;
@@ -48,7 +46,6 @@ public class ScoreBoardController extends Controller {
     } else {
       inputHandler.getAnyInput("Press enter to return to the main menu: ");
       setState("menu");
-      getView().setState(getState());
       return ControllerName.MAIN_MENU;
     }
   }

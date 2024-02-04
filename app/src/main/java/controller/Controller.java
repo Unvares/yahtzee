@@ -1,6 +1,7 @@
 package controller;
 
 import utils.ControllerName;
+import utils.DeepCopyUtil;
 import utils.InputHandler;
 import view.ViewInterface;
 
@@ -18,7 +19,7 @@ public abstract class Controller implements ControllerInterface {
    * @param view The view associated with this controller.
    */
   public Controller(ViewInterface view) {
-    this.view = view;
+    this.view = DeepCopyUtil.deepCopy(view);
   }
 
   /**
@@ -28,7 +29,7 @@ public abstract class Controller implements ControllerInterface {
    * @param state The state of this controller.
    */
   public Controller(ViewInterface view, String state) {
-    this.view = view;
+    this.view = DeepCopyUtil.deepCopy(view);
     view.setState(state);
   }
 
@@ -56,6 +57,7 @@ public abstract class Controller implements ControllerInterface {
    */
   @Override
   public void setState(String state) {
+    this.view.setState(state);
     this.state = state;
   }
 
@@ -67,16 +69,6 @@ public abstract class Controller implements ControllerInterface {
   @Override
   public String getState() {
     return state;
-  }
-
-  /**
-   * Gets the view associated with the controller.
-   *
-   * @return The view associated with the controller.
-   */
-  @Override
-  public ViewInterface getView() {
-    return view;
   }
 
   /**
