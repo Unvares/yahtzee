@@ -9,11 +9,24 @@ import utils.InputHandler;
 import utils.Variation;
 import view.MenuView;
 
+/**
+ * Controller for the Variation Menu.
+ */
 public class VariationMenuController extends Controller {
+
+  /**
+   * Constructor for VariationMenuController.
+   */
   public VariationMenuController() {
     super(new MenuView());
   }
 
+  /**
+   * Gets the new controller based on user input.
+   * 
+   * @param inputHandler The input handler for user input.
+   * @return The new controller.
+   */
   @Override
   protected ControllerName getNewController(InputHandler inputHandler) {
     AppData appData = AppData.getInstance();
@@ -34,6 +47,11 @@ public class VariationMenuController extends Controller {
     return ControllerName.MAIN_MENU;
   }
 
+  /**
+   * Gets the list of options for the variation menu.
+   * 
+   * @return The list of options.
+   */
   protected List<String> getOptionsList() {
     List<String> optionsList = new ArrayList<>();
 
