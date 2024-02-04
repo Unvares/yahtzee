@@ -3,14 +3,25 @@ package utils;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * This class is a singleton that handles user input from the console.
+ */
 public class InputHandler {
   private static InputHandler instance = null;
   private Scanner scanner;
 
+  /**
+   * Private constructor to prevent instantiation.
+   */
   private InputHandler() {
     this.scanner = new Scanner(System.in);
   }
 
+  /**
+   * Returns the singleton instance of InputHandler.
+   * 
+   * @return the singleton instance of InputHandler.
+   */
   public static InputHandler getInstance() {
     if (instance == null) {
       instance = new InputHandler();
@@ -18,15 +29,31 @@ public class InputHandler {
     return instance;
   }
 
+  /**
+   * Closes the scanner.
+   */
   public void closeScanner() {
     this.scanner.close();
   }
 
+  /**
+   * Prints the options and gets an integer input from the user.
+   * 
+   * @param optionsList the list of options to print.
+   * @param prompt      the prompt to display.
+   * @return the integer input from the user.
+   */
   public int getIntInput(List<String> optionsList, String prompt) {
     printOptions(optionsList);
     return getIntInput(prompt);
   }
 
+  /**
+   * Gets an integer input from the user.
+   * 
+   * @param prompt the prompt to display.
+   * @return the integer input from the user.
+   */
   public int getIntInput(String prompt) {
     int input = 0;
     boolean valid = false;
@@ -42,11 +69,24 @@ public class InputHandler {
     return input;
   }
 
+  /**
+   * Prints the options and gets a string input from the user.
+   * 
+   * @param optionsList the list of options to print.
+   * @param prompt      the prompt to display.
+   * @return the string input from the user.
+   */
   public String getStringInput(List<String> optionsList, String prompt) {
     printOptions(optionsList);
     return getStringInput(prompt);
   }
 
+  /**
+   * Gets a string input from the user.
+   * 
+   * @param prompt the prompt to display.
+   * @return the string input from the user.
+   */
   public String getStringInput(String prompt) {
     String input = "";
     boolean valid = false;
@@ -62,11 +102,24 @@ public class InputHandler {
     return input;
   }
 
+  /**
+   * Prints the options and gets a boolean input from the user.
+   * 
+   * @param optionsList the list of options to print.
+   * @param prompt      the prompt to display.
+   * @return the boolean input from the user.
+   */
   public boolean getBooleanInput(List<String> optionsList, String prompt) {
     printOptions(optionsList);
     return getBooleanInput(prompt);
   }
 
+  /**
+   * Gets a boolean input from the user.
+   * 
+   * @param prompt the prompt to display.
+   * @return the boolean input from the user.
+   */
   public boolean getBooleanInput(String prompt) {
     boolean input = false;
     boolean valid = false;
@@ -86,11 +139,22 @@ public class InputHandler {
     return input;
   }
 
+  /**
+   * Gets any string input from the user.
+   * 
+   * @param prompt the prompt to display.
+   * @return the string input from the user.
+   */
   public String getAnyInput(String prompt) {
     System.out.print(prompt);
     return this.scanner.nextLine();
   }
 
+  /**
+   * Prints the options to the console.
+   * 
+   * @param optionsList the list of options to print.
+   */
   private void printOptions(List<String> optionsList) {
     System.out.println("====================================");
     for (String option : optionsList) {
