@@ -1,5 +1,6 @@
 package utils;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,7 +15,7 @@ public class InputHandler {
    * Private constructor to prevent instantiation.
    */
   private InputHandler() {
-    this.scanner = new Scanner(System.in);
+    this.scanner = new Scanner(System.in, StandardCharsets.UTF_8.name());
   }
 
   /**
