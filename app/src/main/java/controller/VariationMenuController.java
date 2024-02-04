@@ -2,7 +2,6 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import model.AppData;
 import utils.ControllerName;
 import utils.InputHandler;
@@ -23,7 +22,7 @@ public class VariationMenuController extends Controller {
 
   /**
    * Gets the new controller based on user input.
-   * 
+   *
    * @param inputHandler The input handler for user input.
    * @return The new controller.
    */
@@ -49,7 +48,7 @@ public class VariationMenuController extends Controller {
 
   /**
    * Gets the list of options for the variation menu.
-   * 
+   *
    * @return The list of options.
    */
   protected List<String> getOptionsList() {

@@ -3,8 +3,8 @@ package controller;
 import model.AppData;
 import model.GameData;
 import model.ScoreCard.strategies.ScoreCardEntry;
-import utils.InputHandler;
 import utils.ControllerName;
+import utils.InputHandler;
 import view.ScoreCardView;
 
 /**
@@ -22,7 +22,7 @@ public class ScoreCardController extends Controller {
 
   /**
    * Gets the new controller based on user input.
-   * 
+   *
    * @param inputHandler The input handler for user input.
    * @return The new controller.
    */
@@ -42,7 +42,7 @@ public class ScoreCardController extends Controller {
 
   /**
    * Registers the score based on user input.
-   * 
+   *
    * @param inputHandler The input handler for user input.
    * @return The new controller.
    */

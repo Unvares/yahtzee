@@ -1,13 +1,12 @@
 package controller;
 
 import java.util.List;
-
 import model.AppData;
 import model.GameData;
 import model.Player;
 import model.ScoreBoardEntry;
-import utils.InputHandler;
 import utils.ControllerName;
+import utils.InputHandler;
 import view.GameOverView;
 
 /**
@@ -26,7 +25,7 @@ public class GameOverController extends Controller {
 
   /**
    * Gets the new controller based on user input.
-   * 
+   *
    * @param inputHandler The input handler for user input.
    * @return The new controller.
    */

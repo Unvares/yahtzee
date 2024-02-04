@@ -1,9 +1,9 @@
 package controller;
 
-import utils.InputHandler;
 import java.util.ArrayList;
 import java.util.List;
 import utils.ControllerName;
+import utils.InputHandler;
 import view.ScoreBoardView;
 
 /**
@@ -21,7 +21,7 @@ public class ScoreBoardController extends Controller {
 
   /**
    * Gets the new controller based on user input.
-   * 
+   *
    * @param inputHandler The input handler for user input.
    * @return The new controller.
    */
@@ -55,7 +55,7 @@ public class ScoreBoardController extends Controller {
 
   /**
    * Gets the list of options for the scoreboard.
-   * 
+   *
    * @return The list of options.
    */
   private List<String> getOptionsList() {

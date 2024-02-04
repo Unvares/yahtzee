@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import model.AppData;
 import model.GameData;
-import utils.InputHandler;
 import utils.ControllerName;
 import utils.ControllerRegistry;
+import utils.InputHandler;
 import view.GameView;
 
 /**
@@ -27,8 +26,9 @@ public class GameController extends Controller {
 
   /**
    * Gets the new controller based on user input.
-   * 
+   *
    * @param inputHandler The input handler for user input.
+   *
    * @return The new controller.
    */
   @Override
@@ -41,8 +41,9 @@ public class GameController extends Controller {
 
   /**
    * Handles the game logic based on user input.
-   * 
+   *
    * @param inputHandler The input handler for user input.
+   *
    * @return The new controller.
    */
   private ControllerName play(InputHandler inputHandler) {
@@ -83,7 +84,7 @@ public class GameController extends Controller {
 
   /**
    * Gets the list of options for the user.
-   * 
+   *
    * @return The list of options.
    */
   private List<String> getOptionsList() {
@@ -106,18 +107,18 @@ public class GameController extends Controller {
 
   /**
    * Gets the prompt for the user.
-   * 
+   *
    * @return The prompt.
    */
   private String getPrompt() {
-    final int MAX_ROLLS = gameData.getMaxRolls();
+    final int maxRolls = gameData.getMaxRolls();
     int rollCounter = gameData.getRollCounter();
-    return "Your choice (rolls left " + (MAX_ROLLS - rollCounter) + "):";
+    return "Your choice (rolls left " + (maxRolls - rollCounter) + "):";
   }
 
   /**
    * Rolls a dice.
-   * 
+   *
    * @return The result of the dice roll.
    */
   private int rollDice() {
@@ -138,8 +139,9 @@ public class GameController extends Controller {
 
   /**
    * Gets the indices of the dices to remove.
-   * 
+   *
    * @param inputHandler The input handler for user input.
+   *
    * @return The indices of the dices to remove.
    */
   private Set<Integer> getIndicesToRemove(InputHandler inputHandler) {

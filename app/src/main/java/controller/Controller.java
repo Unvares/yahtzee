@@ -1,7 +1,7 @@
 package controller;
 
-import utils.InputHandler;
 import utils.ControllerName;
+import utils.InputHandler;
 import view.ViewInterface;
 
 /**
@@ -14,7 +14,7 @@ public abstract class Controller implements ControllerInterface {
 
   /**
    * Constructor for Controller with a view.
-   * 
+   *
    * @param view The view associated with this controller.
    */
   public Controller(ViewInterface view) {
@@ -23,7 +23,7 @@ public abstract class Controller implements ControllerInterface {
 
   /**
    * Constructor for Controller with a view and a state.
-   * 
+   *
    * @param view  The view associated with this controller.
    * @param state The state of this controller.
    */
@@ -51,7 +51,7 @@ public abstract class Controller implements ControllerInterface {
 
   /**
    * Sets the state of the controller.
-   * 
+   *
    * @param state The state to set.
    */
   @Override
@@ -61,7 +61,7 @@ public abstract class Controller implements ControllerInterface {
 
   /**
    * Gets the state of the controller.
-   * 
+   *
    * @return The state of the controller.
    */
   @Override
@@ -71,7 +71,7 @@ public abstract class Controller implements ControllerInterface {
 
   /**
    * Gets the view associated with the controller.
-   * 
+   *
    * @return The view associated with the controller.
    */
   @Override
@@ -81,7 +81,7 @@ public abstract class Controller implements ControllerInterface {
 
   /**
    * Abstract method to get the new controller based on input.
-   * 
+   *
    * @param inputHandler The input handler to handle user input.
    * @return The new controller based on user input.
    */

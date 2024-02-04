@@ -1,21 +1,19 @@
 package controller;
 
-import view.CreateGameView;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import model.AppData;
 import model.GameData;
 import model.Player;
-import utils.InputHandler;
 import utils.ControllerName;
+import utils.InputHandler;
+import view.CreateGameView;
 
 /**
  * Controller for creating a new game.
  */
 public class CreateGameController extends Controller {
-  GameData gameData = AppData.getInstance().getGameData();
+  private GameData gameData = AppData.getInstance().getGameData();
 
   /**
    * Constructor for CreateGameController.
@@ -26,8 +24,9 @@ public class CreateGameController extends Controller {
 
   /**
    * Gets the new controller based on user input.
-   * 
+   *
    * @param inputHandler The input handler for user input.
+   *
    * @return The new controller.
    */
   @Override
@@ -72,7 +71,7 @@ public class CreateGameController extends Controller {
 
   /**
    * Gets the list of options for the user.
-   * 
+   *
    * @return The list of options.
    */
   private List<String> getOptionsList() {
@@ -94,7 +93,7 @@ public class CreateGameController extends Controller {
 
   /**
    * Checks if there are any players.
-   * 
+   *
    * @return True if there are players, false otherwise.
    */
   private boolean hasPlayers() {
@@ -103,7 +102,7 @@ public class CreateGameController extends Controller {
 
   /**
    * Checks if there are enough players.
-   * 
+   *
    * @return True if there are enough players, false otherwise.
    */
   private boolean hasEnoughPlayers() {
@@ -112,11 +111,10 @@ public class CreateGameController extends Controller {
 
   /**
    * Checks if there are too many players.
-   * 
+   *
    * @return True if there are too many players, false otherwise.
    */
   private boolean hasTooManyPlayers() {
     return gameData.getPlayers().size() > gameData.getMaxPlayers();
   }
-
 }

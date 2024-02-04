@@ -3,10 +3,9 @@ package controller;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+import utils.ControllerName;
 import utils.ControllerRegistry;
 import utils.InputHandler;
-import utils.ControllerName;
 
 /**
  * The Router class is responsible for managing the flow of controllers in the
@@ -54,25 +53,24 @@ public class Router {
 
     System.out.println("See you next time!");
     InputHandler.getInstance().closeScanner();
-
   }
 
   /**
    * The pushController method adds a controller to the queue.
-   * 
+   *
    * @param controller The controller to be added to the queue.
    */
-  static protected void pushController(ControllerName controller) {
+  protected static void pushController(ControllerName controller) {
     controllersQueue.add(controller);
   }
 
   /**
    * The popController method removes and returns the last controller from the
    * queue.
-   * 
+   *
    * @return The last controller from the queue.
    */
-  static private ControllerName popController() {
+  private static ControllerName popController() {
     return controllersQueue.remove(controllersQueue.size() - 1);
   }
 }
