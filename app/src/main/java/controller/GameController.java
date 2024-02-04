@@ -12,13 +12,25 @@ import utils.ControllerName;
 import utils.ControllerRegistry;
 import view.GameView;
 
+/**
+ * Controller for the game logic.
+ */
 public class GameController extends Controller {
   private GameData gameData = AppData.getInstance().getGameData();
 
+  /**
+   * Constructor for GameController.
+   */
   public GameController() {
     super(new GameView());
   }
 
+  /**
+   * Gets the new controller based on user input.
+   * 
+   * @param inputHandler The input handler for user input.
+   * @return The new controller.
+   */
   @Override
   protected ControllerName getNewController(InputHandler inputHandler) {
     if (gameData.hasGameEnded()) {
@@ -27,6 +39,12 @@ public class GameController extends Controller {
     return play(inputHandler);
   }
 
+  /**
+   * Handles the game logic based on user input.
+   * 
+   * @param inputHandler The input handler for user input.
+   * @return The new controller.
+   */
   private ControllerName play(InputHandler inputHandler) {
     List<String> optionsList = getOptionsList();
     String prompt = getPrompt();
@@ -63,6 +81,11 @@ public class GameController extends Controller {
     return ControllerName.GAME;
   }
 
+  /**
+   * Gets the list of options for the user.
+   * 
+   * @return The list of options.
+   */
   private List<String> getOptionsList() {
     List<String> optionsList = new ArrayList<>();
 
@@ -81,16 +104,29 @@ public class GameController extends Controller {
     return optionsList;
   }
 
+  /**
+   * Gets the prompt for the user.
+   * 
+   * @return The prompt.
+   */
   private String getPrompt() {
     final int MAX_ROLLS = gameData.getMaxRolls();
     int rollCounter = gameData.getRollCounter();
     return "Your choice (rolls left " + (MAX_ROLLS - rollCounter) + "):";
   }
 
+  /**
+   * Rolls a dice.
+   * 
+   * @return The result of the dice roll.
+   */
   private int rollDice() {
     return (int) (Math.random() * 6) + 1;
   }
 
+  /**
+   * Updates the dice values.
+   */
   private void updateDiceValues() {
     int diceCount = gameData.getNumberOfDicesToRoll();
 
@@ -100,6 +136,12 @@ public class GameController extends Controller {
     }
   }
 
+  /**
+   * Gets the indices of the dices to remove.
+   * 
+   * @param inputHandler The input handler for user input.
+   * @return The indices of the dices to remove.
+   */
   private Set<Integer> getIndicesToRemove(InputHandler inputHandler) {
     String prompt = "Enter indices of dices to discard (separated by comma): ";
     String[] diceIndexArray = inputHandler.getStringInput(prompt).split(",");
