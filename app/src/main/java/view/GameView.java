@@ -1,7 +1,6 @@
 package view;
 
 import java.util.List;
-
 import model.AppData;
 import model.GameData;
 import model.Player;

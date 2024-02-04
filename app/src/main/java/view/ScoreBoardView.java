@@ -1,7 +1,6 @@
 package view;
 
 import java.util.List;
-
 import model.AppData;
 import model.Player;
 import model.ScoreBoardEntry;

@@ -21,7 +21,7 @@ public abstract class View implements ViewInterface {
 
   /**
    * This method sets the state of the view.
-   * 
+   *
    * @param state The new state of the view.
    */
   @Override
@@ -30,8 +30,8 @@ public abstract class View implements ViewInterface {
   }
 
   /**
-   * This method returns the current state of the view.
-   * 
+   * Get the current state of the view.
+   *
    * @return The current state of the view.
    */
   @Override
