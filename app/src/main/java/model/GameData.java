@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import utils.DeepCopyUtil;
 import utils.Variation;
 
 /**
@@ -10,9 +11,9 @@ import utils.Variation;
  */
 public class GameData {
   private Variation variation = Variation.DEFAULT;
-  private final int minPlayers = 2;
-  private final int maxPlayers = 5;
-  private final int maxRolls = 3;
+  private static final int minPlayers = 2;
+  private static final int maxPlayers = 5;
+  private static final int maxRolls = 3;
   private int maxDices = 5;
 
   /**
@@ -119,12 +120,16 @@ public class GameData {
   }
 
   /**
-   * Returns the list of players.
+   * Returns a deep copy of the list of players.
    *
-   * @return The list of players.
+   * @return A deep copy of the list of players.
    */
   public List<Player> getPlayers() {
-    return players;
+    List<Player> newPlayersList = new ArrayList<>();
+    for (Player player : players) {
+      newPlayersList.add(DeepCopyUtil.deepCopy(player));
+    }
+    return newPlayersList;
   }
 
   /**
@@ -143,15 +148,6 @@ public class GameData {
    */
   public void removePlayer(int index) {
     players.remove(index);
-  }
-
-  /**
-   * Sets the list of players.
-   *
-   * @param players The list of players to be set.
-   */
-  public void setPlayers(List<Player> players) {
-    this.players = players;
   }
 
   /**
@@ -208,7 +204,7 @@ public class GameData {
    * @return The current dice values.
    */
   public List<Integer> getCurrentDiceValues() {
-    return currentDiceValues;
+    return new ArrayList<>(currentDiceValues);
   }
 
   /**
