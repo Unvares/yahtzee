@@ -10,11 +10,6 @@ import model.Player;
  */
 public class GameView extends View {
   /**
-   * The game data.
-   */
-  private GameData gameData = AppData.getInstance().getGameData();
-
-  /**
    * Constructor for GameView.
    */
   public GameView() {
@@ -26,6 +21,7 @@ public class GameView extends View {
   @Override
   public void display() {
     clearScreen();
+    GameData gameData = AppData.getInstance().getGameData();
     List<Player> players = gameData.getPlayers();
     for (int i = 0; i < players.size(); i++) {
       Player player = players.get(i);

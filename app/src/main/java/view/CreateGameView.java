@@ -9,8 +9,6 @@ import model.Player;
  * This class represents the view for creating a game.
  */
 public class CreateGameView extends View {
-  private GameData gameData = AppData.getInstance().getGameData();
-
   /**
    * Constructor for CreateGameView.
    */
@@ -25,6 +23,7 @@ public class CreateGameView extends View {
     clearScreen();
     System.out.println("List of players:");
 
+    GameData gameData = AppData.getInstance().getGameData();
     List<Player> players = gameData.getPlayers();
     for (int i = 0; i < players.size(); i++) {
       Player player = players.get(i);

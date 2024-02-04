@@ -10,11 +10,6 @@ import model.ScoreBoardEntry;
  */
 public class ScoreBoardView extends View {
   /**
-   * The application data.
-   */
-  private AppData appData = AppData.getInstance();
-
-  /**
    * Constructor for ScoreBoardView.
    */
   public ScoreBoardView() {
@@ -55,6 +50,7 @@ public class ScoreBoardView extends View {
    * This method displays the scores of the players.
    */
   private void displayScores() {
+    AppData appData = AppData.getInstance();
     List<ScoreBoardEntry> scoreBoardEntries = appData.getScoreBoard().getEntries();
 
     int counter = 1;

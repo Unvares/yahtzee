@@ -9,11 +9,6 @@ import model.scorecard.ScoreCard;
  */
 public class ScoreCardView extends View {
   /**
-   * The game data.
-   */
-  private GameData gameData = AppData.getInstance().getGameData();
-
-  /**
    * Constructor for ScoreCardView.
    */
   public ScoreCardView() {
@@ -25,6 +20,7 @@ public class ScoreCardView extends View {
   @Override
   public void display() {
     clearScreen();
+    GameData gameData = AppData.getInstance().getGameData();
     System.out.println("Current Player: " + gameData.getCurrentPlayer().getName());
     System.out.println("Current Dices: " + gameData.getCurrentDiceValues());
     System.out.println();

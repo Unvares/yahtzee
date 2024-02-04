@@ -9,11 +9,6 @@ import model.Player;
  */
 public class GameOverView extends View {
   /**
-   * List of players in the game.
-   */
-  private List<Player> players = AppData.getInstance().getGameData().getPlayers();
-
-  /**
    * Constructor for GameOverView.
    */
   public GameOverView() {
@@ -29,6 +24,7 @@ public class GameOverView extends View {
     System.out.println("Game Over");
     System.out.println();
 
+    List<Player> players = AppData.getInstance().getGameData().getPlayers();
     for (Player player : players) {
       System.out.println(player.getName() + ": " + player.getScoreCard().getTotalScore());
     }
