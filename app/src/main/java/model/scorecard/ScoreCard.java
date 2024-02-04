@@ -61,24 +61,6 @@ public class ScoreCard {
   }
 
   /**
-   * Returns the upper section of the score card.
-   *
-   * @return The upper section of the score card.
-   */
-  public LinkedHashMap<String, ScoreCardEntry> getUpperSection() {
-    return upperSectionMap;
-  }
-
-  /**
-   * Returns the lower section of the score card.
-   *
-   * @return The lower section of the score card.
-   */
-  public LinkedHashMap<String, ScoreCardEntry> getLowerSection() {
-    return lowerSectionMap;
-  }
-
-  /**
    * Returns the score card entry with the given name.
    *
    * @param name The name of the score card entry.
@@ -199,7 +181,7 @@ public class ScoreCard {
 
     stringBuilder.append("Score Card\n");
     stringBuilder.append("Upper Section\n");
-    stringBuilder.append(appendSection(getUpperSection()));
+    stringBuilder.append(appendSection(upperSectionMap));
     stringBuilder.append("Total Score: " + upperSectionTotal + "\n");
     stringBuilder.append("Bonus: " + bonus + "\n");
     stringBuilder.append("Total: " + upperSectionTotalWithBonus + "\n");
@@ -215,7 +197,7 @@ public class ScoreCard {
     int lowerSectionTotal = getTotalScoreFromSection(false);
 
     stringBuilder.append("Lower Section\n");
-    stringBuilder.append(appendSection(getLowerSection()));
+    stringBuilder.append(appendSection(lowerSectionMap));
     stringBuilder.append("Total Score: " + lowerSectionTotal + "\n");
     stringBuilder.append("\n");
   }
