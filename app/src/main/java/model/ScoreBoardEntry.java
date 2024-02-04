@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import utils.DeepCopyUtil;
 import utils.Variation;
 
 /**
@@ -25,7 +26,10 @@ public class ScoreBoardEntry {
    * @param players The list of players to be added to the scoreboard entry.
    */
   public ScoreBoardEntry(List<Player> players) {
-    this.players = players;
+    this.players = new ArrayList<>();
+    for (Player player : players) {
+      this.players.add(DeepCopyUtil.deepCopy(player));
+    }
   }
 
   /**
@@ -34,7 +38,11 @@ public class ScoreBoardEntry {
    * @return The list of players.
    */
   public List<Player> getPlayers() {
-    return players;
+    List<Player> copy = new ArrayList<>();
+    for (Player player : players) {
+      copy.add(DeepCopyUtil.deepCopy(player));
+    }
+    return copy;
   }
 
   /**
