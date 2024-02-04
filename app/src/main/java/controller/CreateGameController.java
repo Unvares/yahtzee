@@ -11,13 +11,25 @@ import model.Player;
 import utils.InputHandler;
 import utils.ControllerName;
 
+/**
+ * Controller for creating a new game.
+ */
 public class CreateGameController extends Controller {
   GameData gameData = AppData.getInstance().getGameData();
 
+  /**
+   * Constructor for CreateGameController.
+   */
   public CreateGameController() {
     super(new CreateGameView());
   }
 
+  /**
+   * Gets the new controller based on user input.
+   * 
+   * @param inputHandler The input handler for user input.
+   * @return The new controller.
+   */
   @Override
   protected ControllerName getNewController(InputHandler inputHandler) {
     List<String> optionsList = getOptionsList();
@@ -58,6 +70,11 @@ public class CreateGameController extends Controller {
     return ControllerName.CREATE_GAME;
   }
 
+  /**
+   * Gets the list of options for the user.
+   * 
+   * @return The list of options.
+   */
   private List<String> getOptionsList() {
     List<String> optionsList = new ArrayList<>();
 
@@ -75,14 +92,29 @@ public class CreateGameController extends Controller {
     return optionsList;
   }
 
+  /**
+   * Checks if there are any players.
+   * 
+   * @return True if there are players, false otherwise.
+   */
   private boolean hasPlayers() {
     return gameData.getPlayers().size() > 0;
   }
 
+  /**
+   * Checks if there are enough players.
+   * 
+   * @return True if there are enough players, false otherwise.
+   */
   private boolean hasEnoughPlayers() {
     return gameData.getPlayers().size() >= gameData.getMinPlayers();
   }
 
+  /**
+   * Checks if there are too many players.
+   * 
+   * @return True if there are too many players, false otherwise.
+   */
   private boolean hasTooManyPlayers() {
     return gameData.getPlayers().size() > gameData.getMaxPlayers();
   }
