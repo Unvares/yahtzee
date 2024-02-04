@@ -2,11 +2,15 @@ package model;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import utils.DeepCopyUtil;
 import utils.Variation;
 
 /**
@@ -67,7 +71,8 @@ public class ScoreBoard {
    * Loads the scoreboard from the score file.
    */
   private void loadScoreBoard() {
-    try (BufferedReader reader = new BufferedReader(new FileReader(scoreFile))) {
+    try (BufferedReader reader = new BufferedReader(
+        new InputStreamReader(new FileInputStream(scoreFile), StandardCharsets.UTF_8))) {
       String line;
       while ((line = reader.readLine()) != null) {
         ScoreBoardEntry entry = ScoreBoardEntry.fromCsv(line, variation);
@@ -85,7 +90,8 @@ public class ScoreBoard {
    */
   public void addEntry(ScoreBoardEntry entry) {
     entryList.add(entry);
-    try (FileWriter writer = new FileWriter(scoreFile, true)) {
+    try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(scoreFile, true),
+        StandardCharsets.UTF_8)) {
       writer.write(entry.toCsv() + "\n");
     } catch (IOException e) {
       e.printStackTrace();
@@ -98,7 +104,11 @@ public class ScoreBoard {
    * @return The list of entries.
    */
   public List<ScoreBoardEntry> getEntries() {
-    return entryList;
+    List<ScoreBoardEntry> copy = new ArrayList<>();
+    for (ScoreBoardEntry entry : entryList) {
+      copy.add(DeepCopyUtil.deepCopy(entry));
+    }
+    return copy;
   }
 
 }
