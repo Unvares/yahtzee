@@ -3,11 +3,19 @@ package model;
 import utils.Variation;
 
 public class AppData {
+  private static AppData instance = null;
   private Variation variation = Variation.DEFAULT;
   private GameData gameData = new GameData();
   private ScoreBoard scoreBoard = new ScoreBoard();
 
-  public AppData() {
+  private AppData() {
+  }
+
+  public static AppData getInstance() {
+    if (instance == null) {
+      instance = new AppData();
+    }
+    return instance;
   }
 
   public Variation getVariation() {

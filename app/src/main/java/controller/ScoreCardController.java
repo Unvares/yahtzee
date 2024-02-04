@@ -8,11 +8,10 @@ import utils.ControllerName;
 import view.ScoreCardView;
 
 public class ScoreCardController extends Controller {
-  private GameData gameData;
+  private GameData gameData = AppData.getInstance().getGameData();
 
-  public ScoreCardController(AppData appData) {
-    super(new ScoreCardView(appData.getGameData()));
-    this.gameData = appData.getGameData();
+  public ScoreCardController() {
+    super(new ScoreCardView());
   }
 
   @Override

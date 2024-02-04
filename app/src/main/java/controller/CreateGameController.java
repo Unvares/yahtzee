@@ -12,11 +12,10 @@ import utils.InputHandler;
 import utils.ControllerName;
 
 public class CreateGameController extends Controller {
-  GameData gameData;
+  GameData gameData = AppData.getInstance().getGameData();
 
-  public CreateGameController(AppData appData) {
-    super(new CreateGameView(appData.getGameData()));
-    this.gameData = appData.getGameData();
+  public CreateGameController() {
+    super(new CreateGameView());
   }
 
   @Override

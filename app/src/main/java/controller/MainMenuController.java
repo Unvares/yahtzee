@@ -10,11 +10,10 @@ import utils.ControllerName;
 import view.MenuView;
 
 public class MainMenuController extends Controller {
-  private GameData gameData;
+  private GameData gameData = AppData.getInstance().getGameData();
 
-  public MainMenuController(AppData appData) {
+  public MainMenuController() {
     super(new MenuView());
-    this.gameData = appData.getGameData();
   }
 
   @Override

@@ -13,11 +13,10 @@ import utils.ControllerRegistry;
 import view.GameView;
 
 public class GameController extends Controller {
-  private GameData gameData;
+  private GameData gameData = AppData.getInstance().getGameData();
 
-  public GameController(AppData appData) {
-    super(new GameView(appData.getGameData()));
-    this.gameData = appData.getGameData();
+  public GameController() {
+    super(new GameView());
   }
 
   @Override

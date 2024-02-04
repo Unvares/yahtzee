@@ -10,15 +10,13 @@ import utils.Variation;
 import view.MenuView;
 
 public class VariationMenuController extends Controller {
-  private AppData appData;
-
-  public VariationMenuController(AppData appData) {
+  public VariationMenuController() {
     super(new MenuView());
-    this.appData = appData;
   }
 
   @Override
   protected ControllerName getNewController(InputHandler inputHandler) {
+    AppData appData = AppData.getInstance();
     List<String> optionsList = getOptionsList();
     int choice = inputHandler.getIntInput(optionsList, "Choose a variation: ");
     switch (choice) {

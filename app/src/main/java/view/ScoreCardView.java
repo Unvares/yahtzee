@@ -1,13 +1,13 @@
 package view;
 
+import model.AppData;
 import model.GameData;
 import model.ScoreCard.ScoreCard;
 
 public class ScoreCardView extends View {
-  private GameData gameData;
+  private GameData gameData = AppData.getInstance().getGameData();
 
-  public ScoreCardView(GameData gameData) {
-    this.gameData = gameData;
+  public ScoreCardView() {
   }
 
   @Override

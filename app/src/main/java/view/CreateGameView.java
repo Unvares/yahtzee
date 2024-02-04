@@ -2,14 +2,14 @@ package view;
 
 import java.util.List;
 
+import model.AppData;
 import model.GameData;
 import model.Player;
 
 public class CreateGameView extends View {
-  private GameData gameData;
+  private GameData gameData = AppData.getInstance().getGameData();
 
-  public CreateGameView(GameData gameData) {
-    this.gameData = gameData;
+  public CreateGameView() {
   }
 
   @Override

@@ -11,13 +11,11 @@ import utils.ControllerName;
 import view.GameOverView;
 
 public class GameOverController extends Controller {
-  private AppData appData;
-  private GameData gameData;
+  private AppData appData = AppData.getInstance();
+  private GameData gameData = appData.getGameData();
 
-  public GameOverController(AppData appData) {
-    super(new GameOverView(appData.getGameData()));
-    this.appData = appData;
-    this.gameData = appData.getGameData();
+  public GameOverController() {
+    super(new GameOverView());
 
   }
 

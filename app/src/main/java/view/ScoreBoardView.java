@@ -7,10 +7,9 @@ import model.Player;
 import model.ScoreBoardEntry;
 
 public class ScoreBoardView extends View {
-  private AppData appData;
+  private AppData appData = AppData.getInstance();
 
-  public ScoreBoardView(AppData appData) {
-    this.appData = appData;
+  public ScoreBoardView() {
   }
 
   @Override

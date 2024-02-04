@@ -5,13 +5,12 @@ import utils.InputHandler;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.AppData;
 import utils.ControllerName;
 import view.ScoreBoardView;
 
 public class ScoreBoardController extends Controller {
-  public ScoreBoardController(AppData appData) {
-    super(new ScoreBoardView(appData), "menu");
+  public ScoreBoardController() {
+    super(new ScoreBoardView(), "menu");
     setState("menu");
   }
 
