@@ -1,6 +1,7 @@
 package model;
 
 import model.scorecard.ScoreCard;
+import utils.DeepCopyUtil;
 import utils.Variation;
 
 /**
@@ -67,7 +68,7 @@ public class Player {
    * @return The score card of the player.
    */
   public ScoreCard getScoreCard() {
-    return scoreCard;
+    return DeepCopyUtil.deepCopy(scoreCard);
   }
 
   /**
