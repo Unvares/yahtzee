@@ -7,13 +7,25 @@ import utils.InputHandler;
 import utils.ControllerName;
 import view.ScoreCardView;
 
+/**
+ * Controller for the ScoreCard.
+ */
 public class ScoreCardController extends Controller {
   private GameData gameData = AppData.getInstance().getGameData();
 
+  /**
+   * Constructor for ScoreCardController.
+   */
   public ScoreCardController() {
     super(new ScoreCardView());
   }
 
+  /**
+   * Gets the new controller based on user input.
+   * 
+   * @param inputHandler The input handler for user input.
+   * @return The new controller.
+   */
   @Override
   protected ControllerName getNewController(InputHandler inputHandler) {
     String state = getState();
@@ -28,6 +40,12 @@ public class ScoreCardController extends Controller {
     }
   }
 
+  /**
+   * Registers the score based on user input.
+   * 
+   * @param inputHandler The input handler for user input.
+   * @return The new controller.
+   */
   private ControllerName registerScore(InputHandler inputHandler) {
     String choice = inputHandler.getStringInput("Enter name of the entry to fill: ").toLowerCase();
     try {
