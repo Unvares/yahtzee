@@ -19,7 +19,7 @@ public class InputHandler {
 
   /**
    * Returns the singleton instance of InputHandler.
-   * 
+   *
    * @return the singleton instance of InputHandler.
    */
   public static InputHandler getInstance() {
@@ -38,7 +38,7 @@ public class InputHandler {
 
   /**
    * Prints the options and gets an integer input from the user.
-   * 
+   *
    * @param optionsList the list of options to print.
    * @param prompt      the prompt to display.
    * @return the integer input from the user.
@@ -50,7 +50,7 @@ public class InputHandler {
 
   /**
    * Gets an integer input from the user.
-   * 
+   *
    * @param prompt the prompt to display.
    * @return the integer input from the user.
    */
@@ -71,7 +71,7 @@ public class InputHandler {
 
   /**
    * Prints the options and gets a string input from the user.
-   * 
+   *
    * @param optionsList the list of options to print.
    * @param prompt      the prompt to display.
    * @return the string input from the user.
@@ -83,7 +83,7 @@ public class InputHandler {
 
   /**
    * Gets a string input from the user.
-   * 
+   *
    * @param prompt the prompt to display.
    * @return the string input from the user.
    */
@@ -104,7 +104,7 @@ public class InputHandler {
 
   /**
    * Prints the options and gets a boolean input from the user.
-   * 
+   *
    * @param optionsList the list of options to print.
    * @param prompt      the prompt to display.
    * @return the boolean input from the user.
@@ -116,7 +116,7 @@ public class InputHandler {
 
   /**
    * Gets a boolean input from the user.
-   * 
+   *
    * @param prompt the prompt to display.
    * @return the boolean input from the user.
    */
@@ -141,7 +141,7 @@ public class InputHandler {
 
   /**
    * Gets any string input from the user.
-   * 
+   *
    * @param prompt the prompt to display.
    * @return the string input from the user.
    */
@@ -152,7 +152,7 @@ public class InputHandler {
 
   /**
    * Prints the options to the console.
-   * 
+   *
    * @param optionsList the list of options to print.
    */
   private void printOptions(List<String> optionsList) {

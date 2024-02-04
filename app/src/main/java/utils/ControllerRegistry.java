@@ -1,9 +1,8 @@
 package utils;
 
+import controller.ControllerInterface;
 import java.util.HashMap;
 import java.util.Map;
-
-import controller.ControllerInterface;
 
 /**
  * This class is a registry for all controllers in the application.
@@ -23,7 +22,7 @@ public class ControllerRegistry {
 
   /**
    * This method registers a controller with a specific name.
-   * 
+   *
    * @param controllerName The name of the controller.
    * @param controller     The controller to be registered.
    */
@@ -33,7 +32,7 @@ public class ControllerRegistry {
 
   /**
    * This method retrieves a controller by its name.
-   * 
+   *
    * @param controllerName The name of the controller to be retrieved.
    * @return The controller associated with the given name.
    */
