@@ -1,11 +1,13 @@
 package view;
 
+import java.io.Serializable;
+
 /**
  * This abstract class represents a generic view in the application.
  * It implements the ViewInterface and provides basic functionality for all
  * views.
  */
-public abstract class View implements ViewInterface {
+public abstract class View implements ViewInterface, Serializable {
   /**
    * The state of the view.
    */

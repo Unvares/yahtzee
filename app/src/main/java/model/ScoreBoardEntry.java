@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import utils.DeepCopyUtil;
@@ -8,7 +9,7 @@ import utils.Variation;
 /**
  * This class represents an entry in the scoreboard of the Yahtzee game.
  */
-public class ScoreBoardEntry {
+public class ScoreBoardEntry implements Serializable {
   private List<Player> players;
 
   /**

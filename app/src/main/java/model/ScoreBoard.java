@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ import utils.Variation;
 /**
  * This class represents the scoreboard of the Yahtzee game.
  */
-public class ScoreBoard {
+public class ScoreBoard implements Serializable {
   private List<ScoreBoardEntry> entryList = new ArrayList<>();
   private File scoreFile;
   private Variation variation = Variation.DEFAULT;

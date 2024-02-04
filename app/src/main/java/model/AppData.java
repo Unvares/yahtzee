@@ -1,11 +1,12 @@
 package model;
 
+import java.io.Serializable;
 import utils.Variation;
 
 /**
  * This class represents the application data for the Yahtzee game.
  */
-public class AppData {
+public class AppData implements Serializable {
   private static AppData instance = null;
   private Variation variation = Variation.DEFAULT;
   private GameData gameData = new GameData();

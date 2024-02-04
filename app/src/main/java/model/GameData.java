@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -9,7 +10,7 @@ import utils.Variation;
 /**
  * This class represents the game data for a Yahtzee game.
  */
-public class GameData {
+public class GameData implements Serializable {
   private Variation variation = Variation.DEFAULT;
   private static final int minPlayers = 2;
   private static final int maxPlayers = 5;

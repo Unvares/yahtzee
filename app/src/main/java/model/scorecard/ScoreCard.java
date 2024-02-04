@@ -1,5 +1,6 @@
 package model.scorecard;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -16,7 +17,7 @@ import utils.Variation;
 /**
  * This class represents the score card for a Yahtzee game.
  */
-public class ScoreCard {
+public class ScoreCard implements Serializable {
   private int bonusThreshold = 63;
   private int bonusPoints = 35;
   private LinkedHashMap<String, ScoreCardEntry> upperSectionMap = new LinkedHashMap<>();

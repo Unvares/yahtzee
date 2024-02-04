@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import model.scorecard.ScoreCard;
 import utils.DeepCopyUtil;
 import utils.Variation;
@@ -7,7 +8,7 @@ import utils.Variation;
 /**
  * This class represents a player in the Yahtzee game.
  */
-public class Player {
+public class Player implements Serializable {
   private String name;
   private boolean isHuman;
   private ScoreCard scoreCard;

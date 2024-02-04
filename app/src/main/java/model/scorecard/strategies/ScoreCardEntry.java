@@ -1,12 +1,13 @@
 package model.scorecard.strategies;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * This abstract class represents a score card entry in the game of Yahtzee.
  * It implements the ScoreCardEntryInterface.
  */
-public abstract class ScoreCardEntry implements ScoreCardEntryInterface {
+public abstract class ScoreCardEntry implements ScoreCardEntryInterface, Serializable {
   private String name;
   private boolean isCompleted = false;
   private int score = 0;
