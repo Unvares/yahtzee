@@ -14,12 +14,21 @@ import model.ScoreCard.strategies.VillaEntry;
 import model.ScoreCard.strategies.YahtzeeEntry;
 import utils.Variation;
 
+/**
+ * This class represents the score card for a Yahtzee game.
+ */
 public class ScoreCard {
   private int bonusThreshold = 63;
   private int bonusPoints = 35;
   private LinkedHashMap<String, ScoreCardEntry> upperSectionMap = new LinkedHashMap<>();
   private LinkedHashMap<String, ScoreCardEntry> lowerSectionMap = new LinkedHashMap<>();
 
+  /**
+   * Constructor for ScoreCard.
+   * Initializes the score card with the given game variation.
+   *
+   * @param variation The game variation.
+   */
   public ScoreCard(Variation variation) {
     if (variation == Variation.MAXI) {
       bonusThreshold = 75;
@@ -52,18 +61,40 @@ public class ScoreCard {
     lowerSectionMap.put("chance", new ChanceEntry());
   }
 
+  /**
+   * Returns the upper section of the score card.
+   *
+   * @return The upper section of the score card.
+   */
   public LinkedHashMap<String, ScoreCardEntry> getUpperSection() {
     return upperSectionMap;
   }
 
+  /**
+   * Returns the lower section of the score card.
+   *
+   * @return The lower section of the score card.
+   */
   public LinkedHashMap<String, ScoreCardEntry> getLowerSection() {
     return lowerSectionMap;
   }
 
+  /**
+   * Returns the score card entry with the given name.
+   *
+   * @param name The name of the score card entry.
+   * @return The score card entry with the given name.
+   */
   public ScoreCardEntry getScoreCardEntry(String name) {
     return getMergedMap().get(name);
   }
 
+  /**
+   * Returns the total score from the given section.
+   *
+   * @param isUpperSection Whether the section is the upper section.
+   * @return The total score from the given section.
+   */
   public int getTotalScoreFromSection(boolean isUpperSection) {
     LinkedHashMap<String, ScoreCardEntry> sectionMap = isUpperSection ? upperSectionMap : lowerSectionMap;
 
@@ -78,15 +109,30 @@ public class ScoreCard {
     return totalScore;
   }
 
+  /**
+   * Returns the bonus score.
+   *
+   * @return The bonus score.
+   */
   public int getBonus() {
     int upperSectionTotalScore = getTotalScoreFromSection(true);
     return upperSectionTotalScore >= bonusThreshold ? bonusPoints : 0;
   }
 
+  /**
+   * Returns the total score.
+   *
+   * @return The total score.
+   */
   public int getTotalScore() {
     return getTotalScoreFromSection(true) + getTotalScoreFromSection(false);
   }
 
+  /**
+   * Returns whether the score card is completed.
+   *
+   * @return Whether the score card is completed.
+   */
   public boolean isCompleted() {
     LinkedHashMap<String, ScoreCardEntry> mergedMap = getMergedMap();
 
@@ -99,6 +145,11 @@ public class ScoreCard {
     return true;
   }
 
+  /**
+   * Returns a merged map of the upper and lower sections.
+   *
+   * @return A merged map of the upper and lower sections.
+   */
   private LinkedHashMap<String, ScoreCardEntry> getMergedMap() {
     LinkedHashMap<String, ScoreCardEntry> mergedMap = new LinkedHashMap<>();
     mergedMap.putAll(upperSectionMap);
@@ -106,6 +157,11 @@ public class ScoreCard {
     return mergedMap;
   }
 
+  /**
+   * Converts the score card to a CSV string.
+   *
+   * @return The CSV string representation of the score card.
+   */
   public String toCSV() {
     StringBuilder csvBuilder = new StringBuilder();
     LinkedHashMap<String, ScoreCardEntry> mergedMap = getMergedMap();
@@ -116,6 +172,11 @@ public class ScoreCard {
     return csvBuilder.toString();
   }
 
+  /**
+   * Returns a string representation of the score card.
+   *
+   * @return A string representation of the score card.
+   */
   @Override
   public String toString() {
     StringBuilder stringBuilder = new StringBuilder();
@@ -127,6 +188,11 @@ public class ScoreCard {
     return stringBuilder.toString();
   }
 
+  /**
+   * Appends the upper section to the given string builder.
+   *
+   * @param stringBuilder The string builder to append to.
+   */
   private void appendUpperSection(StringBuilder stringBuilder) {
     int upperSectionTotal = getTotalScoreFromSection(true);
     int bonus = getBonus();
@@ -141,6 +207,11 @@ public class ScoreCard {
     stringBuilder.append("\n");
   }
 
+  /**
+   * Appends the lower section to the given string builder.
+   *
+   * @param stringBuilder The string builder to append to.
+   */
   private void appendLowerSection(StringBuilder stringBuilder) {
     int lowerSectionTotal = getTotalScoreFromSection(false);
 
@@ -150,6 +221,12 @@ public class ScoreCard {
     stringBuilder.append("\n");
   }
 
+  /**
+   * Appends the given section to a string.
+   *
+   * @param entryMap The section to append.
+   * @return The string representation of the section.
+   */
   private String appendSection(LinkedHashMap<String, ScoreCardEntry> entryMap) {
     StringBuilder sectionStringBuilder = new StringBuilder();
     entryMap.forEach((key, scoreCardEntry) -> {
@@ -159,6 +236,11 @@ public class ScoreCard {
     return sectionStringBuilder.toString();
   }
 
+  /**
+   * Appends the grand total to the given string builder.
+   *
+   * @param stringBuilder The string builder to append to.
+   */
   private void appendGrandTotal(StringBuilder stringBuilder) {
     int upperSectionTotalWithBonus = getTotalScoreFromSection(true) + getBonus();
     int lowerSectionTotal = getTotalScoreFromSection(false);
@@ -169,6 +251,13 @@ public class ScoreCard {
     stringBuilder.append("Grand Total: " + grandTotal + "\n");
   }
 
+  /**
+   * Creates a ScoreCard from a CSV string.
+   *
+   * @param csv       The CSV string to be converted.
+   * @param variation The variation of the game.
+   * @return The ScoreCard created from the CSV string.
+   */
   public static ScoreCard fromCSV(String csv, Variation variation) {
     String[] parts = csv.split(",");
     ScoreCard scoreCard = new ScoreCard(variation);
