@@ -6,12 +6,24 @@ import model.AppData;
 import model.GameData;
 import model.Player;
 
+/**
+ * This class represents the view for the game.
+ */
 public class GameView extends View {
+  /**
+   * The game data.
+   */
   private GameData gameData = AppData.getInstance().getGameData();
 
+  /**
+   * Constructor for GameView.
+   */
   public GameView() {
   }
 
+  /**
+   * This method displays the game view.
+   */
   @Override
   public void display() {
     clearScreen();

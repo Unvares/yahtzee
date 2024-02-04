@@ -6,12 +6,24 @@ import model.AppData;
 import model.Player;
 import model.ScoreBoardEntry;
 
+/**
+ * This class represents the view for the Score Board.
+ */
 public class ScoreBoardView extends View {
+  /**
+   * The application data.
+   */
   private AppData appData = AppData.getInstance();
 
+  /**
+   * Constructor for ScoreBoardView.
+   */
   public ScoreBoardView() {
   }
 
+  /**
+   * This method displays the Score Board view.
+   */
   @Override
   public void display() {
     clearScreen();
@@ -23,10 +35,16 @@ public class ScoreBoardView extends View {
     }
   }
 
+  /**
+   * This method displays the menu.
+   */
   private void displayMenu() {
     System.out.println();
   }
 
+  /**
+   * This method displays the Score Board.
+   */
   private void displayScoreBoard() {
     System.out.println("Score Board");
     System.out.println();
@@ -34,6 +52,9 @@ public class ScoreBoardView extends View {
     displayScores();
   }
 
+  /**
+   * This method displays the scores of the players.
+   */
   private void displayScores() {
     List<ScoreBoardEntry> scoreBoardEntries = appData.getScoreBoard().getEntries();
 

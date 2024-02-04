@@ -4,12 +4,24 @@ import model.AppData;
 import model.GameData;
 import model.ScoreCard.ScoreCard;
 
+/**
+ * This class represents the view for the Score Card.
+ */
 public class ScoreCardView extends View {
+  /**
+   * The game data.
+   */
   private GameData gameData = AppData.getInstance().getGameData();
 
+  /**
+   * Constructor for ScoreCardView.
+   */
   public ScoreCardView() {
   }
 
+  /**
+   * This method displays the Score Card view.
+   */
   @Override
   public void display() {
     clearScreen();

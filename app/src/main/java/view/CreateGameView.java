@@ -6,12 +6,21 @@ import model.AppData;
 import model.GameData;
 import model.Player;
 
+/**
+ * This class represents the view for creating a game.
+ */
 public class CreateGameView extends View {
   private GameData gameData = AppData.getInstance().getGameData();
 
+  /**
+   * Constructor for CreateGameView.
+   */
   public CreateGameView() {
   }
 
+  /**
+   * This method displays the list of players.
+   */
   @Override
   public void display() {
     clearScreen();
