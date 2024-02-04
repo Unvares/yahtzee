@@ -3,6 +3,7 @@ package controller;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import model.AppData;
 import model.GameData;
@@ -15,6 +16,7 @@ import view.GameView;
  * Controller for the game logic.
  */
 public class GameController extends Controller {
+  private Random random = new Random();
   private GameData gameData = AppData.getInstance().getGameData();
 
   /**
@@ -122,7 +124,7 @@ public class GameController extends Controller {
    * @return The result of the dice roll.
    */
   private int rollDice() {
-    return (int) (Math.random() * 6) + 1;
+    return random.nextInt(6) + 1;
   }
 
   /**
