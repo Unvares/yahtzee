@@ -9,13 +9,25 @@ import utils.InputHandler;
 import utils.ControllerName;
 import view.MenuView;
 
+/**
+ * Controller for the main menu of the game.
+ */
 public class MainMenuController extends Controller {
   private GameData gameData = AppData.getInstance().getGameData();
 
+  /**
+   * Constructor for MainMenuController.
+   */
   public MainMenuController() {
     super(new MenuView());
   }
 
+  /**
+   * Gets the new controller based on user input.
+   * 
+   * @param inputHandler The input handler for user input.
+   * @return The new controller.
+   */
   @Override
   protected ControllerName getNewController(InputHandler inputHandler) {
     List<String> optionsList = getOptionsList();
@@ -40,6 +52,11 @@ public class MainMenuController extends Controller {
     }
   }
 
+  /**
+   * Gets the list of options for the main menu.
+   * 
+   * @return The list of options.
+   */
   private List<String> getOptionsList() {
     List<String> optionsList = new ArrayList<>();
 
