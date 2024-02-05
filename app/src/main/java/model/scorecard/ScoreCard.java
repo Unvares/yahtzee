@@ -7,7 +7,7 @@ import java.util.Map;
 import model.scorecard.strategies.ChanceEntry;
 import model.scorecard.strategies.FullHouseEntry;
 import model.scorecard.strategies.NofaKindEntry;
-import model.scorecard.strategies.ScoreCardEntry;
+import model.scorecard.strategies.ScoreCardEntryInterface;
 import model.scorecard.strategies.StraightEntry;
 import model.scorecard.strategies.SumOfValuesEntry;
 import model.scorecard.strategies.VillaEntry;
@@ -20,8 +20,8 @@ import utils.Variation;
 public class ScoreCard implements Serializable {
   private int bonusThreshold = 63;
   private int bonusPoints = 35;
-  private LinkedHashMap<String, ScoreCardEntry> upperSectionMap = new LinkedHashMap<>();
-  private LinkedHashMap<String, ScoreCardEntry> lowerSectionMap = new LinkedHashMap<>();
+  private LinkedHashMap<String, ScoreCardEntryInterface> upperSectionMap = new LinkedHashMap<>();
+  private LinkedHashMap<String, ScoreCardEntryInterface> lowerSectionMap = new LinkedHashMap<>();
 
   /**
    * Constructor for ScoreCard.
@@ -67,7 +67,7 @@ public class ScoreCard implements Serializable {
    * @param name The name of the score card entry.
    * @return The score card entry with the given name.
    */
-  public ScoreCardEntry getScoreCardEntry(String name) {
+  public ScoreCardEntryInterface getScoreCardEntry(String name) {
     return getMergedMap().get(name);
   }
 
@@ -78,11 +78,11 @@ public class ScoreCard implements Serializable {
    * @return The total score from the given section.
    */
   public int getTotalScoreFromSection(boolean isUpperSection) {
-    LinkedHashMap<String, ScoreCardEntry> sectionMap = isUpperSection ? upperSectionMap : lowerSectionMap;
+    LinkedHashMap<String, ScoreCardEntryInterface> sectionMap = isUpperSection ? upperSectionMap : lowerSectionMap;
 
     int totalScore = 0;
-    for (Map.Entry<String, ScoreCardEntry> entry : sectionMap.entrySet()) {
-      ScoreCardEntry scoreCardEntry = entry.getValue();
+    for (Map.Entry<String, ScoreCardEntryInterface> entry : sectionMap.entrySet()) {
+      ScoreCardEntryInterface scoreCardEntry = entry.getValue();
       if (scoreCardEntry.isCompleted()) {
         totalScore += scoreCardEntry.getScore();
       }
@@ -116,10 +116,10 @@ public class ScoreCard implements Serializable {
    * @return Whether the score card is completed.
    */
   public boolean isCompleted() {
-    LinkedHashMap<String, ScoreCardEntry> mergedMap = getMergedMap();
+    LinkedHashMap<String, ScoreCardEntryInterface> mergedMap = getMergedMap();
 
-    for (Map.Entry<String, ScoreCardEntry> entry : mergedMap.entrySet()) {
-      ScoreCardEntry scoreCardEntry = entry.getValue();
+    for (Map.Entry<String, ScoreCardEntryInterface> entry : mergedMap.entrySet()) {
+      ScoreCardEntryInterface scoreCardEntry = entry.getValue();
       if (!scoreCardEntry.isCompleted()) {
         return false;
       }
@@ -132,8 +132,8 @@ public class ScoreCard implements Serializable {
    *
    * @return A merged map of the upper and lower sections.
    */
-  private LinkedHashMap<String, ScoreCardEntry> getMergedMap() {
-    LinkedHashMap<String, ScoreCardEntry> mergedMap = new LinkedHashMap<>();
+  private LinkedHashMap<String, ScoreCardEntryInterface> getMergedMap() {
+    LinkedHashMap<String, ScoreCardEntryInterface> mergedMap = new LinkedHashMap<>();
     mergedMap.putAll(upperSectionMap);
     mergedMap.putAll(lowerSectionMap);
     return mergedMap;
@@ -146,8 +146,8 @@ public class ScoreCard implements Serializable {
    */
   public String toCsv() {
     StringBuilder csvBuilder = new StringBuilder();
-    LinkedHashMap<String, ScoreCardEntry> mergedMap = getMergedMap();
-    for (Map.Entry<String, ScoreCardEntry> entry : mergedMap.entrySet()) {
+    LinkedHashMap<String, ScoreCardEntryInterface> mergedMap = getMergedMap();
+    for (Map.Entry<String, ScoreCardEntryInterface> entry : mergedMap.entrySet()) {
       csvBuilder.append(entry.getValue().getScore()).append(",");
     }
     csvBuilder.setLength(csvBuilder.length() - 1);
@@ -209,7 +209,7 @@ public class ScoreCard implements Serializable {
    * @param entryMap The section to append.
    * @return The string representation of the section.
    */
-  private String appendSection(LinkedHashMap<String, ScoreCardEntry> entryMap) {
+  private String appendSection(LinkedHashMap<String, ScoreCardEntryInterface> entryMap) {
     StringBuilder sectionStringBuilder = new StringBuilder();
     entryMap.forEach((key, scoreCardEntry) -> {
       String score = scoreCardEntry.isCompleted() ? ": " + scoreCardEntry.getScore() : "";
@@ -244,11 +244,11 @@ public class ScoreCard implements Serializable {
     String[] parts = csv.split(",");
     ScoreCard scoreCard = new ScoreCard(variation);
 
-    Iterator<Map.Entry<String, ScoreCardEntry>> iterator = scoreCard.getMergedMap().entrySet().iterator();
+    Iterator<Map.Entry<String, ScoreCardEntryInterface>> iterator = scoreCard.getMergedMap().entrySet().iterator();
     for (int i = 0; i < parts.length; i++) {
       int score = Integer.parseInt(parts[i]);
-      Map.Entry<String, ScoreCardEntry> entry = iterator.next();
-      ScoreCardEntry scoreCardEntry = entry.getValue();
+      Map.Entry<String, ScoreCardEntryInterface> entry = iterator.next();
+      ScoreCardEntryInterface scoreCardEntry = entry.getValue();
       scoreCardEntry.setScore(score);
     }
 

@@ -2,7 +2,7 @@ package controller;
 
 import model.AppData;
 import model.GameData;
-import model.scorecard.strategies.ScoreCardEntry;
+import model.scorecard.strategies.ScoreCardEntryInterface;
 import utils.ControllerName;
 import utils.InputHandler;
 import view.ScoreCardView;
@@ -49,7 +49,7 @@ public class ScoreCardController extends Controller {
   private ControllerName registerScore(InputHandler inputHandler) {
     String choice = inputHandler.getStringInput("Enter name of the entry to fill: ").toLowerCase();
     try {
-      ScoreCardEntry entry = gameData.getCurrentPlayer().getScoreCard().getScoreCardEntry(choice);
+      ScoreCardEntryInterface entry = gameData.getCurrentPlayer().getScoreCard().getScoreCardEntry(choice);
       boolean isYahtzee = choice.equals("yahtzee");
       boolean canScoreYahtzee = isYahtzee && (!entry.isCompleted() || entry.getScore() > 0);
       if ((entry.isCompleted() && !isYahtzee) || canScoreYahtzee) {
