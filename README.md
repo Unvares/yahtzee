@@ -2,6 +2,9 @@
 
 Project for Assignment 2
 
+Group members:
+- Rihards Okmanis (ro222ij@student.lnu.se)
+
 A project template based on gradle and a gitlab pipeline. You should always build and run the application using gradle regularely.
 
 [design.md](design.md) contains the prescribed architectural design of the application.
